@@ -1,0 +1,1140 @@
+.zoomcontainer{
+  width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: auto;
+}
+.exp-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.circuit-wrap {
+  padding-top: 60px;
+  overflow: auto;
+}
+
+.circuit-container {
+  position: relative;
+  width: 620px;
+  margin: 0 auto;
+}
+
+.circuit-diagram {
+  position: relative;
+  width: 572px;
+  height: 390px;
+  margin: 0 auto;
+}
+
+.dropwire.hor {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+  /*background-color: red;
+  opacity: 0.6;*/
+}
+
+.dropwire.ver {
+  position: absolute;
+  width: 20px;
+  height: 130px;
+  /*background-color: red;
+  opacity: 0.6;*/
+}
+
+.t1 {
+  top: 0px;
+}
+
+.t2 {
+  top: 110px;
+}
+
+.t3 {
+  top: 220px;
+}
+
+.l1 {
+  left: 0px;
+}
+
+.l2 {
+  left: 110px;
+}
+
+.l3 {
+  left: 220px;
+}
+
+.l4 {
+  left: 330px;
+}
+
+.l5 {
+  left: 440px;
+}
+
+.l6 {
+  left: 550px;
+}
+
+.dropwire .endpoint {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.dropwire .endpoint.left {
+  left: 0px;
+  top: -10px
+}
+
+.dropwire .endpoint.right {
+  right: 0px;
+  top: -10px;
+}
+
+.dropwire.hor .line {
+  height: 1px;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='4' stroke-dasharray='4%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+}
+
+.dropwire.hor .line.noline {
+  background-image: none
+}
+
+.dropwire .endpoint.outcir {
+  background-color: #A25225;
+  border-radius: 50%;
+}
+
+.dropwire .endpoint .inncir {
+  background-color: #BB6928;
+  border-radius: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 5px;
+  left: 5px;
+}
+
+.v-wire-img {
+  height: 105px;
+  width: 20px;
+  position: absolute;
+  top: 12px;
+  left: 0px;
+}
+
+.battery-wrap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.battery-img {
+  position: absolute;
+  bottom: -10px;
+  left: 9px;
+  width: 112px;
+}
+
+.volt-wrap {
+  position: absolute;
+  width: 73px;
+  left: 28px;
+  top: -40px;
+  color: #FFF;
+}
+
+.volt-wrap .plus {
+  position: absolute;
+  left: 2px;
+  top: 0px;
+}
+
+.volt-wrap .minus {
+  position: absolute;
+  right: 2px;
+  top: 0px;
+}
+
+.volt-wrap .value {
+  text-align: center;
+  font-size: 12px;
+  padding: 3px 0px;
+}
+
+.buttonMinus {
+  position: absolute;
+  left: 28px;
+  top: 15px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background: transparent;
+  padding: 0px;
+}
+
+.buttonPlus {
+  position: absolute;
+  right: 26px;
+  top: 15px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background: transparent;
+  padding: 0px;
+}
+
+.dragObject, .dragObjectClone {
+  position: absolute;
+  width: 85px;
+}
+
+.dragObjectCloneDummy {
+  width: 85px;
+}
+
+.dragSeperator {
+  position: absolute;
+  width: 1px;
+  height: 90px;
+}
+
+.dragSeperator span {
+  position: absolute;
+  top: 10%;
+  left: 0px;
+  height: 80%;
+  width: 1px;
+  background-color: #9e9e9e;
+  margin: 0 10%;
+}
+
+.dragText {
+  position: absolute;
+  width: 85px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.dt1 {
+  top: 280px;
+}
+
+.dt2 {
+  top: 312px;
+}
+
+.dt3 {
+  top: 100%;
+}
+
+.dl1 {
+  left: 0px;
+}
+
+.dl2 {
+  left: 100px;
+}
+
+.dl3 {
+  left: 200px;
+}
+
+.dl4 {
+  left: 300px;
+}
+
+.dl5 {
+  left: 400px;
+}
+
+.dl6 {
+  left: 500px;
+}
+
+.s1 {
+  left: 92px;
+}
+
+.s2 {
+  left: 192px;
+}
+
+.s3 {
+  left: 292px;
+}
+
+.s4 {
+  left: 392px;
+}
+
+.s5 {
+  left: 492px;
+}
+
+.txt1 {
+  left: 0px;
+}
+
+.txt2 {
+  left: 0px;
+}
+
+.txt3 {
+  left: 0px;
+}
+
+.txt4 {
+  left: 0px;
+}
+
+.ques-panel {
+  padding: 0.5rem 1rem 0.2rem 1rem;
+  border-top: 1px solid var(--primary-text);
+  position: absolute;
+  font-size: 15px;
+  bottom: 0px;
+  width: 100%;
+}
+.wrapper[device="tablet"] .ques-panel {
+  padding-bottom: 2rem;
+}
+
+.wrapper[device="mobile"] .ques-panel {
+  position: relative;
+}
+
+.lp60 {
+  padding-left: 0px;
+}
+
+.ques-text {
+  position: relative;
+}
+
+.ques-no {}
+
+.options {
+  height: 25px;
+  margin-top: 10px;
+  /*margin-bottom: 20px;*/
+}
+
+.options .opt {
+  float: left;
+  width: 20%;
+}
+
+.options .opt input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  float: left;
+}
+
+.options .opt label {
+  /*display: block;
+  float: left;
+  padding: 1px 5px;*/
+}
+
+.score-pan {
+  position: absolute;
+  top: -30px;
+}
+
+.score_cont {
+  border: 2px solid #4b4b4b;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: fit-content;
+  height: 30px;
+  /* background-color: #4b4b4b; */
+  position: relative;
+  background: rgb(75, 75, 75);
+  background: -moz-linear-gradient(-25deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 80%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(-25deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 80%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(90deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 50%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4b4b4b', endColorstr='#ffffff', GradientType=1);
+}
+
+.score_cont .score_title {
+  color: #fff;
+  /*font-weight: bold;*/
+  float: left;
+  width: 80px;
+  padding: 2px 0px 0px 6px;
+  height: 26px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background: rgb(75, 75, 75);
+  /* Old browsers */
+  background: -moz-linear-gradient(-25deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 80%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-25deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 80%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(115deg,
+      rgba(75, 75, 75, 1) 0%,
+      rgba(75, 75, 75, 1) 80%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4b4b4b', endColorstr='#ffffff', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+.score_cont .score_txt {
+  color: #4b4b4b;
+  font-weight: bold;
+  float: left;
+  width: auto;
+  padding: 2px 10px 1px 0px;
+  position: relative;
+  min-width: 50px;
+  background-color: #fff;
+  border-top-right-radius: 5px;
+}
+
+/* The container */
+.checkcontainer {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  margin-left: 28px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: #FFF;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+/* On mouse-over, add a grey background color */
+.checkcontainer:hover input~.checkmark {
+  /*background-color: #ccc;*/
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkcontainer input:checked~.checkmark {
+  background-color: #FFF;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkcontainer input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkcontainer .checkmark:after {
+  left: 7px;
+  top: 2px;
+  width: 7px;
+  height: 14px;
+  border: solid var(--primary-text);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.dropped-wire {
+  position: absolute;
+  width: 130px;
+  height: 20px;
+}
+
+.h-wire-img {
+  height: 20px;
+  width: 90px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+}
+
+.d-wire-object {
+  width: 100%;
+  height: 100%;
+}
+
+.dropped-object {
+  width: 90px;
+}
+
+.ammeter-text {
+  position: absolute;
+  left: 0px;
+  top: 6px;
+  color: #FFF;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.dropped-object .ammeter-text {
+  display: block;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.correct-mark, .wrong-mark {
+  float: left;
+}
+
+.wrong-mark img {
+  height: 18px;
+  margin-bottom: 2px;
+}
+
+.correct-mark img {
+  height: 18px;
+  margin-bottom: 2px;
+}
+
+.dragObject .connector {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+}
+
+.dragObject[object='bulb'] img.objimg {
+  width: 67px;
+  margin-top: -18px;
+  margin-left: 9px;
+}
+
+.dragObject[object='robot'] img.objimg {
+  width: 80px;
+  margin-top: -19px;
+  margin-left: 2px;
+}
+
+.dragObject[object='boat'] img.objimg {
+  width: 88px;
+  margin-top: -4px;
+  margin-left: -1px;
+}
+
+.dragObject[object='horse'] img.objimg {
+  width: 67px;
+  margin-top: 0px;
+  margin-left: 9px;
+}
+
+.dropped-object .connector {
+  display: none;
+}
+
+.dropped-object[object='bulb'].complete img, .dropped-object[object='bulb'] img.objimg {
+  width: 106px;
+  margin-top: -36px;
+  margin-left: -8px;
+}
+
+.dropped-object[object='robot'].complete img, .dropped-object[object='robot'] img.objimg {
+  width: 112px;
+  margin-top: -26px;
+  margin-left: -12px;
+}
+
+.dropped-object[object='boat'].complete img, .dropped-object[object='boat'] img.objimg {
+  width: 126px;
+  margin-top: -7px;
+  margin-left: -18px;
+}
+
+.dropped-object[object='horse'].complete img, .dropped-object[object='horse'] img.objimg {
+  width: 98px;
+  margin-top: -3px;
+  margin-left: -4px;
+}
+
+.buttonMinus.gt-clone{
+  background-color: transparent;
+}
+.buttonPlus.gt-clone{
+  background-color: transparent;
+}
+
+@media screen and (orientation: landscape) and (min-device-width: 380px)and (max-device-width: 990px) and (max-device-height: 990px) {
+  .wrapper[device="mobile"] .dropwire.hor {
+    width: 90px;
+    height: 16px;
+  }
+
+  .wrapper[device="mobile"] .dropwire.ver {
+    width: 16px;
+    height: 90px;
+  }
+
+  .wrapper[device="mobile"] .dropped-wire {
+    width: 90px;
+    height: 16px;
+  }
+
+  .wrapper[device="mobile"] .h-wire-img {
+    height: 16px;
+    width: 58px;
+    left: 16px;
+  }
+
+  .wrapper[device="mobile"] .v-wire-img {
+    height: 65px;
+    width: 16px;
+    top: 12px;
+  }
+
+  .wrapper[device="mobile"] .dropwire .endpoint {
+    width: 16px;
+    height: 16px;
+  }
+
+  .wrapper[device="mobile"] .dropwire .endpoint.left {
+    top: -8px;
+  }
+
+  .wrapper[device="mobile"] .dropwire .endpoint .inncir {
+    width: 8px;
+    height: 8px;
+    top: 4px;
+    left: 4px;
+  }
+
+  .wrapper[device="mobile"] .dropwire .endpoint.right {
+    right: 0px;
+    top: -8px;
+  }
+
+  .wrapper[device="mobile"] .t1 {
+    top: 0px;
+  }
+
+  .wrapper[device="mobile"] .t2 {
+    top: 74px;
+  }
+
+  .wrapper[device="mobile"] .t3 {
+    top: 148px;
+  }
+
+  .wrapper[device="mobile"] .l1 {
+    left: 0px;
+  }
+
+  .wrapper[device="mobile"] .l2 {
+    left: 74px;
+  }
+
+  .wrapper[device="mobile"] .l3 {
+    left: 148px;
+  }
+
+  .wrapper[device="mobile"] .l4 {
+    left: 222px;
+  }
+
+  .wrapper[device="mobile"] .l5 {
+    left: 296px;
+  }
+
+  .wrapper[device="mobile"] .l6 {
+    left: 370px;
+  }
+
+  .wrapper[device="mobile"] .circuit-wrap {
+    padding-top: 36px;
+  }
+
+  .wrapper[device="mobile"] .ball1, .wrapper[device="mobile"] .ball2 {
+    width: 6px;
+    height: 6px;
+  }
+
+  .wrapper[device="mobile"] .dropwire.ver .ball1, .wrapper[device="mobile"] .dropwire.ver .ball2 {
+    left: 5px;
+  }
+
+  .wrapper[device="mobile"] .dropped-wire .ball1, .wrapper[device="mobile"] .dropped-wire .ball2 {
+    top: 5px;
+  }
+
+  .wrapper[device="mobile"] .circuit-diagram {
+    width: 602px;
+    height: 220px;
+  }
+
+  .wrapper[device="mobile"] .dragObject, .wrapper[device="mobile"] .dragObjectClone {
+    width: 62px;
+  }
+
+  .wrapper[device="mobile"] .battery-img {
+    bottom: -5px;
+    left: 5px;
+    width: 80px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator {
+    height: 55px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s1 {
+    left: 483px;
+    top: 5px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s2 {
+    left: 483px;
+    top: 64px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s3 {
+    left: 483px;
+    top: 124px;
+    height: 40px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s4 {
+    display: none;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s5 {
+    display: none;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='bulb'] img.objimg {
+    width: 50px;
+    margin-top: -14px;
+    margin-left: 6px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='robot'] img.objimg {
+    width: 57px;
+    margin-top: -13px;
+    margin-left: 2px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='boat'] img.objimg {
+    width: 65px;
+    margin-top: -3px;
+    margin-left: -1px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='horse'] img.objimg {
+    width: 50px;
+    margin-top: 0px;
+    margin-left: 6px;
+  }
+
+  .wrapper[device="mobile"] .dragObject .dragText {
+    width: 100%;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .wrapper[device="mobile"] .dropped-object .dragText {
+    width: 100%;
+    font-size: 10px;
+    line-height: 12px;
+    margin-left: -5px;
+  }
+  
+
+  .wrapper[device="mobile"] .dl1[object="bulb"] {
+    left: 410px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="bulb"] {
+    top: 0px;
+  }
+
+  .wrapper[device="mobile"] .dl2[object="robot"] {
+    left: 495px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="robot"] {
+    top: 0px;
+  }
+
+  .wrapper[device="mobile"] .dl3[object="boat"] {
+    left: 410px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="boat"] {
+    top: 64px;
+  }
+
+  .wrapper[device="mobile"] .dl4[object="horse"] {
+    left: 495px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="horse"] {
+    top: 64px;
+  }
+
+  .wrapper[device="mobile"] .dl5[object="ammeter"] {
+    left: 410px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="ammeter"] {
+    top: 128px;
+  }
+
+  .wrapper[device="mobile"] .dl6[object="wire"] {
+    left: 495px;
+  }
+
+  .wrapper[device="mobile"] .dt2[object="wire"] {
+    top: 128px;
+  }
+
+  .wrapper[device="mobile"] .buttonMinus {
+    left: 10px;
+    top: 15px;
+  }
+
+  .wrapper[device="mobile"] .buttonPlus {
+    right: 10px;
+    top: 15px;
+  }
+
+  .wrapper[device="mobile"] .volt-wrap {
+    width: 56px;
+    left: 16px;
+    top: -35px;
+    color: #FFF;
+  }
+
+  .wrapper[device="mobile"] .volt-wrap .value {
+    text-align: center;
+    font-size: 10px;
+    padding: 5px 0px;
+  }
+
+  .wrapper[device="mobile"] .ques-panel {
+    font-size: 13px;
+  }
+
+  .wrapper[device="mobile"] .score_cont .score_txt {
+    padding: 1px 10px 1px 0px;
+  }
+
+  .wrapper[device="mobile"] .score_cont .score_title {
+    height: 22px;
+  }
+
+  .wrapper[device="mobile"] .score_cont {
+    height: 26px;
+  }
+
+  .wrapper[device="mobile"] .score-pan {
+    top: -26px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object {
+    width: 60px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='bulb'].complete img.objimg,
+  .wrapper[device="mobile"] .dropped-object[object='bulb'] img.objimg {
+    width: 64px;
+    margin-top: -1px;
+    margin-left: -7px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='robot'].complete img.objimg,
+  .wrapper[device="mobile"] .dropped-object[object='robot'] img.objimg {
+    width: 70px;
+    margin-top: 2px;
+    margin-left: -10px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='boat'].complete img.objimg,
+  .wrapper[device="mobile"] .dropped-object[object='boat'] img.objimg {
+    width: 82px;
+    margin-top: 13px;
+    margin-left: -16px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='horse'].complete img.objimg,
+  .wrapper[device="mobile"] .dropped-object[object='horse'] img.objimg {
+    width: 62px;
+    margin-top: 17px;
+    margin-left: -6px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='ammeter'].complete img.ameter,
+  .wrapper[device="mobile"] .dropped-object[object='ammeter'] img.ameter {
+    width: 60px;
+    margin-top: 16px;
+    margin-left: -4px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='ammeter'] .ammeter-text {
+    left: -3px;
+    top: 14px;
+    font-size: 10px;
+    padding-top: 8px;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-device-width: 800px) {
+  .wrapper[device="mobile"] .circuit-diagram {
+    width: 650px;
+    height: 250px;
+  }
+
+  .wrapper[device="mobile"] .dropwire.hor {
+    width: 100px;
+    height: 16px;
+  }
+
+  .wrapper[device="mobile"] .dropwire.ver {
+    width: 16px;
+    height: 100px;
+  }
+
+  .wrapper[device="mobile"] .l2 {
+    left: 84px;
+  }
+
+  .wrapper[device="mobile"] .l3 {
+    left: 168px;
+  }
+
+  .wrapper[device="mobile"] .l4 {
+    left: 252px;
+  }
+
+  .wrapper[device="mobile"] .l5 {
+    left: 336px;
+  }
+
+  .wrapper[device="mobile"] .l6 {
+    left: 420px;
+  }
+
+  .wrapper[device="mobile"] .t2 {
+    top: 84px;
+  }
+
+  .wrapper[device="mobile"] .t3 {
+    top: 168px;
+  }
+  
+  .wrapper[device="mobile"] .circuit-wrap {
+    padding-top: 40px;
+  }
+
+  .wrapper[device="mobile"] .battery-img {
+    bottom: -8px;
+    left: 4px;
+    width: 90px;
+  }
+
+  .wrapper[device="mobile"] .volt-wrap {
+    width: 63px;
+  }
+
+  .wrapper[device="mobile"] .dragObject .dragText {
+    width: 100%;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .wrapper[device="mobile"] .dropped-object .dragText {
+    width: 100%;
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: -5px;
+  }
+
+  .wrapper[device="mobile"] .dl1[object="bulb"] {
+    left: 460px;
+  }
+
+  .wrapper[device="mobile"] .dl2[object="robot"] {
+    left: 550px;
+  }
+
+
+  .wrapper[device="mobile"] .dl3[object="boat"] {
+    left: 460px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="boat"] {
+    top: 68px;
+  }
+
+  .wrapper[device="mobile"] .dl4[object="horse"] {
+    left: 550px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="horse"] {
+    top: 68px;
+  }
+
+  .wrapper[device="mobile"] .dl5[object="ammeter"] {
+    left: 460px;
+  }
+
+  .wrapper[device="mobile"] .dt1[object="ammeter"] {
+    top: 140px;
+  }
+
+  .wrapper[device="mobile"] .dl6[object="wire"] {
+    left: 550px;
+  }
+
+  .wrapper[device="mobile"] .dt2[object="wire"] {
+    top: 150px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s1 {
+    left: 540px;
+    top: 10px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s2 {
+    left: 540px;
+    top: 74px;
+  }
+
+  .wrapper[device="mobile"] .dragSeperator.dt1.s3 {
+    left: 540px;
+    top: 140px;
+    height: 40px;
+  }
+
+  .wrapper[device="mobile"] .h-wire-img {
+    width: 68px;
+  }
+
+  .wrapper[device="mobile"] .v-wire-img {
+    height: 75px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='bulb'] img.objimg {
+    width: 56px;
+    margin-top: -14px;
+    margin-left: 8px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='robot'] img.objimg {
+    width: 67px;
+    margin-top: -15px;
+    margin-left: 2px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='boat'] img.objimg {
+    width: 74px;
+    margin-top: -3px;
+    margin-left: -1px;
+  }
+
+  .wrapper[device="mobile"] .dragObject[object='horse'] img.objimg {
+    width: 58px;
+    margin-top: 0px;
+    margin-left: 7px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='bulb'].complete img.objimg, .wrapper[device="mobile"] .dropped-object[object='bulb'] img.objimg {
+    width: 72px;
+    margin-top: -8px;
+    margin-left: -6px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='boat'].complete img.objimg, .wrapper[device="mobile"] .dropped-object[object='boat'] img.objimg {
+    width: 92px;
+    margin-top: 8px;
+    margin-left: -16px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='horse'].complete img.objimg, .wrapper[device="mobile"] .dropped-object[object='horse'] img.objimg {
+    width: 71px;
+    margin-top: 12px;
+    margin-left: -6px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='robot'].complete img.objimg, .wrapper[device="mobile"] .dropped-object[object='robot'] img.objimg {
+    width: 84px;
+    margin-top: -8px;
+    margin-left: -13px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='ammeter'].complete img.ameter, .wrapper[device="mobile"] .dropped-object[object='ammeter'] img.ameter {
+    width: 68px;
+    margin-top: 11px;
+    margin-left: -4px;
+  }
+
+  .wrapper[device="mobile"] .dropped-object[object='ammeter'] .ammeter-text {
+    left: 0px;
+    padding-top: 4px;
+  }
+
+  .wrapper[device="mobile"] .dragObject, .wrapper[device="mobile"] .dragObjectClone {
+    width: 72px;
+  }
+
+  .wrapper[device="mobile"] .ques-panel {
+    font-size: 14px;
+  }
+}

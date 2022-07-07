@@ -1,0 +1,304 @@
+.ball1, .ball2 {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #70ee70;
+    opacity: 0.6;
+    z-index: 100;
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 128, 0, 1);
+    -moz-box-shadow: 0px 0px 20px 1px rgba(0, 128, 0, 1);
+    box-shadow: 0px 0px 20px 1px rgba(0, 128, 0, 1);
+    display: none;
+}
+
+.dropped-wire .ball1, .dropped-wire .ball2 {
+    top: 6px;
+}
+
+/*anim right to left*/
+.dropped-wire[anim='rl'].complete .ball1 {
+    display: block;
+    right: 10%;
+    animation: movementhrlball1 2s linear infinite;
+    -webkit-animation: movementhrlball1 2s linear infinite;
+}
+
+.dropped-wire[anim='rl'].complete .ball2 {
+    display: block;
+    right: 50%;
+    animation: movementhrlball2 2s linear infinite;
+    -webkit-animation: movementhrlball2 2s linear infinite;
+}
+
+@keyframes movementhrlball1 {
+    100% {
+        right: 50%
+    }
+}
+
+@-webkit-keyframes movementhrlball1 {
+    100% {
+        right: 50%
+    }
+}
+
+@keyframes movementhrlball2 {
+    100% {
+        right: 90%;
+    }
+}
+
+@-webkit-keyframes movementhrlball2 {
+    100% {
+        right: 90%;
+    }
+}
+
+/*end anim right to left*/
+/*anim left to right*/
+.dropped-wire[anim='lr'].complete .ball1 {
+    display: block;
+    left: 10%;
+    animation: movementhlrball1 2s linear infinite;
+    -webkit-animation: movementhlrball1 2s linear infinite;
+}
+
+.dropped-wire[anim='lr'].complete .ball2 {
+    display: block;
+    left: 50%;
+    animation: movementhlrball2 2s linear infinite;
+    -webkit-animation: movementhlrball2 2s linear infinite;
+}
+
+@keyframes movementhlrball1 {
+    100% {
+        left: 50%
+    }
+}
+
+@-webkit-keyframes movementhlrball1 {
+    100% {
+        left: 50%
+    }
+}
+
+@keyframes movementhlrball2 {
+    100% {
+        left: 90%;
+    }
+}
+
+@-webkit-keyframes movementhlrball2 {
+    100% {
+        left: 90%;
+    }
+}
+
+/*end anim left to right*/
+
+.dropwire.ver .ball1, .dropwire.ver .ball2 {
+    left: 6px;
+}
+
+/*anim bottom to top*/
+.dropwire[anim='bt'].ver.complete .ball1 {
+    display: block;
+    bottom: 10%;
+    animation: movementvbtball1 2s linear infinite;
+    -webkit-animation: movementvbtball1 2s linear infinite;
+}
+
+.dropwire[anim='bt'].ver.complete .ball2 {
+    display: block;
+    bottom: 50%;
+    animation: movementvbtball2 2s linear infinite;
+    -webkit-animation: movementvbtball2 2s linear infinite;
+}
+
+@keyframes movementvbtball1 {
+    100% {
+        bottom: 50%
+    }
+}
+
+@-webkit-keyframes movementvbtball1 {
+    100% {
+        bottom: 50%
+    }
+}
+
+@keyframes movementvbtball2 {
+    100% {
+        bottom: 90%;
+    }
+}
+
+@-webkit-keyframes movementvbtball2 {
+    100% {
+        bottom: 90%;
+    }
+}
+
+/*end anim bottom to top*/
+/*anim top to bottom*/
+.dropwire[anim='tb'].ver.complete .ball1 {
+    display: block;
+    top: 10%;
+    animation: movementvtbball1 2s ease-in-out infinite;
+    -webkit-animation: movementvtbball1 2s ease-in-out infinite;
+}
+
+.dropwire[anim='tb'].ver.complete .ball2 {
+    display: block;
+    top: 50%;
+    animation: movementvtbball2 2s linear infinite;
+    -webkit-animation: movementvtbball2 2s linear infinite;
+}
+
+@keyframes movementvtbball1 {
+    100% {
+        top: 50%
+    }
+}
+
+@-webkit-keyframes movementvtbball1 {
+    100% {
+        top: 50%
+    }
+}
+
+@keyframes movementvtbball2 {
+    100% {
+        top: 90%;
+    }
+}
+
+@-webkit-keyframes movementvtbball2 {
+    100% {
+        top: 90%;
+    }
+}
+
+/*end anim top to bottom*/
+
+.dropped-object .ball1, .dropped-object .ball2 {
+    bottom: 2px;
+}
+.dropped-object[object='bulb'] .ball1, .dropped-object[object='bulb'] .ball2 {
+    bottom: 9px;
+}
+.dropped-object[object='boat'] .ball1, .dropped-object[object='boat'] .ball2 {
+    bottom: 4px;
+}
+
+/*anim right to left*/
+.dropped-object[anim='rl'].complete .ball1 {
+    display: block;
+    right: 10%;
+    animation: movementhrlball1 2s linear infinite;
+    -webkit-animation: movementhrlball1 2s linear infinite;
+}
+
+.dropped-object[anim='rl'].complete .ball2 {
+    display: block;
+    right: 50%;
+    animation: movementhrlball2 2s linear infinite;
+    -webkit-animation: movementhrlball2 2s linear infinite;
+}
+
+@keyframes movementhrlball1 {
+    100% {
+        right: 50%
+    }
+}
+
+@-webkit-keyframes movementhrlball1 {
+    100% {
+        right: 50%
+    }
+}
+
+@keyframes movementhrlball2 {
+    100% {
+        right: 90%;
+    }
+}
+
+@-webkit-keyframes movementhrlball2 {
+    100% {
+        right: 90%;
+    }
+}
+
+/*end anim right to left*/
+/*anim left to right*/
+.dropped-object[anim='lr'].complete .ball1 {
+    display: block;
+    left: 10%;
+    animation: movementhlrball1 2s linear infinite;
+    -webkit-animation: movementhlrball1 2s linear infinite;
+}
+
+.dropped-object[anim='lr'].complete .ball2 {
+    display: block;
+    left: 50%;
+    animation: movementhlrball2 2s linear infinite;
+    -webkit-animation: movementhlrball2 2s linear infinite;
+}
+
+@keyframes movementhlrball1 {
+    100% {
+        left: 50%
+    }
+}
+
+@-webkit-keyframes movementhlrball1 {
+    100% {
+        left: 50%
+    }
+}
+
+@keyframes movementhlrball2 {
+    100% {
+        left: 90%;
+    }
+}
+
+@-webkit-keyframes movementhlrball2 {
+    100% {
+        left: 90%;
+    }
+}
+
+/*end anim left to right*/
+
+
+@media screen and (orientation: landscape) and (min-device-width: 380px)and (max-device-width: 990px) and (max-device-height: 990px) {
+    .wrapper[device="mobile"] .dropped-object .ball1, 
+    .wrapper[device="mobile"] .dropped-object .ball2 {
+        bottom: 1px;
+    }
+    .wrapper[device="mobile"] .dropped-object[object='bulb'] .ball1, 
+    .wrapper[device="mobile"] .dropped-object[object='bulb'] .ball2 {
+        bottom: 5px;
+    }
+    .wrapper[device="mobile"] .dropped-object[object='boat'] .ball1, 
+    .wrapper[device="mobile"] .dropped-object[object='boat'] .ball2 {
+        bottom: 2px;
+    }
+}
+@media screen and (orientation: landscape) and (min-device-width: 800px) {
+    .wrapper[device="mobile"] .dropped-object .ball1, 
+    .wrapper[device="mobile"] .dropped-object .ball2 {
+        bottom: 2px;
+    }
+    .wrapper[device="mobile"] .dropped-object[object='bulb'] .ball1, 
+    .wrapper[device="mobile"] .dropped-object[object='bulb'] .ball2 {
+        bottom: 6px;
+    }
+    .wrapper[device="mobile"] .dropped-object[object='boat'] .ball1, 
+    .wrapper[device="mobile"] .dropped-object[object='boat'] .ball2 {
+        bottom: 3px;
+    }
+}
