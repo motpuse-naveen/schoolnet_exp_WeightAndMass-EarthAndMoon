@@ -59,7 +59,7 @@ var ActivityShell = (function () {
           }
           */
           setTimeout(function () {
-            GuidedTour.Init();
+            //GuidedTour.Init();
           }, 500);
         }, 1000)
       }
@@ -78,7 +78,7 @@ var ActivityShell = (function () {
         }
         */
         setTimeout(function () {
-          GuidedTour.Init();
+          //GuidedTour.Init();
         }, 500);
       }
     },

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.17 31.51">
+    <defs>
+        <style>.cls-1{fill:#b01f1f;}.cls-2{fill:#a6162c;fill-rule:evenodd;}.cls-3{fill:#c1465d;}.cls-4{fill:#a11212;}</style>
+    </defs>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="landscape">
+            <rect class="cls-1" x="40.5" y="11.11" width="5.68" height="8.7"/>
+            <path class="cls-2" d="M2.69,2.74,8.21,12.5a3.31,3.31,0,0,0,2.95,1.87H76.59a3.42,3.42,0,0,0,3.23-1.74l5.6-9.89Z"/>
+            <rect class="cls-3" width="88.17" height="4.03" rx="1.81"/>
+            <circle class="cls-3" cx="43.34" cy="24.96" r="6.55"/>
+            <path class="cls-2" d="M41.7,23.26a2.47,2.47,0,1,1,0,3.5A2.49,2.49,0,0,1,41.7,23.26Z"/>
+            <rect class="cls-4" x="40.53" y="14.38" width="5.61" height="2.05"/>
+        </g>
+    </g>
+</svg>

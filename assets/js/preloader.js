@@ -5,28 +5,45 @@ var imgPreloadArray = new Array(
   "assets/images/check-icn.svg",
   "assets/images/drag-btn-horizontal.svg",
   "assets/images/drag-btn-vertical.svg",
+  "assets/images/exploriment-Logo.svg",
   "assets/images/logo.svg",
   "assets/images/next-arrow.svg",
+  "assets/images/Pattern.svg",
   "assets/images/phone-landscape-pngrepo-com.png",
   "assets/images/phone-portrait-pngrepo-com.png",
   "assets/images/texture.svg",
   "assets/images/theme-icon-outline-left.svg",
   "assets/images/theme-icon-outline-right.svg",
+  "assets/images/Top_BG.png",
+  "assets/images/Top_BG.svg",
   "assets/images/watermark-2.png",
-  "assets/images/volt-increase.svg",
-  "assets/images/volt-decrease.svg",
-  "assets/images/connectors.svg",
-  "assets/images/drag_ameter.svg",
-  "assets/images/ameter-01.svg",
-  "assets/images/ameter-02.svg",
-  "assets/images/wire-01.svg",
-  "assets/images/wire-02.svg",
-  "assets/images/wire-03.svg",
-  "assets/images/wire-04.svg",
-  "assets/images/instr1.svg",
-  "assets/images/instr2.svg",
   "assets/images/correct-mark.svg",
   "assets/images/wrong-mark.svg",
+  "assets/images/BG_earth.svg",
+  "assets/images/BG_moon.svg",
+  "assets/images/Earth.svg",
+  "assets/images/Moon.svg",
+  "assets/images/weighing_machine_01.svg",
+  "assets/images/weighing_machine_02.svg",
+  "assets/images/weighing_pointer.svg",
+  "assets/images/weight_ball_01.svg",
+  "assets/images/weight_ball_02.svg",
+  "assets/images/weight_ball_03.svg",
+  "assets/images/weight_disk_01.svg",
+  "assets/images/weight_disk_02.svg",
+  "assets/images/weight_disk_03.svg",
+  "assets/images/weight_disk_04.svg",
+  "assets/images/weight_disk_05.svg",
+  "assets/images/weight_disk_06.svg",
+  "assets/images/Wood_shadow.svg",
+  "assets/images/Wood.svg",
+  "assets/images/z_instr1.svg",
+  "assets/images/z_instr2.svg",
+  "assets/images/P_01.svg",
+  "assets/images/P_02.svg",
+  "assets/images/P_03.svg",
+  "assets/images/P_04.svg",
+  "assets/images/P_05.svg",
 );
 
 /*--Audio--*/
@@ -52,7 +69,7 @@ function generatePreloader() {
   $("body").append(preloaderhtml);
 }
 
-var animCount = 46 + 61 + 31 + 61 + 31 + 131 + 81 + 91;
+
 
 function preloadImages() {
   imagePreCount = 0;
@@ -61,57 +78,14 @@ function preloadImages() {
     img.onload = imagePreloaded;
     img.src = imgPreloadArray[pId];
   }
-  for (var v1 = 0; v1 < 46; v1++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/boat/broken/" + v1 + ".png";
-  }
-  for (var v2 = 0; v2 < 61; v2++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/boat/moving/" + v2 + ".png";
-  }
-  for (var v3 = 0; v3 < 61; v3++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/bulb/broken/" + v3 + ".png";
-  }
-  for (var v4 = 0; v4 < 61; v4++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/bulb/glow/" + v4 + ".png";
-  }
-  for (var v5 = 0; v5 < 31; v5++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/horse/broken/" + v5 + ".png";
-  }
-  for (var v6 = 0; v6 < 131; v6++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/horse/moving/" + v6 + ".png";
-  }
-  for (var v7 = 0; v7 < 81; v7++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/robot/broken/" + v7 + ".png";
-  }
-  for (var v8 = 0; v8 < 91; v8++) {
-    var img = new Image();
-    img.onload = imagePreloaded;
-    img.src = "assets/images/robot/moving/" + v8 + ".png";
-  }
 }
-
-
-
 function imagePreloaded() {
   imagePreCount++;
   var percentageload = Number(
-    ((imagePreCount / (imgPreloadArray.length +  animCount)) * 100).toFixed(0)
+    ((imagePreCount / (imgPreloadArray.length)) * 100).toFixed(0)
   );
   $(".preloader .progress-text").text("Loading..." + percentageload + "%");
-  if (imagePreCount == (imgPreloadArray.length + animCount)) {
+  if (imagePreCount == (imgPreloadArray.length)) {
     setTimeout(function () {
       $(".preloader").remove();
       $(".container-so.launch").show();
