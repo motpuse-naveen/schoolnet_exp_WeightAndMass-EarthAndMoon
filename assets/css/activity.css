@@ -5,6 +5,18 @@
   overflow: auto;
 }
 
+.activityText .otherdevice {
+  display: block;
+}
+
+.activityText .mobiledevice.less {
+  display: none;
+}
+
+.activityText .mobiledevice.more {
+  display: none;
+}
+
 .exp-container {
   height: 100%;
   overflow: auto;
@@ -14,22 +26,33 @@
   padding: 0.5rem 3rem 0.5rem 1rem;
 }
 
+.activity-panel {
+  width: 100%;
+  padding-bottom: 20px;
+  float: left;
+}
+
+.planet-wrap {
+  width: 50%;
+  float: left;
+}
+
 .earth-wrapper, .moon-wrapper {
   background-color: #00579B;
   border-radius: 10px;
   position: relative;
-  width: 46%;
+  width: 94%;
+  max-width: 470px;
   height: 320px;
-  float: left;
-  margin: 2%;
-  margin-top: 0px;
+  margin: 0 auto;
+  padding-top: 40px;
+  margin-bottom: 20px;
 }
 
 .earth-container, .moon-container {
-  margin: 2px;
-  margin-top: 40px;
+  margin: 2px 2px;
   background-color: #FFF;
-  height: 278px;
+  height: 276px;
   border-radius: 10px;
   position: relative;
 }
@@ -128,15 +151,17 @@
   top: 0;
   left: 0;
 }
+
 .pane-balance .p04 {
   position: absolute;
   top: 0;
   left: 0;
 }
-.pane-balance .pane-bar{
+
+.pane-balance .pane-bar {
   position: absolute;
   width: 100%;
-    height: 25px;
+  height: 25px;
   width: 100%;
   top: 0;
   left: 0;
@@ -154,4 +179,264 @@
   width: 20px;
   left: 29px;
   top: 33px;
+}
+
+.weight-panel {
+  clear: both;
+}
+
+.weight-container {
+  width: 740px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wood-slate {
+  top: 50px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+}
+
+.wood-slate .wood {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.wood-slate .wood-shadow {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: url(../images/Wood_shadow.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0px 0px;
+  width: 100%;
+  height: 40px;
+}
+
+.weight {
+  position: absolute;
+}
+
+.weight-ball {
+  width: 55px;
+  height: 54px;
+}
+
+.weight-ball .weight-txt {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+  top: 31%;
+  z-index: 1;
+  font-size: 13px;
+  color: #FFF;
+}
+
+.weight-ball.ball-1 {
+  left: 40px;
+  top: 0px;
+}
+
+.weight-ball.ball-2 {
+  left: 100px;
+  top: 0px;
+}
+
+.weight-ball.ball-3 {
+  left: 160px;
+  top: 0px;
+}
+
+.weight-disk {
+  width: 70px;
+  height: 30px;
+  top: 30px;
+}
+
+.weight-disk .weight-txt {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+  top: 6px;
+  z-index: 1;
+  font-size: 11px;
+  color: #FFF;
+}
+
+.weight-disk.disk-1 {
+  left: 240px;
+}
+
+.weight-disk.disk-2 {
+  left: 320px;
+}
+
+.weight-disk.disk-3 {
+  left: 400px;
+}
+
+.weight-disk.disk-4 {
+  left: 480px;
+}
+
+.weight-disk.disk-5 {
+  left: 560px;
+}
+
+.weight-disk.disk-6 {
+  left: 640px;
+}
+
+@media only screen and (max-width: 768px) {
+  .planet-wrap {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .wrapper[device="mobile"] .activityText {
+    font-size: 14px;
+  }
+
+  .wrapper[device="mobile"] .activityText p {
+    margin-bottom: 0.5rem;
+  }
+
+  .wrapper[device="mobile"] .activityText .otherdevice {
+    display: none;
+  }
+
+  .wrapper[device="mobile"] .activityText .mobiledevice.less {
+    display: block;
+  }
+
+  .wrapper[device="mobile"] .activity-panel {
+    padding-bottom: 0px;
+  }
+
+  .wrapper[device="mobile"] .planet-wrap {
+    width: 50%;
+    float: left;
+  }
+
+  .wrapper[device="mobile"] .weight-container {
+    width: 640px;
+  }
+
+  .wrapper[device="mobile"] .wood-slate .wood-shadow {
+    height: 20px;
+  }
+
+  .wrapper[device="mobile"] .weight-ball {
+    width: 40px;
+    height: 39px;
+  }
+
+  .wrapper[device="mobile"] .weight-ball .weight-txt {
+    font-size: 10px;
+  }
+
+  .wrapper[device="mobile"] .wood-slate {
+    top: 36px;
+  }
+
+  .wrapper[device="mobile"] .weight-ball.ball-1 {
+    left: 40px;
+  }
+
+  .wrapper[device="mobile"] .weight-ball.ball-2 {
+    left: 86px;
+  }
+
+  .wrapper[device="mobile"] .weight-ball.ball-3 {
+    left: 132px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk {
+    width: 60px;
+    height: 26px;
+    top: 18px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-1 {
+    left: 190px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-2 {
+    left: 260px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-3 {
+    left: 330px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-4 {
+    left: 400px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-5 {
+    left: 470px;
+  }
+
+  .wrapper[device="mobile"] .weight-disk.disk-6 {
+    left: 540px;
+  }
+
+  .wrapper[device="mobile"] .earth-wrapper, .wrapper[device="mobile"] .moon-wrapper {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    height: 214px;
+    max-width: 400px;
+  }
+
+  .wrapper[device="mobile"] .cont-head {
+    top: 4px;
+  }
+
+  .wrapper[device="mobile"] .earth-container, .wrapper[device="mobile"] .moon-container {
+    height: 180px;
+    margin-bottom: 10px;
+  }
+
+  .wrapper[device="mobile"] .earth-container {
+    background-image: url(../images/BG_earth.svg);
+    background-repeat: no-repeat;
+    background-position: -18px -40px;
+    background-size: 435px;
+  }
+
+  .wrapper[device="mobile"] .moon-container {
+    background-image: url(../images/BG_moon.svg);
+    background-repeat: no-repeat;
+    background-position: -60px -30px;
+    background-size: 546px;
+  }
+
+  .wrapper[device="mobile"] .cont-head img {
+    width: 30px;
+    margin-top: -10px;
+  }
+
+  .wrapper[device="mobile"] .cont-head span {
+    color: #FFF;
+    padding-left: 10px;
+    font-family: "Montserrat-Bold";
+    font-size: 14px;
+  }
+
+  .wrapper[device="mobile"] .spring-balance {
+    width: 45px;
+  }
+
+  .wrapper[device="mobile"] .weighing-pointer {
+    width: 12px;
+    left: 17px;
+    top: 20px;
+  }
 }
