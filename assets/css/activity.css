@@ -4,6 +4,9 @@
   position: relative;
   overflow: auto;
 }
+.ui-state-hover{
+  background-color: red !important;
+}
 
 .activityText .otherdevice {
   display: block;
@@ -29,6 +32,7 @@
 .activity-panel {
   width: 100%;
   padding-bottom: 20px;
+  position: relative;
   float: left;
 }
 
@@ -91,8 +95,8 @@
 .electric-balance {
   position: absolute;
   width: 180px;
-  bottom: 5%;
-  left: 5%;
+  height: 95px;
+  z-index: 100;
 }
 
 .electric-balance .newton {
@@ -124,12 +128,17 @@
   padding-right: 5px;
   font-family: "Montserrat-Bold";
 }
+.electric-balance-droppable{
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: -15px;
+}
 
 .pane-balance {
   position: absolute;
   width: 170px;
-  right: 12%;
-  top: 22%;
+  height: 80px;
 }
 
 .pane-balance .p01 {
@@ -154,7 +163,7 @@
 
 .pane-balance .p04 {
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 0;
 }
 
@@ -163,32 +172,52 @@
   width: 100%;
   height: 25px;
   width: 100%;
-  top: 0;
+  top: 15px;
   left: 0;
+}
+.pane-01-droppable, .pane-02-droppable{
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: -15px;
 }
 
 .spring-balance {
   position: absolute;
-  right: 25%;
   width: 75px;
-  top: 10px;
+  height: 210px;
 }
 
-.weighing-pointer {
+.spring-pointer {
   position: absolute;
   width: 20px;
   left: 29px;
   top: 33px;
 }
 
-.weight-panel {
-  clear: both;
+.spring-base-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
 }
 
-.weight-container {
-  width: 740px;
-  margin: 0 auto;
-  position: relative;
+.spring-slate {
+  position: absolute;
+}
+
+.spring-base {
+  position: absolute;
+  top: -40px;
+  left: 2px;
+}
+
+.spring-balance-droppable {
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
 }
 
 .wood-slate {
@@ -196,6 +225,8 @@
   left: 0px;
   position: absolute;
   width: 100%;
+  height: 20px;
+  width: 740px;
 }
 
 .wood-slate .wood {
@@ -218,11 +249,11 @@
 
 .weight {
   position: absolute;
+  z-index: 101;
 }
 
 .weight-ball {
-  width: 55px;
-  height: 54px;
+  width: 50px;;
 }
 
 .weight-ball .weight-txt {
@@ -236,25 +267,8 @@
   color: #FFF;
 }
 
-.weight-ball.ball-1 {
-  left: 40px;
-  top: 0px;
-}
-
-.weight-ball.ball-2 {
-  left: 100px;
-  top: 0px;
-}
-
-.weight-ball.ball-3 {
-  left: 160px;
-  top: 0px;
-}
-
 .weight-disk {
-  width: 70px;
-  height: 30px;
-  top: 30px;
+  width: 60px;
 }
 
 .weight-disk .weight-txt {
@@ -268,29 +282,7 @@
   color: #FFF;
 }
 
-.weight-disk.disk-1 {
-  left: 240px;
-}
 
-.weight-disk.disk-2 {
-  left: 320px;
-}
-
-.weight-disk.disk-3 {
-  left: 400px;
-}
-
-.weight-disk.disk-4 {
-  left: 480px;
-}
-
-.weight-disk.disk-5 {
-  left: 560px;
-}
-
-.weight-disk.disk-6 {
-  left: 640px;
-}
 
 @media only screen and (max-width: 768px) {
   .planet-wrap {
@@ -298,6 +290,19 @@
     float: left;
   }
 }
+
+@media only screen and (max-width: 610px) {
+  .wood-slate{
+    width: 590px;
+  }
+  .weight-ball {
+    width: 45px;
+  }
+  .weight-disk{
+    width: 55px;
+  }
+}
+
 
 @media screen and (orientation: landscape) {
   .wrapper[device="mobile"] .activityText {
@@ -325,7 +330,7 @@
     float: left;
   }
 
-  .wrapper[device="mobile"] .weight-container {
+  .wrapper[device="mobile"] .wood-slate {
     width: 640px;
   }
 
@@ -346,46 +351,8 @@
     top: 36px;
   }
 
-  .wrapper[device="mobile"] .weight-ball.ball-1 {
-    left: 40px;
-  }
-
-  .wrapper[device="mobile"] .weight-ball.ball-2 {
-    left: 86px;
-  }
-
-  .wrapper[device="mobile"] .weight-ball.ball-3 {
-    left: 132px;
-  }
-
   .wrapper[device="mobile"] .weight-disk {
     width: 60px;
-    height: 26px;
-    top: 18px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-1 {
-    left: 190px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-2 {
-    left: 260px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-3 {
-    left: 330px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-4 {
-    left: 400px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-5 {
-    left: 470px;
-  }
-
-  .wrapper[device="mobile"] .weight-disk.disk-6 {
-    left: 540px;
   }
 
   .wrapper[device="mobile"] .earth-wrapper, .wrapper[device="mobile"] .moon-wrapper {
@@ -432,11 +399,61 @@
 
   .wrapper[device="mobile"] .spring-balance {
     width: 45px;
+    height: 130px;
+  }
+  .wrapper[device="mobile"] .spring-base {
+    top: -18px;
   }
 
-  .wrapper[device="mobile"] .weighing-pointer {
+  .wrapper[device="mobile"] .spring-pointer {
     width: 12px;
     left: 17px;
     top: 20px;
+  }
+
+  .wrapper[device="mobile"] .electric-balance {
+    width: 135px;
+    height: 70px;
+  }
+
+  .wrapper[device="mobile"] .electric-balance .newton {
+    left: 14px;
+    top: 28px;
+    width: 56px;
+    height: 24px;
+  }
+
+  .wrapper[device="mobile"] .electric-balance .kilogram {
+    left: 67px;
+    top: 28px;
+    width: 56px;
+    height: 24px;
+  }
+
+  .wrapper[device="mobile"] .electric-balance .value {
+    font-size: 8px;
+  }
+
+  .wrapper[device="mobile"] .electric-balance .unit {
+    font-size: 6px;
+  }
+
+  .wrapper[device="mobile"] .pane-balance {
+    width: 106px;
+    height: 58px;
+    right: 12%;
+    top: 28%;
+  }
+
+  .wrapper[device="mobile"] .pane-balance .p01 {
+    width: 60px;
+    top: -12px;
+    left: -30px;
+  }
+
+  .wrapper[device="mobile"] .pane-balance .p02 {
+    width: 60px;
+    top: -12px;
+    right: -30px;
   }
 }

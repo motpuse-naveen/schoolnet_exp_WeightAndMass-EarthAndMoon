@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="assets/css/activity.css" />
   <link rel="stylesheet" href="assets/lib/guide-tour/guide-tour.css" />
   <link rel="stylesheet" href="assets/css/device.css" />
-  <link rel="stylesheet" href="assets/css/animation.css" />
 </head>
 
 <body>
@@ -72,7 +71,6 @@
           data-bs-target="#themeModalPopup" data-toggle="tooltip" data-placement="bottom">
         </button>
       </div>
-
       <div class="exp_body">
         <div class="exp_body_header"></div>
         <div class="exp_body_content">
@@ -99,90 +97,91 @@
                     
                   </div>
                   <div class="activity-panel">
-                    <div class="planet-wrap">
+                    <div class="planet-wrap" planet="earth">
                       <div class="earth-wrapper">
                         <div class="cont-head"><img src="assets/images/Earth.svg"><span>Earth</span></div>
-                        <div class="earth-container">
-                          <div class="electric-balance">
-                            <div class="newton">
-                              <div class="unit">Newtons</div>
-                              <div class="value">0 N</div>
-                            </div>
-                            <div class="kilogram">
-                              <div class="unit">Kg equivalent</div>
-                              <div class="value">0 Kg</div>
-                            </div>
-                            <img src="assets/images/weighing_machine_01.svg">
-                          </div>
-                          <div class="pane-balance">
-
-                            <div class="pane-bar">
-                              <img src="assets/images/P_03.svg" class="p03">
-                              <img src="assets/images/P_01.svg" class="p01">
-                              <img src="assets/images/P_02.svg" class="p02">
-                            </div>
-                            <img src="assets/images/P_04.svg" class="p04">
-                          </div>
-                        </div>
+                        <div class="earth-container planet-drop" planet="earth"></div>
                       </div>
                     </div>
-                    <div class="planet-wrap">
+                    <div class="planet-wrap" planet="moon">
                       <div class="moon-wrapper">
                         <div class="cont-head"><img src="assets/images/Moon.svg"><span>Moon</span></div>
-                        <div class="moon-container">
-                          <div class="spring-balance">
-                            <img src="assets/images/weighing_machine_02.svg">
-                            <img src="assets/images/weighing_pointer.svg" class="weighing-pointer">
-                          </div>
-                        </div>
+                        <div class="moon-container planet-drop" planet="moon"></div>
                       </div>
                     </div>
-
-                  </div>
-                  <div class="weight-panel">
-                    <div class="weight-wrapper">
-                      <div class="weight-container">
-                        <div class="wood-slate">
-                          <div class="wood-shadow"></div>
-                          <img src="assets/images/Wood.svg" class="wood">
+                    <div class="electric-balance wt-balancer">
+                      <div class="electric-balance-droppable"></div>
+                      <div class="newton">
+                        <div class="unit">Newtons</div>
+                        <div class="value">0 N</div>
+                      </div>
+                      <div class="kilogram">
+                        <div class="unit">Kg equivalent</div>
+                        <div class="value">0 Kg</div>
+                      </div>
+                      <img src="assets/images/weighing_machine_01.svg">
+                    </div>
+                    <div class="pane-balance wt-balancer">
+                      <div class="pane-bar">
+                        <img src="assets/images/P_03.svg" class="p03">
+                        <div class="p01">
+                          <div class="pane-01-droppable"></div>
+                          <img src="assets/images/P_01.svg">
                         </div>
-                        <div class="weight weight-ball ball-1">
-                          <img class="weight-img" src="assets/images/weight_ball_01.svg">
-                          <span class="weight-txt">90 kg</span>
-                        </div>
-                        <div class="weight weight-ball ball-2">
-                          <img class="weight-img" src="assets/images/weight_ball_02.svg">
-                          <span class="weight-txt">60 kg</span>
-                        </div>
-                        <div class="weight weight-ball ball-3">
-                          <img class="weight-img" src="assets/images/weight_ball_03.svg">
-                          <span class="weight-txt">75 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-1">
-                          <img class="weight-img" src="assets/images/weight_disk_01.svg">
-                          <span class="weight-txt">1 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-2">
-                          <img class="weight-img" src="assets/images/weight_disk_02.svg">
-                          <span class="weight-txt">2 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-3">
-                          <img class="weight-img" src="assets/images/weight_disk_03.svg">
-                          <span class="weight-txt">5 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-4">
-                          <img class="weight-img" src="assets/images/weight_disk_04.svg">
-                          <span class="weight-txt">10 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-5">
-                          <img class="weight-img" src="assets/images/weight_disk_05.svg">
-                          <span class="weight-txt">20 kg</span>
-                        </div>
-                        <div class="weight weight-disk disk-6">
-                          <img class="weight-img" src="assets/images/weight_disk_06.svg">
-                          <span class="weight-txt">50 kg</span>
+                        <div class="p02">
+                          <div class="pane-02-droppable"></div>
+                          <img src="assets/images/P_02.svg">
                         </div>
                       </div>
+                      <img src="assets/images/P_04.svg" class="p04">
+                    </div>
+                    <div class="spring-balance wt-balancer">
+                      <div class="spring-base-wrap">
+                        <img src="assets/images/weighing_machine_02_01.svg" class="spring-base">
+                        <div class="spring-balance-droppable"></div>
+                      </div>
+                      <img src="assets/images/weighing_machine_02.svg" class="spring-slate">
+                      <img src="assets/images/weighing_pointer.svg" class="spring-pointer">
+                    </div>
+                    <div class="wood-slate">
+                      <div class="wood-shadow"></div>
+                      <img src="assets/images/Wood.svg" class="wood">
+                    </div>
+                    <div class="weight weight-ball ball-1">
+                      <img class="weight-img" src="assets/images/weight_ball_01.svg">
+                      <span class="weight-txt">90 kg</span>
+                    </div>
+                    <div class="weight weight-ball ball-2">
+                      <img class="weight-img" src="assets/images/weight_ball_02.svg">
+                      <span class="weight-txt">60 kg</span>
+                    </div>
+                    <div class="weight weight-ball ball-3">
+                      <img class="weight-img" src="assets/images/weight_ball_03.svg">
+                      <span class="weight-txt">75 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-1">
+                      <img class="weight-img" src="assets/images/weight_disk_01.svg">
+                      <span class="weight-txt">1 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-2">
+                      <img class="weight-img" src="assets/images/weight_disk_02.svg">
+                      <span class="weight-txt">2 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-3">
+                      <img class="weight-img" src="assets/images/weight_disk_03.svg">
+                      <span class="weight-txt">5 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-4">
+                      <img class="weight-img" src="assets/images/weight_disk_04.svg">
+                      <span class="weight-txt">10 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-5">
+                      <img class="weight-img" src="assets/images/weight_disk_05.svg">
+                      <span class="weight-txt">20 kg</span>
+                    </div>
+                    <div class="weight weight-disk disk-6">
+                      <img class="weight-img" src="assets/images/weight_disk_06.svg">
+                      <span class="weight-txt">50 kg</span>
                     </div>
                   </div>
                 </div>
@@ -468,11 +467,6 @@
                 </svg>
               </button>
             </div>
-            <div class="btn-wrap">
-              <button id="OK_btn" class="btn button_style btn_ok" title="Ok">Ok</button>
-              <button id="btn_reset" class="btn button_style btn_reset" title="Reset">Reset</button>
-              <button id="next_btn" class="btn button_style btn_next" title="Next">Next</button>
-            </div>
           </div>
           <div class="copyrighttext"><span>&copy; 2022, Schoolnet India Limited</span></div>
         </div>
@@ -646,7 +640,6 @@
   <script src="assets/js/screen_splitter.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/activity.js"></script>
-  <script src="assets/js/animations.js"></script>
 </body>
 
 </html>
