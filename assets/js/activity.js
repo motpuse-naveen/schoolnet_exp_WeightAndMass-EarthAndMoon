@@ -7,7 +7,7 @@ var ActivityMain = (function () {
       this.BindDraggables();
       this.BindDroppables();
     },
-    DelayLaunch(){
+    DelayLaunch() {
       this.SetBalancerPositions();
       this.SetWeightPositions();
       this.BindDraggables();
@@ -37,23 +37,23 @@ var ActivityMain = (function () {
       var ballleft = (slateWdt - (totalballwdt + totaldiskwdt + weightSpace)) / 2;
       var weightLeft = slateLeft + ballleft;
       $(".weight-ball").each(function (index) {
-        if(index>0){
+        if (index > 0) {
           weightLeft += (ballWdt + 10);
         }
-        $(".weight-ball.ball-" + (index + 1)).css({ "top": (slateTop - ballHt) + 5, "left":weightLeft });
+        $(".weight-ball.ball-" + (index + 1)).css({ "top": (slateTop - ballHt) + 5, "left": weightLeft });
       })
       $(".weight-disk").each(function (index) {
-        if(index<=0){
+        if (index <= 0) {
           weightLeft += (ballWdt + 10);
         }
-        else{
+        else {
           weightLeft += (diskWdt + 10);
         }
-        $(".weight-disk.disk-" + (index + 1)).css({ "top": (slateTop - diskHt) + 5, "left":weightLeft });
+        $(".weight-disk.disk-" + (index + 1)).css({ "top": (slateTop - diskHt) + 5, "left": weightLeft });
       })
     },
     SetBalancerPositions: function () {
-      debugger;
+      //debugger;
       var earthContPos = $(".earth-container").get(0).getBoundingClientRect();
       var actPos = $(".activity-panel").get(0).getBoundingClientRect()
       var earthPos = {
@@ -72,53 +72,144 @@ var ActivityMain = (function () {
 
       $(".spring-balance").css({
         "left": moonPos.left + (moonPos.width - (moonPos.width / 3)),
-        "top": moonPos.top + ((moonPos.height - $(".spring-balance").height()) / 2)
+        "top": moonPos.top + ((moonPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
       }).attr("planet", "moon");
       $(".pane-balance").css({
         "left": earthPos.left + (earthPos.width - ((earthPos.width / 8) * 4)),
-        "top": earthPos.top + ((earthPos.height - $(".spring-balance").height()) / 2)
+        "top": earthPos.top + ((earthPos.height - $(".pane-balance").height()) / 4)
       }).attr("planet", "earth");
       $(".electric-balance").css({
         "left": earthPos.left + 20,
         "top": earthPos.top + (earthPos.height - $(".electric-balance").height()) - 20
       }).attr("planet", "earth");
     },
-    BindDraggables: function () {
+    InitBalancerDrag: function () {
       $(".wt-balancer").draggable({
-        revert: 'invalid',
-        start: function (event, ui) {
-        },
-        drag: function (event, ui) {
-        }
-      });
-      $(".weight-ball").draggable({
-        revert: 'invalid',
-        start: function (event, ui) {
-          //debugger;
-          if ($(this).closest(".electric-balance-droppable").length > 0) {
-            console.log("11")
-            $(this).detach().appendTo($(".weight-container"));
+        revert: function (event, ui) {
+          $(this).data("uiDraggable").originalPosition = {
+            top: $(this).attr("orgTop"),
+            left: $(this).attr("orgLeft")
+          };
+          if (!event) {
+            //revert logic
+            $(this).removeClass("dropped-object")
           }
+          return !event;
+        },
+        start: function (event, ui) {
         },
         drag: function (event, ui) {
+          ActivityMain.PositionWeightOnBalancerDrag(ui, $(this))
         }
+      }).each(function () {
+        var top = $(this).position().top;
+        var left = $(this).position().left;
+        $(this).attr('orgTop', top);
+        $(this).attr('orgLeft', left);
       });
-      $(".weight-disk").draggable({
+    },
+    PositionWeightOnBalancerDrag: function (_ui, _this) {
+      var verticalDistance = _ui.position.top - _this.position().top //- ui.originalPosition.top;
+      var horizontalDistance = _ui.position.left - _this.position().left //- ui.originalPosition.left;
+      //console.log(horizontalDistance + " : " + verticalDistance)
+
+      if (_this.hasClass("electric-balance")) {
+        $(".weight[machine='electric']").each(function () {
+          $(this).css({
+            "left": $(this).position().left + horizontalDistance,
+            "top": $(this).position().top + verticalDistance
+          })
+        })
+      }
+      else if (_this.hasClass("pane-balance")) {
+        $(".weight[machine='balancer1'], .weight[machine='balancer2']").each(function () {
+          $(this).css({
+            "left": $(this).position().left + horizontalDistance,
+            "top": $(this).position().top + verticalDistance
+          })
+        })
+      }
+      else if (_this.hasClass("spring-balance")) {
+        $(".weight[machine='spring']").each(function () {
+          $(this).css({
+            "left": $(this).position().left + horizontalDistance,
+            "top": $(this).position().top + verticalDistance
+          })
+        })
+      }
+    },
+    InitWeightDrag: function (_htmlElements, weightType) {
+      if (weightType == "disk") {
+        _htmlElements.draggable({
+          revert: function (event, ui) {
+            //debugger;
+            var clone = $(".weight-disk.ui-draggable-handle.ui-draggable-dragging")
+            clone.fadeOut(500, function () {
+              clone.remove();
+            });
+          },
+          start: function (event, ui) {
+            ActivityMain.ResetPositionsOnDragStart(ui.helper);
+          },
+          drag: function (event, ui) {
+          }
+        })
+      }
+      else {
+        _htmlElements.draggable({
+          revert: function (event, ui) {
+            $(this).data("uiDraggable").originalPosition = {
+              top: $(this).attr("orgTop"),
+              left: $(this).attr("orgLeft")
+            };
+            if (!event) {
+              //revert logic
+              $(this).removeClass("dropped-object")
+            }
+            return !event;
+          },
+          start: function (event, ui) {
+            ActivityMain.ResetPositionsOnDragStart(ui.helper);
+          },
+          drag: function (event, ui) {
+          }
+        }).each(function () {
+          var top = $(this).position().top;
+          var left = $(this).position().left;
+          $(this).attr('orgTop', top);
+          $(this).attr('orgLeft', left);
+        });
+      }
+
+    },
+    InitWeightDragClone: function (_htmlElements) {
+      _htmlElements.draggable({
         revert: 'invalid',
         helper: 'clone',
         revert: function (event, ui) {
-          var clone = $(".weight-disk.ui-draggable-handle.ui-draggable-dragging")
+          /*var clone = $(".weight-disk.ui-draggable-handle.ui-draggable-dragging")
           clone.fadeOut(500, function () {
             clone.remove();
-          });
+          });*/
         },
         start: function (event, ui) {
+
         },
         drag: function (event, ui) {
         }
+      }).each(function () {
+        var top = $(this).position().top;
+        var left = $(this).position().left;
+        $(this).attr('orgTop', top);
+        $(this).attr('orgLeft', left);
       });
     },
-    BindDroppables: function () {
+    BindDraggables: function () {
+      this.InitBalancerDrag();
+      this.InitWeightDrag($(".weight-ball"));
+      this.InitWeightDragClone($(".weight-disk"))
+    },
+    InitPlanetDrop: function () {
       $(".planet-drop").droppable({
         accept: ".wt-balancer, .weight-ball, .weight-disk",
         tolerance: "fit",
@@ -126,62 +217,246 @@ var ActivityMain = (function () {
         hoverClass: "ui-state-hover",
         activeClass: "ui-state-default",
         drop: function (event, ui) {
+          //debugger;
           if ($(".ui-state-hover").length <= 0) {
-            console.log("drop planet-drop")
+            //console.log("drop planet-drop")
             if ($(event.target).hasClass("planet-drop")) {
               var planetNme = $(event.target).attr("planet");
+              var prevPlanetNme = ui.draggable.attr("planet")
               ui.draggable.attr("planet", planetNme);
+              if (!ui.draggable.hasClass("wt-balancer")) {
+                if (ui.helper.hasClass("weight-disk-draggable")) {
+                  var clone = $(ui.helper).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
+                  $(".activity-panel").append(clone)
+                  ActivityMain.AnimateOnPlanetDrop(planetNme, clone, $(this))
+                }
+                else {
+                  ActivityMain.AnimateOnPlanetDrop(planetNme, ui.draggable, $(this))
+                }
+              }
+              else {
+                ui.draggable.each(function () {
+                  var top = $(this).position().top;
+                  var left = $(this).position().left;
+                  $(this).attr('orgTop', top);
+                  $(this).attr('orgLeft', left);
+                });
+                if (planetNme != prevPlanetNme) {
+                  if (ui.draggable.hasClass("electric-balance")) {
+                    ElectricMachine.ChangeWeightOnPlanetDrop(planetNme);
+                  }
+                  else if (ui.draggable.hasClass("pane-balance")) {
+                  }
+                  else if (ui.draggable.hasClass("spring-balance")) {
+                    SpringMachine.ShiftPointerOnPlanetDrop(planetNme);
+                  }
+                }
+              }
+            }
+          }
+          else {
+            if (ui.draggable.hasClass("weight-disk-dropped")) {
+              ui.draggable.remove();
+              $(".ui-state-hover").removeClass("ui-state-hover");
+            }
+            if (ui.draggable.hasClass("weight-ball")) {
+              ui.draggable.css({
+                top: Number(ui.draggable.attr("orgTop")),
+                left: Number(ui.draggable.attr("orgLeft"))
+              });
+              $(".ui-state-hover").removeClass("ui-state-hover");
             }
           }
         }
       });
+    },
+    AnimateOnPlanetDrop: function (_planet, _weightElm, _container) {
+      var dropend = _container.position().top + _container.height() - _weightElm.height();
+      var diff = dropend - _weightElm.position().top;
+      if (_planet == "earth") {
+        _weightElm.animate({ top: dropend + "px" }, 10 * 1 / 6 * diff, 'linear', function () {
+          ActivityMain.OnPlanetDropAnimComplete($(this))
+        });
+      }
+      else if (_planet == "moon") {
+        //Moon, gravitational force is only 1/6
+        _weightElm.animate({ top: dropend + "px" }, 10 * diff, 'linear', function () {
+          ActivityMain.OnPlanetDropAnimComplete($(this))
+        });
+      }
+    },
+    OnPlanetDropAnimComplete: function (p_draggable) {
+      if (p_draggable.hasClass("weight-ball")) {
+        let orglft = p_draggable.attr('orgLeft');
+        let orgtp = p_draggable.attr('orgTop');
+        p_draggable.css({
+          "left": Number(orglft),
+          "top": Number(orgtp)
+        });
+      }
+      else {
+        p_draggable.remove();
+      }
+    },
+    InitBalancerDrop: function () {
       $(".spring-balance-droppable").droppable({
-        accept: ".weight-ball, .weight-disk",
+        accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
         greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         activeClass: "ui-state-default",
         drop: function (event, ui) {
-          console.log("drop spring-droppable")
-          console.log($(".ui-state-hover").length)
+          ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
         out: function (event, ui) {
-          console.log("out spring-droppable")
+          $(this).removeClass("ui-state-hover")
         }
+      }).each(function () {
+        $(this).attr("orig-ht", $(this).height())
       });
       $(".pane-01-droppable, .pane-02-droppable").droppable({
-        accept: ".weight-ball, .weight-disk",
+        accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
         greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         activeClass: "ui-state-default",
         drop: function (event, ui) {
-          console.log("drop pane-droppable")
-          console.log($(".ui-state-hover").length)
+          ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
         out: function (event, ui) {
-          console.log("out pane-droppable")
+          $(this).removeClass("ui-state-hover")
         }
+      }).each(function () {
+        $(this).attr("orig-ht", $(this).height())
       });
       $(".electric-balance-droppable").droppable({
-        accept: ".weight-ball, .weight-disk",
+        accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
         greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         activeClass: "ui-state-default",
         drop: function (event, ui) {
-          console.log("drop electric-droppable")
-          console.log($(".ui-state-hover").length);
-
+          ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
         out: function (event, ui) {
-          console.log("out electric-droppable")
+          $(this).removeClass("ui-state-hover")
         }
+      }).each(function () {
+        $(this).attr("orig-ht", $(this).height())
       });
     },
-    OnOrientationChange: function () {
-
+    BindDroppables: function () {
+      this.InitPlanetDrop();
+      this.InitBalancerDrop();
     },
+    OnWeightDrop: function (_draggable, _droppable) {
+      if (_draggable.hasClass("weight-disk-draggable")) {
+        var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
+        $(".activity-panel").append(clone)
+        this.SetPositionOnDrop(clone, _droppable);
+        this.InitWeightDrag(clone, "disk");
+      }
+      else {
+        ActivityMain.SetPositionOnDrop(_draggable, _droppable);
+      }
+    },
+    ResetPositionsOnDragStart: function (_draggable) {
+      var dragmachine = _draggable.attr("machine")
+      $(".ui-state-hover").removeClass("ui-state-hover");
+      _draggable.removeAttr("shift_top");
+      if (dragmachine != undefined && dragmachine != "") {
+        var _droppable = $("div[dropmachine='" + dragmachine + "']")
+        var dropNewHt = _droppable.height() - _draggable.height();
+        _droppable.css({ "height": dropNewHt, "top": -dropNewHt });
+        _draggable.removeAttr("machine")
+        if (dragmachine == "electric") {
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) - Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          ElectricMachine.DisplayWeight(WeightObj, _draggable, _droppable);
+        }
+        else if (dragmachine == "balancer1" || dragmachine == "balancer2") {
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) - Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          PaneMachine.BalancePane(WeightObj, _draggable, _droppable);
+        }
+        else if (dragmachine == "spring") {
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) - Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          SpringMachine.ShiftPointer(WeightObj, _draggable, _droppable);
+        }
+      }
+    },
+    SetPositionOnDrop: function (_draggable, _droppable) {
+      var dropmachine = _droppable.attr("dropmachine")
+      var dragmachine = _draggable.attr("machine")
+      if (dropmachine != dragmachine) {
+        _draggable.attr("machine", dropmachine);
+        var pos1 = _droppable.closest(".wt-balancer").position();
+        var pos2 = _droppable.position();
+        var dropOrgHt = Number(_droppable.attr("orig-ht"))
+        var dropNewHt = _droppable.height() + _draggable.height()
+        _droppable.css({ "height": dropNewHt, "top": -dropNewHt });
+        if (dropmachine == "electric") {
+          _draggable.css({ "top": (pos1.top - _droppable.height()) + dropOrgHt });
+          _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) + Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          ElectricMachine.DisplayWeight(WeightObj, _draggable, _droppable);
+        }
+        else if (dropmachine == "balancer1" || dropmachine == "balancer2") {
+          var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
+          var pane2Weight = Number($(".pane-02-droppable").attr("dropkg"));
+          pos2 = _droppable.closest(".pane").position();
+          var dropbalancer = _droppable.attr("dropmachine");
+          var topFactor = 0
+          //debugger;
+          if (pane1Weight > pane2Weight) {
+            if (dropbalancer == "balancer1") {
+              topFactor = PaneMachine.getAngle() + (PaneMachine.getAngle() / 2);
+            }
+          }
+          else if (pane1Weight < pane2Weight) {
+            if (dropbalancer == "balancer2") {
+              topFactor = PaneMachine.getAngle() + (PaneMachine.getAngle() / 2);
+            }
+          }
+          _draggable.css({ "top": ((pos1.top - pos2.top - 5) - _droppable.height()) + dropOrgHt + (topFactor * 2) });
+          _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) + Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          PaneMachine.BalancePane(WeightObj, _draggable, _droppable);
+        }
+        else if (dropmachine == "spring") {
+          pos2 = _droppable.closest(".spring-balance-drop-container").position();
+          var springBase = $(".spring-base-wrap")
+          _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
+          _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
+          var WeightObj = {
+            from: Number(_droppable.attr("dropkg")),
+            to: (Number(_droppable.attr("dropkg")) + Number(_draggable.attr("kg"))),
+            current: Number(_droppable.attr("dropkg")),
+          }
+          SpringMachine.ShiftPointer(WeightObj, _draggable, _droppable);
+        }
+      }
+    },
+    OnOrientationChange: function () {
+    }
   };
 })();
 

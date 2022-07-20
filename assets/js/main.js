@@ -41,7 +41,7 @@ var ActivityShell = (function () {
       var deviceType = ActivityShell.DeviceType();
       var Android = /(android)/i.test(navigator.userAgent);
       if (deviceType == "mobile" && Android) {
-        openFullscreen()
+        //openFullscreen()
         generatePreloader();
         setTimeout(function () {
           $(".preloader").remove();

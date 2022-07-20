@@ -4,7 +4,8 @@
   position: relative;
   overflow: auto;
 }
-.ui-state-hover{
+
+.ui-state-hover {
   background-color: red !important;
 }
 
@@ -128,22 +129,26 @@
   padding-right: 5px;
   font-family: "Montserrat-Bold";
 }
-.electric-balance-droppable{
+
+.electric-balance-droppable {
   position: absolute;
   width: 100%;
-  height: 20px;
-  top: -15px;
+  height: 10px;
+  top: -10px;
+  left: 0px;
 }
 
 .pane-balance {
   position: absolute;
   width: 170px;
   height: 80px;
+  z-index: 100;
 }
 
 .pane-balance .p01 {
   position: absolute;
   width: 70px;
+  height: 1px;
   top: -12px;
   left: -35px;
 }
@@ -151,6 +156,7 @@
 .pane-balance .p02 {
   position: absolute;
   width: 70px;
+  height: 1px;
   top: -12px;
   right: -30px;
 }
@@ -175,33 +181,54 @@
   top: 15px;
   left: 0;
 }
-.pane-01-droppable, .pane-02-droppable{
+
+.pane-01-droppable, .pane-02-droppable {
   position: absolute;
   width: 100%;
-  height: 20px;
-  top: -15px;
+  height: 10px;
+  top: -10px;
+  left: 0px;
 }
 
 .spring-balance {
   position: absolute;
   width: 75px;
-  height: 210px;
+  height: 175px;
+  z-index: 100;
+}
+.spring-base-wrap {
+  position: absolute;
+  width: 75px;
+  height: 235px;
+  top: 0px;
+  left: 0px;
+}
+
+
+.spring-pointer-bar {
+  position: absolute;
+  width: 20px;
+  height: 117px;
+  left: 29px;
+  top: 36px;
+  /*background-color: green;*/
 }
 
 .spring-pointer {
   position: absolute;
   width: 20px;
-  left: 29px;
-  top: 33px;
-}
-
-.spring-base-wrap {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 1px;
   top: 0px;
   left: 0px;
 }
+
+.spring-pointer-img {
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  width: 16px;
+}
+
 
 .spring-slate {
   position: absolute;
@@ -209,15 +236,24 @@
 
 .spring-base {
   position: absolute;
-  top: -40px;
+  top: -15px;
   left: 2px;
+}
+
+.spring-balance-drop-container {
+  position: absolute;
+  bottom: 0px;
+  height: 10px;
+  width: 100%;
+  left: 0px;
 }
 
 .spring-balance-droppable {
   position: absolute;
-  bottom: 0px;
-  height: 30px;
   width: 100%;
+  height: 10px;
+  top: -10px;
+  left: 0px;
 }
 
 .wood-slate {
@@ -253,7 +289,7 @@
 }
 
 .weight-ball {
-  width: 50px;;
+  width: 45px;
 }
 
 .weight-ball .weight-txt {
@@ -269,6 +305,11 @@
 
 .weight-disk {
   width: 60px;
+  height: 15px;
+}
+
+.weight-disk .weight-img {
+  position: absolute;
 }
 
 .weight-disk .weight-txt {
@@ -276,7 +317,7 @@
   width: 100%;
   text-align: center;
   left: 0px;
-  top: 6px;
+  top: -1px;
   z-index: 1;
   font-size: 11px;
   color: #FFF;
@@ -292,13 +333,15 @@
 }
 
 @media only screen and (max-width: 610px) {
-  .wood-slate{
+  .wood-slate {
     width: 590px;
   }
+
   .weight-ball {
     width: 45px;
   }
-  .weight-disk{
+
+  .weight-disk {
     width: 55px;
   }
 }
@@ -339,8 +382,7 @@
   }
 
   .wrapper[device="mobile"] .weight-ball {
-    width: 40px;
-    height: 39px;
+    width: 36px;
   }
 
   .wrapper[device="mobile"] .weight-ball .weight-txt {
@@ -352,7 +394,7 @@
   }
 
   .wrapper[device="mobile"] .weight-disk {
-    width: 60px;
+    width: 55px;
   }
 
   .wrapper[device="mobile"] .earth-wrapper, .wrapper[device="mobile"] .moon-wrapper {
@@ -401,8 +443,9 @@
     width: 45px;
     height: 130px;
   }
+
   .wrapper[device="mobile"] .spring-base {
-    top: -18px;
+    top: -15px;
   }
 
   .wrapper[device="mobile"] .spring-pointer {
