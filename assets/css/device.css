@@ -327,7 +327,7 @@
         height: 100% !important;
     } */
   .container-so.main .exp_header {
-    display: none;
+    /*display: none;*/
   }
 
   .container-so.main .exp_footer .footer {
@@ -336,11 +336,11 @@
 
   .container-so.main .exp_body_footer,
   .container-so.main .exp_body_header {
-    display: none;
+    /*display: none;*/
   }
 
   .container-so.main .exp_footer .footer .copyrighttext {
-    display: none;
+    /*display: none;*/
   }
 
   .birdsExplain {

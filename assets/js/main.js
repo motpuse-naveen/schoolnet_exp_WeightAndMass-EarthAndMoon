@@ -83,6 +83,7 @@ var ActivityShell = (function () {
       }
     },
     AdjustContainerHeight: function () {
+      //debugger;
       var deviceType = ActivityShell.DeviceType();
       if (deviceType == "mobile") {
         $(".wrapper").css({

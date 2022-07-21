@@ -456,6 +456,13 @@ var ActivityMain = (function () {
       }
     },
     OnOrientationChange: function () {
+      $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
+      this.SetBalancerPositions();
+      this.SetWeightPositions();
+      $(".ui-droppable[dropkg]").attr("dropkg",0);
+      ElectricMachine.ResetBalancer();
+      PaneMachine.ResetPan();
+      SpringMachine.ResetSpring();
     }
   };
 })();

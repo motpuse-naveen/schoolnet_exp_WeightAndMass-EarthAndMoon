@@ -132,10 +132,10 @@
 
 .electric-balance-droppable {
   position: absolute;
-  width: 100%;
+  width: 60%;
   height: 10px;
   top: -10px;
-  left: 0px;
+  left: 20%;
 }
 
 .pane-balance {
@@ -196,6 +196,7 @@
   height: 175px;
   z-index: 100;
 }
+
 .spring-base-wrap {
   position: absolute;
   width: 75px;
@@ -203,6 +204,7 @@
   top: 0px;
   left: 0px;
 }
+
 .spring-pointer-bar {
   position: absolute;
   width: 20px;
@@ -211,6 +213,7 @@
   top: 36px;
   /*background-color: green;*/
 }
+
 .spring-pointer {
   position: absolute;
   width: 20px;
@@ -218,6 +221,7 @@
   top: 0px;
   left: 0px;
 }
+
 .spring-pointer-img {
   position: absolute;
   top: -2px;
@@ -341,8 +345,39 @@
   }
 }
 
+@media only screen and (min-device-height: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .earth-wrapper, .moon-wrapper {
+    height: 415px;
+  }
+
+  .earth-container, .moon-container {
+    height: 371px;
+  }
+
+  .earth-container {
+    background-image: url(../images/BG_earth.svg);
+    background-repeat: no-repeat;
+    background-position: -104px -18px;
+    background-size: 745px;
+  }
+
+  .moon-container {
+    background-image: url(../images/BG_moon.svg);
+    background-repeat: no-repeat;
+    background-position: -100px -38px;
+    background-size: 908px;
+  }
+}
+
 
 @media screen and (orientation: landscape) {
+  .wrapper[device="mobile"] .container-so.main .exp_header {
+    display: none;
+  }
+  .wrapper[device="mobile"] .container-so.main .exp_body_footer,
+  .wrapper[device="mobile"] .container-so.main .exp_body_header {
+    display: none;
+  }
   .wrapper[device="mobile"] .activityText {
     font-size: 14px;
   }
@@ -392,7 +427,8 @@
     width: 50px;
     height: 12px;
   }
-  .wrapper[device="mobile"] .weight-disk .weight-txt{
+
+  .wrapper[device="mobile"] .weight-disk .weight-txt {
     font-size: 10px;
   }
 
@@ -439,7 +475,7 @@
   }
 
 
-  
+
 
   .wrapper[device="mobile"] .electric-balance {
     width: 124px;
@@ -486,34 +522,41 @@
     top: -12px;
     right: -30px;
   }
+
   .wrapper[device="mobile"] .spring-balance {
     width: 50px;
     height: 116px;
   }
+
   .wrapper[device="mobile"] .spring-base-wrap {
     width: 50px;
     height: 150px;
   }
-  .wrapper[device="mobile"] .spring-balance-drop-container{
+
+  .wrapper[device="mobile"] .spring-balance-drop-container {
     height: 7px;
   }
+
   .wrapper[device="mobile"] .spring-pointer-bar {
     width: 12px;
     height: 79px;
     left: 20px;
     top: 23px;
   }
+
   .wrapper[device="mobile"] .spring-pointer {
     width: 10px;
     height: 1px;
     top: 0px;
     left: 0px;
   }
+
   .wrapper[device="mobile"] .spring-pointer-img {
     top: -1px;
     left: 1px;
     width: 10px;
   }
+
   .wrapper[device="mobile"] .spring-base {
     top: -15px;
   }
