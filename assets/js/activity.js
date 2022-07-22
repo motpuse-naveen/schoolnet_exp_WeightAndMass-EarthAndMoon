@@ -220,9 +220,9 @@ var ActivityMain = (function () {
       $(".planet-drop").droppable({
         accept: ".wt-balancer, .weight-ball, .weight-disk",
         tolerance: "fit",
-        greedy: true,
         hoverClass: "ui-state-hover",
-        activeClass: "ui-state-default",
+        //greedy: true,
+        //activeClass: "ui-state-default",
         drop: function (event, ui) {
           //debugger;
           if ($(".ui-state-hover").length <= 0) {
@@ -308,10 +308,10 @@ var ActivityMain = (function () {
     InitBalancerDrop: function () {
       $(".spring-balance-droppable").droppable({
         accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
-        greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
-        activeClass: "ui-state-default",
+        //greedy: true,
+        //activeClass: "ui-state-default",
         drop: function (event, ui) {
           ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
@@ -323,10 +323,10 @@ var ActivityMain = (function () {
       });
       $(".pane-01-droppable, .pane-02-droppable").droppable({
         accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
-        greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
-        activeClass: "ui-state-default",
+        //greedy: true,
+        //activeClass: "ui-state-default",
         drop: function (event, ui) {
           ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
@@ -338,10 +338,10 @@ var ActivityMain = (function () {
       });
       $(".electric-balance-droppable").droppable({
         accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
-        greedy: true,
         tolerance: "touch",
         hoverClass: "ui-state-hover",
-        activeClass: "ui-state-default",
+        //greedy: true,
+        //activeClass: "ui-state-default",
         drop: function (event, ui) {
           ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },

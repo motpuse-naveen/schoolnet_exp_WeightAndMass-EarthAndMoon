@@ -614,6 +614,7 @@ svg .cls-101{fill:none;stroke:var(--theme-pri-text-color);stroke-linecap:round;s
   right: 0;
   bottom: 0;
   background-color: var(--body-background);
+  z-index: 10000;
 }
 .preloadpanel {
   position: absolute;

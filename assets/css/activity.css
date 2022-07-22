@@ -61,7 +61,7 @@
   border-radius: 10px;
   position: relative;
 }
-
+/*
 .earth-container {
   background-image: url(../images/BG_earth.svg);
   background-repeat: no-repeat;
@@ -74,6 +74,26 @@
   background-repeat: no-repeat;
   background-position: -62px -33px;
   background-size: 690px;
+}
+*/
+
+.earthImg{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.moonImg{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .cont-head {
@@ -360,7 +380,7 @@
   .earth-container, .moon-container {
     height: 371px;
   }
-
+  /*
   .earth-container {
     background-image: url(../images/BG_earth.svg);
     background-repeat: no-repeat;
@@ -373,6 +393,14 @@
     background-repeat: no-repeat;
     background-position: -100px -38px;
     background-size: 908px;
+  }
+  */
+
+}
+@media screen and (orientation: portrait) {
+  .planet-wrap {
+    width: 100%;
+    float: left;
   }
 }
 
@@ -454,7 +482,7 @@
     height: 180px;
     margin-bottom: 10px;
   }
-
+/*
   .wrapper[device="mobile"] .earth-container {
     background-image: url(../images/BG_earth.svg);
     background-repeat: no-repeat;
@@ -468,6 +496,7 @@
     background-position: -60px -30px;
     background-size: 546px;
   }
+  */
 
   .wrapper[device="mobile"] .cont-head img {
     width: 30px;
