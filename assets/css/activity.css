@@ -61,21 +61,19 @@
   border-radius: 10px;
   position: relative;
 }
-/*
 .earth-container {
-  background-image: url(../images/BG_earth.svg);
+  background-image: url(../images/bg_earth.png);
   background-repeat: no-repeat;
   background-position: -18px -12px;
   background-size: 550px;
 }
 
 .moon-container {
-  background-image: url(../images/BG_moon.svg);
+  background-image: url(../images/bg_moon.png);
   background-repeat: no-repeat;
   background-position: -62px -33px;
   background-size: 690px;
 }
-*/
 
 .earthImg{
   position: absolute;
@@ -354,7 +352,7 @@
 @media only screen and (max-width: 768px) {
   .planet-wrap {
     width: 100%;
-    float: left;
+    /*float: left;*/
   }
 }
 
@@ -380,27 +378,27 @@
   .earth-container, .moon-container {
     height: 371px;
   }
-  /*
+  
   .earth-container {
-    background-image: url(../images/BG_earth.svg);
+    background-image: url(../images/bg_earth.png);
     background-repeat: no-repeat;
     background-position: -104px -18px;
     background-size: 745px;
   }
 
   .moon-container {
-    background-image: url(../images/BG_moon.svg);
+    background-image: url(../images/bg_moon.png);
     background-repeat: no-repeat;
     background-position: -100px -38px;
     background-size: 908px;
   }
-  */
+  
 
 }
 @media screen and (orientation: portrait) {
   .planet-wrap {
     width: 100%;
-    float: left;
+    /*float: left;*/
   }
 }
 
@@ -482,21 +480,21 @@
     height: 180px;
     margin-bottom: 10px;
   }
-/*
+
   .wrapper[device="mobile"] .earth-container {
-    background-image: url(../images/BG_earth.svg);
+    background-image: url(../images/bg_earth.png);
     background-repeat: no-repeat;
     background-position: -18px -40px;
     background-size: 435px;
   }
 
   .wrapper[device="mobile"] .moon-container {
-    background-image: url(../images/BG_moon.svg);
+    background-image: url(../images/bg_moon.png);
     background-repeat: no-repeat;
     background-position: -60px -30px;
     background-size: 546px;
   }
-  */
+  
 
   .wrapper[device="mobile"] .cont-head img {
     width: 30px;
