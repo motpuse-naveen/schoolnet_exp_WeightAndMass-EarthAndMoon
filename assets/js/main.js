@@ -41,13 +41,12 @@ var ActivityShell = (function () {
       var deviceType = ActivityShell.DeviceType();
       var Android = /(android)/i.test(navigator.userAgent);
       if (deviceType == "mobile" && Android) {
-        //openFullscreen()
+        openFullscreen()
         generatePreloader();
         setTimeout(function () {
           $(".preloader").remove();
           ActivityShell.AdjustContainerHeight();
           ActivityMain.LaunchActivity();
-          
           if (zoom1 == null) {
             hammerItScrollableContent(document.querySelector(".zoom1"));
             zoom1 = "zoom1";
@@ -59,26 +58,30 @@ var ActivityShell = (function () {
           }
           */
           setTimeout(function () {
-            //GuidedTour.Init();
-          }, 500);
-        }, 1000)
+            GuidedTour.Init();
+          }, 0);
+        }, 500)
       }
       else {
-        this.AdjustContainerHeight();
-        ActivityMain.LaunchActivity();
-        
-        if (zoom1 == null) {
-          hammerItScrollableContent(document.querySelector(".zoom1"));
-          zoom1 = "zoom1";
-        }
-        /*
-        if (zoom2 == null) {
-          hammerItScrollableContent(document.querySelector(".zoom2"));
-          zoom2 = "zoom2";
-        }
-        */
+        generatePreloader();
         setTimeout(function () {
-          //GuidedTour.Init();
+          $(".preloader").remove();
+          ActivityShell.AdjustContainerHeight();
+          ActivityMain.LaunchActivity();
+
+          if (zoom1 == null) {
+            hammerItScrollableContent(document.querySelector(".zoom1"));
+            zoom1 = "zoom1";
+          }
+          /*
+          if (zoom2 == null) {
+            hammerItScrollableContent(document.querySelector(".zoom2"));
+            zoom2 = "zoom2";
+          }
+          */
+          setTimeout(function () {
+            GuidedTour.Init();
+          }, 0);
         }, 500);
       }
     },
@@ -142,7 +145,7 @@ var ActivityShell = (function () {
       else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
         return "mobile";
       }
-      else{
+      else {
         if (navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
           if (window.screen.availWidth < 1024 || window.screen.availHeight < 1024) {
             return "tablet"

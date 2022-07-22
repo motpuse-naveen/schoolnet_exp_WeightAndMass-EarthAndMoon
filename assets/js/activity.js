@@ -16,7 +16,6 @@ var ActivityMain = (function () {
     ResetExperiment: function () {
     },
     ResetActivity: function () {
-
     },
     SetWeightPositions: function () {
       var slateWdt = $(".wood-slate").width();
@@ -115,6 +114,7 @@ var ActivityMain = (function () {
 
       if (_this.hasClass("electric-balance")) {
         $(".weight[machine='electric']").each(function () {
+          console.log($(this).position().top + verticalDistance)
           $(this).css({
             "left": $(this).position().left + horizontalDistance,
             "top": $(this).position().top + verticalDistance
@@ -122,7 +122,13 @@ var ActivityMain = (function () {
         })
       }
       else if (_this.hasClass("pane-balance")) {
-        $(".weight[machine='balancer1'], .weight[machine='balancer2']").each(function () {
+        $(".weight[machine='balancer1']").each(function () {
+          $(this).css({
+            "left": $(this).position().left + horizontalDistance,
+            "top": $(this).position().top + verticalDistance
+          })
+        })
+        $(".weight[machine='balancer2']").each(function () {
           $(this).css({
             "left": $(this).position().left + horizontalDistance,
             "top": $(this).position().top + verticalDistance
@@ -131,6 +137,7 @@ var ActivityMain = (function () {
       }
       else if (_this.hasClass("spring-balance")) {
         $(".weight[machine='spring']").each(function () {
+          console.log($(this).position().top + verticalDistance)
           $(this).css({
             "left": $(this).position().left + horizontalDistance,
             "top": $(this).position().top + verticalDistance
@@ -143,10 +150,10 @@ var ActivityMain = (function () {
         _htmlElements.draggable({
           revert: function (event, ui) {
             //debugger;
-            var clone = $(".weight-disk.ui-draggable-handle.ui-draggable-dragging")
+            /*var clone = $(".weight-disk.ui-draggable-handle.ui-draggable-dragging")
             clone.fadeOut(500, function () {
               clone.remove();
-            });
+            });*/
           },
           start: function (event, ui) {
             ActivityMain.ResetPositionsOnDragStart(ui.helper);
@@ -256,7 +263,7 @@ var ActivityMain = (function () {
           }
           else {
             if (ui.draggable.hasClass("weight-disk-dropped")) {
-              ui.draggable.remove();
+              //ui.draggable.remove();
               $(".ui-state-hover").removeClass("ui-state-hover");
             }
             if (ui.draggable.hasClass("weight-ball")) {

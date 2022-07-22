@@ -186,11 +186,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + (angle + (angle / 2)) + shiftTop
-                    });
+                    });*/
                     $(this).attr("shift_top", -(angle + (angle / 2)))
                 });
                 $(".weight[machine='balancer2']").each(function () {
@@ -201,11 +201,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top - (angle + (angle / 2)) + shiftTop
-                    });
+                    });*/
                     $(this).attr("shift_top", (angle + (angle / 2)))
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
@@ -228,11 +228,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top - (angle + (angle / 2)) + shiftTop
-                    });
+                    });*/
                     $(this).attr("shift_top", (angle + (angle / 2)));
                 });
                 $(".weight[machine='balancer2']").each(function () {
@@ -243,11 +243,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + (angle + (angle / 2)) + shiftTop 
-                    });
+                    });*/
                     $(this).attr("shift_top", -(angle + (angle / 2)));
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
@@ -269,11 +269,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + shiftTop 
-                    });
+                    });*/
                     $(this).attr("shift_top", 0);
                 });
                 $(".weight[machine='balancer2']").each(function () {
@@ -284,11 +284,11 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    //$(this).css({ "top": $(this).position().top + shiftTop })
-                    $(this).css({
+                    $(this).css({ "top": $(this).position().top + shiftTop })
+                    /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + shiftTop 
-                    });
+                    });*/
                     $(this).attr("shift_top", 0);
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
