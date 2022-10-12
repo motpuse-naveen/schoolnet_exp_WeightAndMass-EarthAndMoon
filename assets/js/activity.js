@@ -93,12 +93,17 @@ var ActivityMain = (function () {
             //revert logic
             $(this).removeClass("dropped-object")
           }
+          debugger;
+          ActivityMain.PositionWeightOnBalancerDrag({
+            top: $(this).attr("orgTop"), 
+            left: $(this).attr("orgLeft") }, $(this))
           return !event;
         },
         start: function (event, ui) {
         },
         drag: function (event, ui) {
-          ActivityMain.PositionWeightOnBalancerDrag(ui, $(this))
+          //debugger;
+          ActivityMain.PositionWeightOnBalancerDrag({top: ui.position.top ,left: ui.position.left }, $(this))
         }
       }).each(function () {
         var top = $(this).position().top;
@@ -107,9 +112,9 @@ var ActivityMain = (function () {
         $(this).attr('orgLeft', left);
       });
     },
-    PositionWeightOnBalancerDrag: function (_ui, _this) {
-      var verticalDistance = _ui.position.top - _this.position().top //- ui.originalPosition.top;
-      var horizontalDistance = _ui.position.left - _this.position().left //- ui.originalPosition.left;
+    PositionWeightOnBalancerDrag: function (_ui_position, _this) {
+      var verticalDistance = _ui_position.top - _this.position().top //- ui.originalPosition.top;
+      var horizontalDistance = _ui_position.left - _this.position().left //- ui.originalPosition.left;
       //console.log(horizontalDistance + " : " + verticalDistance)
 
       if (_this.hasClass("electric-balance")) {
