@@ -185,6 +185,14 @@
     padding-top: 1rem;
   }
 
+  div.closepopup {
+    right: 42px;
+}
+.themepopup .modal-dialog .modal-content .modal-header .closepopup
+{
+  right: 20px;
+}
+
   .launch .exp_header .title {
     padding: 0.2em 0.5em 0em 0.5em;
   }

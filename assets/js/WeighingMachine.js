@@ -91,6 +91,7 @@ var ElectricMachine = (function () {
 var SpringMachine = (function () {
     return {
         ShiftPointer: function (_weightObj, _draggable, _droppable) {
+            debugger;
             var springHt = $(".spring-pointer-bar").height();
             var pointer = $(".spring-pointer-bar .spring-pointer");
             var springBase = $(".spring-base-wrap")
@@ -137,9 +138,10 @@ var SpringMachine = (function () {
             }
             var shiftDifference = _weightObj.to - _weightObj.from;
             var shiftPixels = shiftDifference * htPerKg;
-            pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
+           pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
                 //callback
             });
+            console.log("springBase.position().top",springBase.position().top, shiftPixels)
             springBase.animate({ top: springBase.position().top + shiftPixels }, 800, function () {
                 //callback
             });

@@ -167,7 +167,7 @@ div.btn-theme-wrap .btn_themes {
 }
 .btn-wrap-info {
   position: absolute;
-  left: 0px;
+  left: 47px;
   border-right: 1px solid var(--theme-menu-icon-sepr);
 }
 .btn-wrap-aim {
