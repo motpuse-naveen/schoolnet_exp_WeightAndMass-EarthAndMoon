@@ -81,7 +81,7 @@ var ElectricMachine = (function () {
                 }
             }, 2);
         },
-        ResetBalancer: function(){
+        ResetBalancer: function () {
             $(".electric-balance .kilogram .value").text("0 Kg");
             $(".electric-balance .newton .value").text("0 N");
         }
@@ -91,7 +91,7 @@ var ElectricMachine = (function () {
 var SpringMachine = (function () {
     return {
         ShiftPointer: function (_weightObj, _draggable, _droppable) {
-            debugger;
+            debugger
             var springHt = $(".spring-pointer-bar").height();
             var pointer = $(".spring-pointer-bar .spring-pointer");
             var springBase = $(".spring-base-wrap")
@@ -102,6 +102,21 @@ var SpringMachine = (function () {
                 _weightObj.to = Number((_weightObj.to * 1 / 6).toFixed(1));
             }
             var shiftDifference = _weightObj.to - _weightObj.from;
+            if(_weightObj.to>160 && _weightObj.from>160){
+                shiftDifference = 0;
+                $(".spring-balance .overload-weight").show();
+            }
+            else if (_weightObj.to > 160) {
+                shiftDifference = 160 - _weightObj.from
+                $(".spring-balance .overload-weight").show();
+            }
+            else if(_weightObj.from>160){
+                shiftDifference = _weightObj.to - 160;
+                $(".spring-balance .overload-weight").hide();
+            }
+            else {
+                $(".spring-balance .overload-weight").hide();
+            }
             var shiftPixels = shiftDifference * htPerKg;
             pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
                 //callback
@@ -137,11 +152,26 @@ var SpringMachine = (function () {
                 _weightObj.current = Number((dropKg * 1 / 6).toFixed(1));
             }
             var shiftDifference = _weightObj.to - _weightObj.from;
+            if(_weightObj.to>160 && _weightObj.from>160){
+                shiftDifference = 0;
+                $(".spring-balance .overload-weight").show();
+            }
+            else if (_weightObj.to > 160) {
+                shiftDifference = 160 - _weightObj.from
+                $(".spring-balance .overload-weight").show();
+            }
+            else if(_weightObj.from>160){
+                shiftDifference = _weightObj.to - 160;
+                $(".spring-balance .overload-weight").hide();
+            }
+            else {
+                $(".spring-balance .overload-weight").hide();
+            }
             var shiftPixels = shiftDifference * htPerKg;
-           pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
+            pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
                 //callback
             });
-            console.log("springBase.position().top",springBase.position().top, shiftPixels)
+            console.log("springBase.position().top", springBase.position().top, shiftPixels)
             springBase.animate({ top: springBase.position().top + shiftPixels }, 800, function () {
                 //callback
             });
@@ -154,7 +184,7 @@ var SpringMachine = (function () {
         ResetSpring: function () {
             var shifttop = $(".spring-pointer").position().top;
             $(".spring-pointer").css({ top: 0 })
-            $(".spring-base-wrap").css({top: $(".spring-base-wrap").position().top - shifttop})
+            $(".spring-base-wrap").css({ top: $(".spring-base-wrap").position().top - shifttop })
         }
     };
 })();

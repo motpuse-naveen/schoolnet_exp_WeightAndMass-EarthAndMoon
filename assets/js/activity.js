@@ -173,6 +173,7 @@ var ActivityMain = (function () {
             return !event;
           },
           start: function (event, ui) {
+            //debugger;
             ActivityMain.ResetPositionsOnDragStart(ui.helper);
           },
           drag: function (event, ui) {
@@ -194,6 +195,7 @@ var ActivityMain = (function () {
             return !event;
           },
           start: function (event, ui) {
+            //debugger;
             ActivityMain.ResetPositionsOnDragStart(ui.helper);
           },
           drag: function (event, ui) {
@@ -521,3 +523,31 @@ $(document).on("click", ".linkactivityTextLess", function () {
     $(".mobiledevice.less").fadeIn();
   });
 })
+
+$(document).on("dblclick", ".weight-ball[machine]", function () {
+  //alert(1);
+  ActivityMain.ResetPositionsOnDragStart($(this));
+  debugger;
+  $(this).data("uiDraggable").originalPosition = {
+    top: $(this).attr("orgTop"),
+    left: $(this).attr("orgLeft")
+  };
+  $(this).animate({ top: $(this).attr("orgTop"),  left: $(this).attr("orgLeft")}, 800, function () {
+    
+  });
+})
+
+$(document).on("dblclick", ".weight-disk-dropped", function () {
+  //alert(1);
+  ActivityMain.ResetPositionsOnDragStart($(this));
+  debugger;
+  $(this).data("uiDraggable").originalPosition = {
+    top: $(this).attr("orgTop"),
+    left: $(this).attr("orgLeft")
+  };
+  $(this).animate({ top: $(this).attr("orgTop"),  left: $(this).attr("orgLeft")}, 800, function () {
+    $(this).remove();
+  });
+})
+
+

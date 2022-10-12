@@ -348,7 +348,18 @@
   color: #FFF;
 }
 
-
+.overload-weight{
+  display: none;
+  position: absolute;
+  bottom: 20px;
+}
+.overload-weight .image
+{
+  width: 100px;
+  left: -15px;
+  position: absolute;
+  bottom: 0px;
+}
 
 @media only screen and (max-width: 768px) {
   .planet-wrap {
