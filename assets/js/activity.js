@@ -341,7 +341,23 @@ var ActivityMain = (function () {
         //greedy: true,
         //activeClass: "ui-state-default",
         drop: function (event, ui) {
-          ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          //debugger;
+          if(!$(".spring-balance.wt-balancer .overload-weight").is(":visible")){
+            ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          }
+          else{
+            if (ui.draggable.hasClass("weight-ball")) {
+              let orglft = ui.draggable.attr('orgLeft');
+              let orgtp = ui.draggable.attr('orgTop');
+              ui.draggable.css({
+                "left": Number(orglft),
+                "top": Number(orgtp)
+              });
+            }
+            else {
+              //ui.draggable.remove();
+            }
+          }
         },
         out: function (event, ui) {
           $(this).removeClass("ui-state-hover")
@@ -643,6 +659,7 @@ $(document).on("click", "#reset_btn", function () {
     "top": "-" + $(".spring-balance-droppable").attr("orig-ht") + "px",
     "height": $(".spring-balance-droppable").attr("orig-ht") + "px"
   });
+  $(".overload-weight").hide();
   //$(this).removeAttr("shift_top").removeAttr("machine").removeAttr("dragseq").removeAttr("bind");
   /*
   $(".pane-bar").css({

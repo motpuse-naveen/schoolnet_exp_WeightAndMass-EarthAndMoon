@@ -1,4 +1,4 @@
-const POPUP_WIDTH = 280;
+const POPUP_WIDTH = 286;
 var zoom1 = null;
 var zoom2 = null;
 var zoom3 = null;

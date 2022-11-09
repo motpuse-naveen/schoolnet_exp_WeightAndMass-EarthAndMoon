@@ -1,5 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.47 247.04">
     <defs>
+    <style>
+            @font-face {
+                font-family: 'Montserrat-Bold';
+                src: local('poppins-black'), url('../css/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+            }
+            @font-face {
+                font-family: 'Montserrat';
+                src: local('poppins-black'), url('../css/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+            }
+        </style>
         <style>.cls-1{fill:#7d8c93;}.cls-2{fill:#2b709e;}.cls-3{fill:#00579b;}.cls-4{fill:#427ea8;}.cls-5{fill:#aaa5a5;}.cls-6{fill:#757575;}.cls-7{font-size:6px;}.cls-10,.cls-11,.cls-13,.cls-7,.cls-9{fill:#fff;}.cls-10,.cls-11,.cls-7{font-family:Montserrat-Bold, Montserrat;font-weight:300;}.cls-8{letter-spacing:0em;}.cls-10,.cls-13{font-size:6.06px;}.cls-11{font-size:9.09px;}.cls-12{letter-spacing:-0.02em;}.cls-13{font-family:Montserrat-Regular, Montserrat;}</style>
     </defs>
     <g id="Layer_2" data-name="Layer 2">
