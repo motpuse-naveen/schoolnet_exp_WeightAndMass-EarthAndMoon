@@ -168,7 +168,7 @@
   position: absolute;
   width: 170px;
   height: 80px;
-  z-index: 100;
+  z-index: 102;
 }
 
 .pane-balance .p01 {
@@ -220,7 +220,7 @@
   position: absolute;
   width: 75px;
   height: 175px;
-  z-index: 100;
+  z-index: 104;
 }
 
 .spring-base-wrap {
@@ -310,7 +310,7 @@
 
 .weight {
   position: absolute;
-  z-index: 101;
+  z-index: 105;
 }
 
 .weight-ball {
@@ -360,6 +360,20 @@
   position: absolute;
   bottom: 0px;
 }
+
+.weight[machine="electric"]{
+  z-index: 101;
+}
+.weight[machine="balancer1"]{
+  z-index: 103;
+}
+.weight[machine="balancer2"]{
+  z-index: 103;
+}
+.weight[machine="spring"]{
+  z-index: 105;
+}
+
 
 @media only screen and (max-width: 768px) {
   .planet-wrap {

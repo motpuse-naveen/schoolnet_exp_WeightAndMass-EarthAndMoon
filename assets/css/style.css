@@ -396,6 +396,7 @@ div.closepopup {
 .procBox {
   position: relative;
   padding-left: 35px;
+  padding-right: 20px;
   float: left;
 }
 .procstepno {

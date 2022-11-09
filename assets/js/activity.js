@@ -83,32 +83,33 @@ var ActivityMain = (function () {
       }).attr("planet", "earth");
     },
     InitBalancerDrag: function () {
-    $(".wt-balancer").draggable({
+      $(".wt-balancer").draggable({
         containment: ".exp_body_content",
         revertDuration: 0,
         revert: function (event, ui) {
-          
+
           $(this).data("uiDraggable").originalPosition = {
             top: $(this).attr("orgTop"),
             left: $(this).attr("orgLeft")
           };
           if (!event) {
             //revert logic
-            
+
             $(this).removeClass("dropped-object")
           }
           //debugger;
           ActivityMain.PositionWeightOnBalancerDrag({
-            top: $(this).attr("orgTop"), 
-            left: $(this).attr("orgLeft") }, $(this))
+            top: $(this).attr("orgTop"),
+            left: $(this).attr("orgLeft")
+          }, $(this))
           return !event;
         },
         start: function (event, ui) {
-          
+
         },
         drag: function (event, ui) {
           //debugger;
-          ActivityMain.PositionWeightOnBalancerDrag({top: ui.position.top ,left: ui.position.left }, $(this))
+          ActivityMain.PositionWeightOnBalancerDrag({ top: ui.position.top, left: ui.position.left }, $(this))
         }
       }).each(function () {
         var top = $(this).position().top;
@@ -116,7 +117,7 @@ var ActivityMain = (function () {
         $(this).attr('orgTop', top);
         $(this).attr('orgLeft', left);
       });
-      
+
     },
     PositionWeightOnBalancerDrag: function (_ui_position, _this) {
       var verticalDistance = _ui_position.top - _this.position().top //- ui.originalPosition.top;
@@ -129,7 +130,7 @@ var ActivityMain = (function () {
             "left": $(this).position().left + horizontalDistance,
             "top": $(this).position().top + verticalDistance
           })
-          
+
         })
       }
       else if (_this.hasClass("pane-balance")) {
@@ -148,7 +149,7 @@ var ActivityMain = (function () {
       }
       else if (_this.hasClass("spring-balance")) {
         $(".weight[machine='spring']").each(function () {
-          console.log($(this).position().top + verticalDistance)
+          //console.log($(this).position().top + verticalDistance)
           $(this).css({
             "left": $(this).position().left + horizontalDistance,
             "top": $(this).position().top + verticalDistance
@@ -168,7 +169,6 @@ var ActivityMain = (function () {
             if (!event) {
               //revert logic
               $(this).removeClass("dropped-object")
-              console.log("pppppp")
             }
             return !event;
           },
@@ -214,7 +214,7 @@ var ActivityMain = (function () {
         revert: 'invalid',
         helper: 'clone',
         containment: ".exp_body_content",
-       
+
         revert: function (event, ui) {
           $(this).data("uiDraggable").originalPosition = {
             top: $(this).attr("orgTop"),
@@ -224,7 +224,6 @@ var ActivityMain = (function () {
             //revert logic
             $(this).removeClass("dropped-object")
           }
-          console.log("ccccccc")
           return !event;
         },
         start: function (event, ui) {
@@ -249,13 +248,12 @@ var ActivityMain = (function () {
         accept: ".wt-balancer, .weight-ball, .weight-disk",
         tolerance: "fit",
         hoverClass: "ui-state-hover",
-       
+
         //greedy: true,
         //activeClass: "ui-state-default",
         drop: function (event, ui) {
           //debugger;
           if ($(".ui-state-hover").length <= 0) {
-            console.log("drop planet-drop")
             if ($(event.target).hasClass("planet-drop")) {
               var planetNme = $(event.target).attr("planet");
               var prevPlanetNme = ui.draggable.attr("planet")
@@ -339,7 +337,7 @@ var ActivityMain = (function () {
         accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
         tolerance: "touch",
         hoverClass: "ui-state-hover",
-        
+
         //greedy: true,
         //activeClass: "ui-state-default",
         drop: function (event, ui) {
@@ -401,6 +399,7 @@ var ActivityMain = (function () {
       var dragmachine = _draggable.attr("machine")
       $(".ui-state-hover").removeClass("ui-state-hover");
       _draggable.removeAttr("shift_top");
+      console.log("on drag start");
       if (dragmachine != undefined && dragmachine != "") {
         var _droppable = $("div[dropmachine='" + dragmachine + "']")
         var dropNewHt = _droppable.height() - _draggable.height();
@@ -414,6 +413,16 @@ var ActivityMain = (function () {
           }
           ElectricMachine.DisplayWeight(WeightObj, _draggable, _droppable);
 
+          var draggHtToRemove = _draggable.height();
+          var dragSeq = _draggable.attr("dragseq");
+          var weights = $(".weight[machine='electric']");
+          for (var i = 0; i < weights.length; i++) {
+            var wtObj = $(weights[i])
+            if (Number(wtObj.attr("dragseq")) > Number(dragSeq)) {
+              wtObj.css({ "top": wtObj.position().top + draggHtToRemove });
+              wtObj.attr("dragseq", Number(wtObj.attr("dragseq")) - 1);
+            }
+          }
         }
         else if (dragmachine == "balancer1" || dragmachine == "balancer2") {
           var WeightObj = {
@@ -422,6 +431,31 @@ var ActivityMain = (function () {
             current: Number(_droppable.attr("dropkg")),
           }
           PaneMachine.BalancePane(WeightObj, _draggable, _droppable);
+          //debugger;
+          if (dragmachine == "balancer1") {
+            var draggHtToRemove = _draggable.height();
+            var dragSeq = _draggable.attr("dragseq");
+            var weights = $(".weight[machine='balancer1']");
+            for (var i = 0; i < weights.length; i++) {
+              var wtObj = $(weights[i])
+              if (Number(wtObj.attr("dragseq")) > Number(dragSeq)) {
+                wtObj.css({ "top": wtObj.position().top + draggHtToRemove });
+                wtObj.attr("dragseq", Number(wtObj.attr("dragseq")) - 1);
+              }
+            }
+          }
+          if (dragmachine == "balancer2") {
+            var draggHtToRemove = _draggable.height();
+            var dragSeq = _draggable.attr("dragseq");
+            var weights = $(".weight[machine='balancer2']");
+            for (var i = 0; i < weights.length; i++) {
+              var wtObj = $(weights[i])
+              if (Number(wtObj.attr("dragseq")) > Number(dragSeq)) {
+                wtObj.css({ "top": wtObj.position().top + draggHtToRemove });
+                wtObj.attr("dragseq", Number(wtObj.attr("dragseq")) - 1);
+              }
+            }
+          }
         }
         else if (dragmachine == "spring") {
           var WeightObj = {
@@ -436,7 +470,7 @@ var ActivityMain = (function () {
     SetPositionOnDrop: function (_draggable, _droppable) {
       var dropmachine = _droppable.attr("dropmachine")
       var dragmachine = _draggable.attr("machine")
-      var Bind=_draggable.attr("bind");
+      var Bind = _draggable.attr("bind");
       if (dropmachine != dragmachine) {
         _draggable.attr("machine", dropmachine);
         _draggable.attr("Bind", true);
@@ -445,7 +479,7 @@ var ActivityMain = (function () {
         var dropOrgHt = Number(_droppable.attr("orig-ht"))
         var dropNewHt = _droppable.height() + _draggable.height()
         _droppable.css({ "height": dropNewHt, "top": -dropNewHt });
-        console.log("activitter");
+
         if (dropmachine == "electric") {
           _draggable.css({ "top": (pos1.top - _droppable.height()) + dropOrgHt });
           _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
@@ -455,8 +489,7 @@ var ActivityMain = (function () {
             current: Number(_droppable.attr("dropkg")),
           }
           ElectricMachine.DisplayWeight(WeightObj, _draggable, _droppable);
-          
-          console.log("activitter11111");
+          _draggable.attr("dragseq", $(".weight[machine='electric']").length);
         }
         else if (dropmachine == "balancer1" || dropmachine == "balancer2") {
           var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
@@ -464,8 +497,7 @@ var ActivityMain = (function () {
           pos2 = _droppable.closest(".pane").position();
           var dropbalancer = _droppable.attr("dropmachine");
           var topFactor = 0
-          console.log("activitter33333");
-          //debugger;
+          var dragSeq = 0;
           if (pane1Weight > pane2Weight) {
             if (dropbalancer == "balancer1") {
               topFactor = PaneMachine.getAngle() + (PaneMachine.getAngle() / 2);
@@ -476,6 +508,12 @@ var ActivityMain = (function () {
               topFactor = PaneMachine.getAngle() + (PaneMachine.getAngle() / 2);
             }
           }
+          if (dropmachine == "balancer1") {
+            dragSeq = $(".weight[machine='balancer1']").length;
+          }
+          else if (dropmachine == "balancer2") {
+            dragSeq = $(".weight[machine='balancer2']").length;
+          }
           _draggable.css({ "top": ((pos1.top - pos2.top - 5) - _droppable.height()) + dropOrgHt + (topFactor * 2) });
           _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
           var WeightObj = {
@@ -484,6 +522,7 @@ var ActivityMain = (function () {
             current: Number(_droppable.attr("dropkg")),
           }
           PaneMachine.BalancePane(WeightObj, _draggable, _droppable);
+          _draggable.attr("dragseq", dragSeq);
         }
         else if (dropmachine == "spring") {
           pos2 = _droppable.closest(".spring-balance-drop-container").position();
@@ -496,7 +535,7 @@ var ActivityMain = (function () {
             current: Number(_droppable.attr("dropkg")),
           }
           SpringMachine.ShiftPointer(WeightObj, _draggable, _droppable);
-          console.log("dropOrgHt", WeightObj, _draggable, _droppable)
+          _draggable.attr("dragseq", $(".weight[machine='spring']").length);
         }
       }
     },
@@ -504,7 +543,7 @@ var ActivityMain = (function () {
       $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
       this.SetBalancerPositions();
       this.SetWeightPositions();
-      $(".ui-droppable[dropkg]").attr("dropkg",0);
+      $(".ui-droppable[dropkg]").attr("dropkg", 0);
       ElectricMachine.ResetBalancer();
       PaneMachine.ResetPan();
       SpringMachine.ResetSpring();
@@ -527,27 +566,107 @@ $(document).on("click", ".linkactivityTextLess", function () {
 $(document).on("dblclick", ".weight-ball[machine]", function () {
   //alert(1);
   ActivityMain.ResetPositionsOnDragStart($(this));
-  debugger;
+  //debugger;
   $(this).data("uiDraggable").originalPosition = {
     top: $(this).attr("orgTop"),
     left: $(this).attr("orgLeft")
   };
-  $(this).animate({ top: $(this).attr("orgTop"),  left: $(this).attr("orgLeft")}, 800, function () {
-    
+  $(this).animate({ top: $(this).attr("orgTop"), left: $(this).attr("orgLeft") }, 800, function () {
+
   });
 })
 
 $(document).on("dblclick", ".weight-disk-dropped", function () {
   //alert(1);
   ActivityMain.ResetPositionsOnDragStart($(this));
-  debugger;
+  //debugger;
   $(this).data("uiDraggable").originalPosition = {
     top: $(this).attr("orgTop"),
     left: $(this).attr("orgLeft")
   };
-  $(this).animate({ top: $(this).attr("orgTop"),  left: $(this).attr("orgLeft")}, 800, function () {
+  $(this).animate({ top: $(this).attr("orgTop"), left: $(this).attr("orgLeft") }, 800, function () {
     $(this).remove();
   });
 })
+
+$(document).on("click", "#reset_btn", function () {
+  $(".weight[machine='electric']").each(function () {
+    ActivityMain.ResetPositionsOnDragStart($(this));
+    $(this).data("uiDraggable").originalPosition = {
+      top: $(this).attr("orgTop"),
+      left: $(this).attr("orgLeft")
+    };
+    $(this).css({
+      top: Number($(this).attr("orgTop")),
+      left: Number($(this).attr("orgLeft"))
+    });
+  });
+  $(".weight[machine='balancer1']").each(function () {
+    ActivityMain.ResetPositionsOnDragStart($(this));
+    $(this).data("uiDraggable").originalPosition = {
+      top: $(this).attr("orgTop"),
+      left: $(this).attr("orgLeft")
+    };
+    $(this).css({
+      top: Number($(this).attr("orgTop")),
+      left: Number($(this).attr("orgLeft"))
+    });
+  });
+  $(".weight[machine='balancer2']").each(function () {
+    ActivityMain.ResetPositionsOnDragStart($(this));
+    $(this).data("uiDraggable").originalPosition = {
+      top: $(this).attr("orgTop"),
+      left: $(this).attr("orgLeft")
+    };
+    $(this).css({
+      top: Number($(this).attr("orgTop")),
+      left: Number($(this).attr("orgLeft"))
+    });
+  });
+  $(".weight[machine='spring']").each(function () {
+    //ActivityMain.ResetPositionsOnDragStart($(this));
+    $(this).data("uiDraggable").originalPosition = {
+      top: $(this).attr("orgTop"),
+      left: $(this).attr("orgLeft")
+    };
+    $(this).css({
+      top: Number($(this).attr("orgTop")),
+      left: Number($(this).attr("orgLeft"))
+    });
+    $(this).removeAttr("shift_top").removeAttr("machine").removeAttr("dragseq").removeAttr("bind");
+  });
+  $(".spring-base-wrap").css({top:0});
+  $(".spring-pointer-bar .spring-pointer").css({top:0});
+  $(".ui-state-hover").removeClass("ui-state-hover");
+  $(".weight-disk-dropped").removeClass("weight-disk-dropped")
+  $(".spring-balance-droppable").css({
+    "top": "-" + $(".spring-balance-droppable").attr("orig-ht") + "px",
+    "height": $(".spring-balance-droppable").attr("orig-ht") + "px"
+  });
+  //$(this).removeAttr("shift_top").removeAttr("machine").removeAttr("dragseq").removeAttr("bind");
+  /*
+  $(".pane-bar").css({
+    transition: "transform 0.5s",
+    transform: "rotate(0deg)"
+  });
+  $(".pane-bar .pane").css({
+    transition: "transform 0.5s",
+    transform: "rotate(0deg)"
+  });
+  $(".spring-base-wrap").css({top:0});
+  $(".spring-pointer-bar .spring-pointer").css({top:0});
+  $(".electric-balance .newton .value").text("0 N");
+  $(".electric-balance .kilogram .value").text("0 Kg");
+  $(".electric-balance-droppable").attr("dropkg",0);
+  $(".spring-balance-droppable").css({
+    "top": "-" + $(".electric-balance-droppable").attr("orig-ht") + "px",
+    "height": $(".electric-balance-droppable").attr("orig-ht") + "px"
+  });
+  $(".pane-01-droppable").removeAttr("style");
+  $(".pane-02-droppable").removeAttr("style");
+  $(".ui-state-hover").removeClass("ui-state-hover");
+  $(".weight-disk-dropped").removeClass("weight-disk-dropped")
+*/
+});
 
 

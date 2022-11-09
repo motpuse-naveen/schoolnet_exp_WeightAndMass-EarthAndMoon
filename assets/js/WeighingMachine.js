@@ -89,9 +89,11 @@ var ElectricMachine = (function () {
 })();
 
 var SpringMachine = (function () {
+    var g_draggable = null;
     return {
         ShiftPointer: function (_weightObj, _draggable, _droppable) {
-            debugger
+            //debugger
+            g_draggable = _draggable;
             var springHt = $(".spring-pointer-bar").height();
             var pointer = $(".spring-pointer-bar .spring-pointer");
             var springBase = $(".spring-base-wrap")
@@ -102,7 +104,7 @@ var SpringMachine = (function () {
                 _weightObj.to = Number((_weightObj.to * 1 / 6).toFixed(1));
             }
             var shiftDifference = _weightObj.to - _weightObj.from;
-            if(_weightObj.to>160 && _weightObj.from>160){
+            if (_weightObj.to > 160 && _weightObj.from > 160) {
                 shiftDifference = 0;
                 $(".spring-balance .overload-weight").show();
             }
@@ -110,7 +112,7 @@ var SpringMachine = (function () {
                 shiftDifference = 160 - _weightObj.from
                 $(".spring-balance .overload-weight").show();
             }
-            else if(_weightObj.from>160){
+            else if (_weightObj.from > 160) {
                 shiftDifference = _weightObj.to - 160;
                 $(".spring-balance .overload-weight").hide();
             }
@@ -127,6 +129,12 @@ var SpringMachine = (function () {
             $(".weight[machine='spring']").each(function () {
                 $(this).animate({ top: $(this).position().top + shiftPixels }, 800, function () {
                     //callback
+                    var draggHtToRemove = g_draggable.height();
+                    var dragSeq = g_draggable.attr("dragseq");
+                    if (Number($(this).attr("dragseq")) > Number(dragSeq)) {
+                        $(this).css({ "top": $(this).position().top + draggHtToRemove });
+                        $(this).attr("dragseq", Number($(this).attr("dragseq")) - 1);   
+                    }
                 });
             });
         },
@@ -152,7 +160,7 @@ var SpringMachine = (function () {
                 _weightObj.current = Number((dropKg * 1 / 6).toFixed(1));
             }
             var shiftDifference = _weightObj.to - _weightObj.from;
-            if(_weightObj.to>160 && _weightObj.from>160){
+            if (_weightObj.to > 160 && _weightObj.from > 160) {
                 shiftDifference = 0;
                 $(".spring-balance .overload-weight").show();
             }
@@ -160,7 +168,7 @@ var SpringMachine = (function () {
                 shiftDifference = 160 - _weightObj.from
                 $(".spring-balance .overload-weight").show();
             }
-            else if(_weightObj.from>160){
+            else if (_weightObj.from > 160) {
                 shiftDifference = _weightObj.to - 160;
                 $(".spring-balance .overload-weight").hide();
             }
