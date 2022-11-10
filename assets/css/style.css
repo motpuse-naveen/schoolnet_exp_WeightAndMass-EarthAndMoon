@@ -285,7 +285,7 @@ div.btn-theme-wrap .btn_themes {
   position: absolute;
   bottom: 0px;
   border-top: 1px solid var(--theme-popup-border);
-  z-index: 13;
+  z-index: 130;
   outline: 1px solid var(--theme-popup-border);
 }
 

@@ -201,6 +201,9 @@ var PaneMachine = (function () {
     angle = 8;
     return {
         getAngle: function () {
+            if(window.innerHeight<600){
+                angle = 6;
+            }
             return angle;
         },
         BalancePane: function (_weightObj, _draggable, _droppable) {
@@ -208,14 +211,15 @@ var PaneMachine = (function () {
             _droppable.attr("dropkg", _weightObj.to);
             var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
             var pane2Weight = Number($(".pane-02-droppable").attr("dropkg"));
+            var l_angle = this.getAngle();
             if (pane1Weight > pane2Weight) {
                 $(".pane-bar").css({
                     transition: "transform 0.5s",
-                    transform: "rotate(" + (-1 * angle) + "deg)"
+                    transform: "rotate(" + (-1 * l_angle) + "deg)"
                 });
                 $(".pane-bar .pane").css({
                     transition: "transform 0.5s",
-                    transform: "rotate(" + (angle) + "deg)"
+                    transform: "rotate(" + (l_angle) + "deg)"
                 });
 
                 $(".weight[machine='balancer1']").each(function () {
@@ -226,12 +230,12 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    $(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
+                    $(this).css({ "top": $(this).position().top + (l_angle + (l_angle / 2)) + shiftTop })
                     /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + (angle + (angle / 2)) + shiftTop
                     });*/
-                    $(this).attr("shift_top", -(angle + (angle / 2)))
+                    $(this).attr("shift_top", -(l_angle + (l_angle / 2)))
                 });
                 $(".weight[machine='balancer2']").each(function () {
                     var shiftTop = $(this).attr("shift_top");
@@ -241,23 +245,23 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    $(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
+                    $(this).css({ "top": $(this).position().top - (l_angle + (l_angle / 2)) + shiftTop })
                     /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top - (angle + (angle / 2)) + shiftTop
                     });*/
-                    $(this).attr("shift_top", (angle + (angle / 2)))
+                    $(this).attr("shift_top", (l_angle + (l_angle / 2)))
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
             }
             else if (pane1Weight < pane2Weight) {
                 $(".pane-bar").css({
                     transition: "transform 0.5s",
-                    transform: "rotate(" + (angle) + "deg)"
+                    transform: "rotate(" + (l_angle) + "deg)"
                 });
                 $(".pane-bar .pane").css({
                     transition: "transform 0.5s",
-                    transform: "rotate(" + (-1 * angle) + "deg)"
+                    transform: "rotate(" + (-1 * l_angle) + "deg)"
                 });
 
                 $(".weight[machine='balancer1']").each(function () {
@@ -268,12 +272,12 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    $(this).css({ "top": $(this).position().top - (angle + (angle / 2)) + shiftTop })
+                    $(this).css({ "top": $(this).position().top - (l_angle + (l_angle / 2)) + shiftTop })
                     /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top - (angle + (angle / 2)) + shiftTop
                     });*/
-                    $(this).attr("shift_top", (angle + (angle / 2)));
+                    $(this).attr("shift_top", (l_angle + (l_angle / 2)));
                 });
                 $(".weight[machine='balancer2']").each(function () {
                     var shiftTop = $(this).attr("shift_top");
@@ -283,12 +287,12 @@ var PaneMachine = (function () {
                     else {
                         shiftTop = Number(shiftTop);
                     }
-                    $(this).css({ "top": $(this).position().top + (angle + (angle / 2)) + shiftTop })
+                    $(this).css({ "top": $(this).position().top + (l_angle + (l_angle / 2)) + shiftTop })
                     /*$(this).css({
                         transition: "top 0.5s",
                         top: $(this).position().top + (angle + (angle / 2)) + shiftTop 
                     });*/
-                    $(this).attr("shift_top", -(angle + (angle / 2)));
+                    $(this).attr("shift_top", -(l_angle + (l_angle / 2)));
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
             }

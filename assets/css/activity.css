@@ -310,7 +310,7 @@
 
 .weight {
   position: absolute;
-  z-index: 105;
+  z-index: 104;
 }
 
 .weight-ball {
@@ -371,6 +371,10 @@
   z-index: 103;
 }
 .weight[machine="spring"]{
+  z-index: 105;
+}
+
+.weight.ui-draggable.ui-draggable-dragging{
   z-index: 105;
 }
 
@@ -621,3 +625,70 @@
     top: -15px;
   }
 }
+
+/*
+.cls-1-1,
+.cls-2-1,
+.cls-3-1,
+.cls-4-1,
+.cls-5-1,
+.cls-6-1 {
+  fill: #fff;
+}
+
+.cls-2-1,
+.cls-4-1 {
+  font-size: 6.06px;
+}
+
+.cls-2-1,
+.cls-5-1,
+.cls-6-1 {
+  font-family: Montserrat-Regular, Montserrat;
+}
+
+.cls-3-1 {
+  font-size: 9.09px;
+}
+
+.cls-3-1,
+.cls-4-1 {
+  font-family: Montserrat-Bold, Montserrat;
+}
+
+.cls-7-1 {
+  fill: #00579b;
+}
+
+.cls-8-1 {
+  fill: #427ea8;
+}
+
+.cls-9-1 {
+  fill: #2b709e;
+}
+
+.cls-10-1 {
+  letter-spacing: -.02em;
+}
+
+.cls-5-1 {
+  font-size: 8px;
+}
+
+.cls-11-1 {
+  fill: #aaa5a5;
+}
+
+.cls-6-1 {
+  font-size: 7px;
+}
+
+.cls-12-1 {
+  letter-spacing: 0em;
+}
+
+.cls-13-1 {
+  letter-spacing: 0em;
+}
+*/

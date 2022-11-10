@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.47 169.61">
+<svg id="Layer_2" data-name="Layer 2"
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.47 169.61">
   <defs>
-  <style>
+    <style>
             @font-face {
                 font-family: 'Montserrat-Bold';
                 src: local('poppins-black'), url('../css/fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
@@ -14,7 +15,7 @@
                 font-family: 'Montserrat';
                 src: local('poppins-black'), url('../css/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
             }
-        </style>
+    </style>
     <style>
       .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
         fill: #fff;
@@ -86,14 +87,33 @@
           </g>
           <rect class="cls-11" x="36.07" y="32.15" width="2.98" height="118.88" rx=".98" ry=".98"/>
         </g>
-        <text class="cls-6" transform="translate(14.18 51.57)"><tspan class="cls-13" x="0" y="0">2</tspan><tspan x="3.95" y="0">00</tspan></text>
-        <text class="cls-6" transform="translate(13.93 65.55)"><tspan x="0" y="0">400</tspan></text>
-        <text class="cls-6" transform="translate(14.06 79.53)"><tspan x="0" y="0">600</tspan></text>
-        <text class="cls-6" transform="translate(14 93.5)"><tspan x="0" y="0">800</tspan></text>
-        <text class="cls-6" transform="translate(12.98 107.48)"><tspan x="0" y="0">1000</tspan></text>
-        <text class="cls-6" transform="translate(13.21 121.46)"><tspan x="0" y="0">1</tspan><tspan class="cls-12" x="2.53" y="0">2</tspan><tspan x="6.47" y="0">00</tspan></text>
-        <text class="cls-6" transform="translate(12.95 135.44)"><tspan x="0" y="0">1400</tspan></text>
-        <text class="cls-6" transform="translate(13.08 149.41)"><tspan x="0" y="0">1600</tspan></text>
+        <text class="cls-6" transform="translate(14.18 51.57)">
+          <tspan class="cls-13" x="0" y="0">2</tspan>
+          <tspan x="3.95" y="0">00</tspan>
+        </text>
+        <text class="cls-6" transform="translate(13.93 65.55)">
+          <tspan x="0" y="0">400</tspan>
+        </text>
+        <text class="cls-6" transform="translate(14.06 79.53)">
+          <tspan x="0" y="0">600</tspan>
+        </text>
+        <text class="cls-6" transform="translate(14 93.5)">
+          <tspan x="0" y="0">800</tspan>
+        </text>
+        <text class="cls-6" transform="translate(12.98 107.48)">
+          <tspan x="0" y="0">1000</tspan>
+        </text>
+        <text class="cls-6" transform="translate(13.21 121.46)">
+          <tspan x="0" y="0">1</tspan>
+          <tspan class="cls-12" x="2.53" y="0">2</tspan>
+          <tspan x="6.47" y="0">00</tspan>
+        </text>
+        <text class="cls-6" transform="translate(12.95 135.44)">
+          <tspan x="0" y="0">1400</tspan>
+        </text>
+        <text class="cls-6" transform="translate(13.08 149.41)">
+          <tspan x="0" y="0">1600</tspan>
+        </text>
         <rect class="cls-1" x="31.64" y="41.45" width="4.04" height="1.35"/>
         <rect class="cls-1" x="31.64" y="48.44" width="4.04" height="1.35"/>
         <rect class="cls-1" x="31.64" y="55.43" width="4.04" height="1.35"/>
@@ -126,21 +146,51 @@
         <rect class="cls-1" x="39.71" y="132.31" width="4.04" height="1.35"/>
         <rect class="cls-1" x="39.71" y="139.29" width="4.04" height="1.35"/>
         <rect class="cls-1" x="39.71" y="146.28" width="4.04" height="1.35"/>
-        <text class="cls-6" transform="translate(46.62 51.57)"><tspan class="cls-13" x="0" y="0">2</tspan><tspan x="3.95" y="0">0</tspan></text>
-        <text class="cls-6" transform="translate(46.37 65.55)"><tspan x="0" y="0">40</tspan></text>
-        <text class="cls-6" transform="translate(46.5 79.53)"><tspan x="0" y="0">60</tspan></text>
-        <text class="cls-6" transform="translate(46.44 93.5)"><tspan x="0" y="0">80</tspan></text>
-        <text class="cls-6" transform="translate(44.71 107.48)"><tspan x="0" y="0" xml:space="preserve"> 100</tspan></text>
-        <text class="cls-6" transform="translate(44.94 121.46)"><tspan x="0" y="0" xml:space="preserve"> 1</tspan><tspan class="cls-12" x="4.36" y="0">2</tspan><tspan x="8.31" y="0">0</tspan></text>
-        <text class="cls-6" transform="translate(45.39 135.44)"><tspan x="0" y="0">140</tspan></text>
-        <text class="cls-6" transform="translate(45.52 149.41)"><tspan x="0" y="0">160</tspan></text>
-        <text class="cls-5" transform="translate(21.44 37.71)"><tspan x="0" y="0">0</tspan></text>
-        <text class="cls-5" transform="translate(48.19 37.71)"><tspan x="0" y="0">0</tspan></text>
+        <text class="cls-6" transform="translate(46.62 51.57)">
+          <tspan class="cls-13" x="0" y="0">2</tspan>
+          <tspan x="3.95" y="0">0</tspan>
+        </text>
+        <text class="cls-6" transform="translate(46.37 65.55)">
+          <tspan x="0" y="0">40</tspan>
+        </text>
+        <text class="cls-6" transform="translate(46.5 79.53)">
+          <tspan x="0" y="0">60</tspan>
+        </text>
+        <text class="cls-6" transform="translate(46.44 93.5)">
+          <tspan x="0" y="0">80</tspan>
+        </text>
+        <text class="cls-6" transform="translate(44.71 107.48)">
+          <tspan x="0" y="0" xml:space="preserve"> 100</tspan>
+        </text>
+        <text class="cls-6" transform="translate(44.94 121.46)">
+          <tspan x="0" y="0" xml:space="preserve"> 1</tspan>
+          <tspan class="cls-12" x="4.36" y="0">2</tspan>
+          <tspan x="8.31" y="0">0</tspan>
+        </text>
+        <text class="cls-6" transform="translate(45.39 135.44)">
+          <tspan x="0" y="0">140</tspan>
+        </text>
+        <text class="cls-6" transform="translate(45.52 149.41)">
+          <tspan x="0" y="0">160</tspan>
+        </text>
+        <text class="cls-5" transform="translate(21.44 37.71)">
+          <tspan x="0" y="0">0</tspan>
+        </text>
+        <text class="cls-5" transform="translate(48.19 37.71)">
+          <tspan x="0" y="0">0</tspan>
+        </text>
         <g>
-          <text class="cls-3" transform="translate(20.93 26.61)"><tspan x="0" y="0">N</tspan></text>
-          <text class="cls-4" transform="translate(46.67 25.09)"><tspan class="cls-10" x="0" y="0">k</tspan><tspan x="3.86" y="0">g</tspan></text>
+          <text class="cls-3" transform="translate(20.93 26.61)">
+            <tspan x="0" y="0">N</tspan>
+          </text>
+          <text class="cls-4" transform="translate(46.67 25.09)">
+            <tspan class="cls-10" x="0" y="0">k</tspan>
+            <tspan x="3.86" y="0">g</tspan>
+          </text>
         </g>
-        <text class="cls-2" transform="translate(54.83 25.55)"><tspan x="0" y="0">eq</tspan></text>
+        <text class="cls-2" transform="translate(54.83 25.55)">
+          <tspan x="0" y="0">eq</tspan>
+        </text>
       </g>
     </g>
   </g>

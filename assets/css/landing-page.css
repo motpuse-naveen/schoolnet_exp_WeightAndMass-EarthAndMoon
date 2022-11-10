@@ -175,7 +175,7 @@ body {
     font-size: 11px;
     color: var(--theme-copy-text);
     width: 100%;
-    padding: 6px;
+    padding: 12px;
     text-align: center;
 }
 .titlemobilelandscape{
@@ -253,6 +253,8 @@ body {
     }*/
     .titlemobilelandscape{
         display: block;
+        font-size: 35px;
+        padding: 0 20px;
     }
     .titledesktop{
         display: none;
@@ -289,6 +291,7 @@ body {
     }
     [device="mobile"] .launch_expl_title .exploriment_title h1 {
         font-size: 35px;
+        padding: 0px 20px;
     }
 }
 /*Tablet Lanscape small screen*/
@@ -389,6 +392,8 @@ body {
     }
     .small-height-landscape[device="tablet"] .titlemobilelandscape{
         display: block !important;
+        font-size: 35px;
+        padding: 0 20px;
     }
     /*Extra small height*/
     .extra-small-height-landscape[device="mobile"] .launch_expl_logo {
