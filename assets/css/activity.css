@@ -230,6 +230,9 @@
   top: 0px;
   left: 0px;
 }
+.wrapper[browser="safari"] .spring-base-wrap {
+  height: 242px;
+}
 
 .spring-pointer-bar {
   position: absolute;

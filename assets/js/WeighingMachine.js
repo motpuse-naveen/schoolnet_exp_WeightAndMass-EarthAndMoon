@@ -120,14 +120,14 @@ var SpringMachine = (function () {
                 $(".spring-balance .overload-weight").hide();
             }
             var shiftPixels = shiftDifference * htPerKg;
-            pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
+            pointer.animate({ top: pointer.position().top + shiftPixels }, 300, function () {
                 //callback
             });
-            springBase.animate({ top: springBase.position().top + shiftPixels }, 800, function () {
+            springBase.animate({ top: springBase.position().top + shiftPixels }, 300, function () {
                 //callback
             });
             $(".weight[machine='spring']").each(function () {
-                $(this).animate({ top: $(this).position().top + shiftPixels }, 800, function () {
+                $(this).animate({ top: $(this).position().top + shiftPixels }, 300, function () {
                     //callback
                     var draggHtToRemove = g_draggable.height();
                     var dragSeq = g_draggable.attr("dragseq");
@@ -176,15 +176,15 @@ var SpringMachine = (function () {
                 $(".spring-balance .overload-weight").hide();
             }
             var shiftPixels = shiftDifference * htPerKg;
-            pointer.animate({ top: pointer.position().top + shiftPixels }, 800, function () {
+            pointer.animate({ top: pointer.position().top + shiftPixels }, 300, function () {
                 //callback
             });
             console.log("springBase.position().top", springBase.position().top, shiftPixels)
-            springBase.animate({ top: springBase.position().top + shiftPixels }, 800, function () {
+            springBase.animate({ top: springBase.position().top + shiftPixels }, 300, function () {
                 //callback
             });
             $(".weight[machine='spring']").each(function () {
-                $(this).animate({ top: $(this).position().top + shiftPixels }, 800, function () {
+                $(this).animate({ top: $(this).position().top + shiftPixels }, 300, function () {
                     //callback
                 });
             });

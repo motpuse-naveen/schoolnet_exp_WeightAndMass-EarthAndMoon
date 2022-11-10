@@ -1,5 +1,5 @@
 html,body{
-    touch-action: pan-x pan-y;
+    /*touch-action: pan-x pan-y;*/
 }
 html{
     position: fixed;
@@ -73,7 +73,7 @@ body {
 }
 
 .popup{
-    touch-action: pan-x pan-y;
+    /*touch-action: pan-x pan-y;*/
 }
 
 /* launch Screen*/
@@ -184,6 +184,12 @@ body {
 .titledesktop{
     display: block;
 }
+.wrapper[device="mobile"] .titlemobilelandscape{
+    display: block;
+}
+.wrapper[device="mobile"] .titledesktop{
+    display: none;
+}
 
 @media screen and (min-width: 560px) {
     .launch .exp_header {
@@ -253,7 +259,7 @@ body {
     }*/
     .titlemobilelandscape{
         display: block;
-        font-size: 35px;
+        font-size: 30px;
         padding: 0 20px;
     }
     .titledesktop{
@@ -273,12 +279,12 @@ body {
     [device="mobile"] .launch .launch_pattern_top .launch_pattern_top_img {
         background: url(../images/Top_BG.svg);
         background-repeat: no-repeat;
-        background-position: -50px -211px;
+        background-position: -50px -206px;
         background-size: 1024px;
-        width: 1024px;
+        width: 100%;
         height: 216px;
         position: absolute;
-        left: -30px;
+        left: 0px;
         top: -42px;
         z-index: -1;
     }
@@ -290,7 +296,7 @@ body {
         padding: 1rem 0 1rem 0;
     }
     [device="mobile"] .launch_expl_title .exploriment_title h1 {
-        font-size: 35px;
+        font-size: 30px;
         padding: 0px 20px;
     }
 }
@@ -392,7 +398,7 @@ body {
     }
     .small-height-landscape[device="tablet"] .titlemobilelandscape{
         display: block !important;
-        font-size: 35px;
+        font-size: 30px;
         padding: 0 20px;
     }
     /*Extra small height*/

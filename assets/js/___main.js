@@ -266,28 +266,31 @@ var ActivityShell = (function () {
 $(document).ready(function () {
   //This function is moved to preloader complete.
   //ActivityShell.Init();
-
+  /*
   document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
   });
   document.addEventListener('touchmove', function (e) {
     e.preventDefault();
   });
+  */
   if (zoomhtml == null) {
-    hammerIt(document.querySelector("html"), 1);
+    //hammerIt(document.querySelector("html"), 1);
     zoomhtml = "zoomhtml";
   }
   if (zoombody == null) {
-    hammerIt(document.querySelector("body"), 1);
+    //hammerIt(document.querySelector("body"), 1);
     zoombody = "zoombody";
   }
 });
+/*
 document.ontouchmove = function (event) {
   try {
     event.preventDefault();
   }
   catch (err) { }
 }
+*/
 
 window.addEventListener("orientationchange", (event) => {
   setTimeout(function () {

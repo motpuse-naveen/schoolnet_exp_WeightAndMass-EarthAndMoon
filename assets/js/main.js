@@ -38,7 +38,7 @@ var ActivityShell = (function () {
       $(".wrapper").addClass("activity");
       $(".container-so.launch").hide();
       $(".container-so.main").show();
-      var deviceType = ActivityShell.DeviceType();
+      var deviceType = ActivityShell.DeviceTypeFullscreen();
       var Android = /(android)/i.test(navigator.userAgent);
       if (deviceType == "mobile" && Android) {
         openFullscreen()
@@ -48,7 +48,7 @@ var ActivityShell = (function () {
           ActivityShell.AdjustContainerHeight();
           ActivityMain.LaunchActivity();
           if (zoom1 == null) {
-            hammerItScrollableContent(document.querySelector(".zoom1"));
+            //hammerItScrollableContent(document.querySelector(".zoom1"));
             zoom1 = "zoom1";
           }
           /*
@@ -70,7 +70,7 @@ var ActivityShell = (function () {
           ActivityMain.LaunchActivity();
 
           if (zoom1 == null) {
-            hammerItScrollableContent(document.querySelector(".zoom1"));
+            //hammerItScrollableContent(document.querySelector(".zoom1"));
             zoom1 = "zoom1";
           }
           /*
@@ -139,7 +139,37 @@ var ActivityShell = (function () {
           return "mobile";
         }
         else {
-          return "tablet";
+          if(window.screen.availHeight < 602){
+            return "mobile";
+          }
+          else{
+            return "tablet";
+          }
+        }
+      }
+      else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        return "mobile";
+      }
+      else {
+        if (navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
+          if (window.screen.availWidth < 1024 || window.screen.availHeight < 1024) {
+            return "tablet"
+          }
+        }
+      }
+      return "desktop";
+    },
+    DeviceTypeFullscreen: function () {
+      /* This function needs changes in device detection logic 
+      below code is not working for ipad it returns desktop */
+      const ua = navigator.userAgent;
+      //alert(navigator.userAgent)
+      if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        if (window.screen.availWidth < 530 || window.screen.availHeight < 530) {
+          return "mobile";
+        }
+        else {
+            return "tablet";
         }
       }
       else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
@@ -160,7 +190,7 @@ var ActivityShell = (function () {
       if (deviceType != "mobile") {
         if ($("#split-main").length > 0) {
           var spltWdt = $(".wrapper").width();
-          $("#split-main").css({ "width": spltWdt - POPUP_WIDTH })
+          //$("#split-main").css({ "width": spltWdt - POPUP_WIDTH })
           settingPanelHt = $(".cust-popup.settings").outerHeight();
           $popup.css({ "padding-bottom": settingPanelHt + 10 })
         }
@@ -170,7 +200,7 @@ var ActivityShell = (function () {
     AdjustSplitPanelsOnClosePopup: function ($popup) {
       var deviceType = ActivityShell.DeviceType();
       if (deviceType != "mobile") {
-        $("#split-main").css({ "width": $(".wrapper").width() });
+        //$("#split-main").css({ "width": $(".wrapper").width() });
       }
     },
     AdjustSplitPanelsOnCloseCustomPopup: function () {
@@ -207,7 +237,6 @@ var ActivityShell = (function () {
       /* Scale Graph to fit */
       ScreenSplitter.ScaleToFit($("#split-1"));
     },
-
     OnOrientationChange: function () {
       this.AdjustContainerHeight();
       //ScreenSplitter.InitSplitter();
@@ -219,7 +248,7 @@ var ActivityShell = (function () {
       /* Scale Graph to fit */
       //ScreenSplitter.ScaleToFit($("#split-1"));
       var deviceType = ActivityShell.DeviceType();
-
+      $(".wrapper").attr("device", deviceType);
       //update Activity view OnOrientationChange
       ActivityMain.OnOrientationChange();
 
@@ -272,7 +301,7 @@ var ActivityShell = (function () {
 $(document).ready(function () {
   //This function is moved to preloader complete.
   //ActivityShell.Init();
-
+  /*
   document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
   });
@@ -287,13 +316,23 @@ $(document).ready(function () {
     hammerIt(document.querySelector("body"), 1);
     zoombody = "zoombody";
   }
+  */
+  var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+  navigator.userAgent &&
+  navigator.userAgent.indexOf('CriOS') == -1 &&
+  navigator.userAgent.indexOf('FxiOS') == -1;
+  if(isSafari){
+    $(".wrapper").attr("browser","safari");
+  }
 });
+/*
 document.ontouchmove = function (event) {
   try {
     event.preventDefault();
   }
   catch (err) { }
 }
+*/
 
 $(window).bind('orientationchange', function () {
   this.setTimeout(function () {
