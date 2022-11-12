@@ -25,6 +25,7 @@ var imgPreloadArray = new Array(
   "assets/images/Moon.svg",
   "assets/images/weighing_machine_01.svg",
   "assets/images/weighing_machine_02.svg",
+  "assets/images/weighing_machine_02_new2.svg",
   "assets/images/weighing_pointer.svg",
   "assets/images/weight_ball_01.svg",
   "assets/images/weight_ball_02.svg",
@@ -46,7 +47,6 @@ var imgPreloadArray = new Array(
   "assets/images/P_05.svg",
   "assets/images/bg_earth.png",
   "assets/images/bg_moon.png"
-
 );
 
 /*--Audio--*/

@@ -44,7 +44,7 @@
 }
 
 .earth-wrapper, .moon-wrapper {
-  background-color: #00579B;
+  background-color: var(--theme-pri-color);
   border-radius: 10px;
   position: relative;
   width: 94%;
@@ -329,6 +329,7 @@
   z-index: 1;
   font-size: 13px;
   color: #FFF;
+  cursor: default;
 }
 
 .weight-disk {
@@ -349,6 +350,7 @@
   z-index: 1;
   font-size: 11px;
   color: #FFF;
+  cursor: default;
 }
 
 .overload-weight{
@@ -378,7 +380,36 @@
 }
 
 .weight.ui-draggable.ui-draggable-dragging{
-  z-index: 105;
+  z-index: 106;
+}
+
+.instrSpringBal{
+  height: 205px;
+  width: 61px;
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+}
+.instrSpringBal .bal_base{
+  height: 205px;
+  width: 61px;
+  text-align: center;
+  position: relative;
+  margin: auto;
+}
+.instrSpringBal .bal_scale{
+    width: 60px;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+.instrSpringBal .bal_pointer{
+  z-index: 3;
+    position: absolute;
+    height: 4px;
+    left: 25px;
+    top: 27px;
 }
 
 

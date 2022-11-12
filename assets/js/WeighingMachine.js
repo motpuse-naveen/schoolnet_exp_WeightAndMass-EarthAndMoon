@@ -120,15 +120,18 @@ var SpringMachine = (function () {
                 $(".spring-balance .overload-weight").hide();
             }
             var shiftPixels = shiftDifference * htPerKg;
-            pointer.animate({ top: pointer.position().top + shiftPixels }, 300, function () {
+            pointer.css({ top: pointer.position().top + shiftPixels });
+            /*pointer.animate({ top: pointer.position().top + shiftPixels }, 0, function () {
                 //callback
-            });
-            springBase.animate({ top: springBase.position().top + shiftPixels }, 300, function () {
+            });*/
+            springBase.css({ top: springBase.position().top + shiftPixels });
+            /*springBase.animate({ top: springBase.position().top + shiftPixels }, 0, function () {
                 //callback
-            });
+            });*/
             $(".weight[machine='spring']").each(function () {
-                $(this).animate({ top: $(this).position().top + shiftPixels }, 300, function () {
-                    //callback
+                $(this).css({ top: $(this).position().top + shiftPixels });
+                /*$(this).animate({ top: $(this).position().top + shiftPixels }, 0, function () {
+                    //callback - below code is shifted to dragstart event.
                     var draggHtToRemove = g_draggable.height();
                     var dragSeq = g_draggable.attr("dragseq");
                     if (Number($(this).attr("dragseq")) > Number(dragSeq)) {
@@ -136,6 +139,7 @@ var SpringMachine = (function () {
                         $(this).attr("dragseq", Number($(this).attr("dragseq")) - 1);   
                     }
                 });
+                */
             });
         },
         ShiftPointerOnPlanetDrop: function (_planet) {
@@ -176,17 +180,20 @@ var SpringMachine = (function () {
                 $(".spring-balance .overload-weight").hide();
             }
             var shiftPixels = shiftDifference * htPerKg;
-            pointer.animate({ top: pointer.position().top + shiftPixels }, 300, function () {
+            pointer.css({ top: pointer.position().top + shiftPixels });
+            /*pointer.animate({ top: pointer.position().top + shiftPixels }, 0, function () {
                 //callback
-            });
+            });*/
             console.log("springBase.position().top", springBase.position().top, shiftPixels)
-            springBase.animate({ top: springBase.position().top + shiftPixels }, 300, function () {
+            springBase.css({ top: springBase.position().top + shiftPixels });
+            /*springBase.animate({ top: springBase.position().top + shiftPixels }, 0, function () {
                 //callback
-            });
+            });*/
             $(".weight[machine='spring']").each(function () {
-                $(this).animate({ top: $(this).position().top + shiftPixels }, 300, function () {
+                $(this).css({ top: $(this).position().top + shiftPixels });
+                /*$(this).animate({ top: $(this).position().top + shiftPixels }, 0, function () {
                     //callback
-                });
+                });*/
             });
         },
         ResetSpring: function () {
@@ -201,7 +208,7 @@ var PaneMachine = (function () {
     angle = 8;
     return {
         getAngle: function () {
-            if(window.innerHeight<600){
+            if (window.innerHeight < 600) {
                 angle = 6;
             }
             return angle;

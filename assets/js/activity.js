@@ -253,7 +253,7 @@ var ActivityMain = (function () {
     InitPlanetDrop: function () {
       $(".planet-drop").droppable({
         accept: ".wt-balancer, .weight-ball, .weight-disk",
-        tolerance: "fit",
+        tolerance: "pointer",
         hoverClass: "ui-state-hover",
 
         //greedy: true,
@@ -312,7 +312,8 @@ var ActivityMain = (function () {
       });
     },
     AnimateOnPlanetDrop: function (_planet, _weightElm, _container) {
-      var dropend = _container.position().top + _container.height() - _weightElm.height();
+      var planetPos = $(".planet-wrap[planet='" + _planet + "']").position();
+      var dropend = planetPos.top + _container.position().top + _container.height() - _weightElm.height();
       var diff = dropend - _weightElm.position().top;
       if (_planet == "earth") {
         _weightElm.animate({ top: dropend + "px" }, 10 * 1 / 6 * diff, 'linear', function () {
@@ -487,6 +488,16 @@ var ActivityMain = (function () {
             current: Number(_droppable.attr("dropkg")),
           }
           SpringMachine.ShiftPointer(WeightObj, _draggable, _droppable);
+          var draggHtToRemove = _draggable.height();
+          var dragSeq = _draggable.attr("dragseq");
+          var weights = $(".weight[machine='spring']");
+          for (var i = 0; i < weights.length; i++) {
+            var wtObj = $(weights[i])
+            if (Number(wtObj.attr("dragseq")) > Number(dragSeq)) {
+              wtObj.css({ "top": wtObj.position().top + draggHtToRemove });
+              wtObj.attr("dragseq", Number(wtObj.attr("dragseq")) - 1);
+            }
+          }
         }
       }
     },
@@ -548,6 +559,7 @@ var ActivityMain = (function () {
           _draggable.attr("dragseq", dragSeq);
         }
         else if (dropmachine == "spring") {
+          //debugger;
           pos2 = _droppable.closest(".spring-balance-drop-container").position();
           var springBase = $(".spring-base-wrap")
           _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
@@ -559,6 +571,7 @@ var ActivityMain = (function () {
           }
           SpringMachine.ShiftPointer(WeightObj, _draggable, _droppable);
           _draggable.attr("dragseq", $(".weight[machine='spring']").length);
+          
         }
       }
     },
