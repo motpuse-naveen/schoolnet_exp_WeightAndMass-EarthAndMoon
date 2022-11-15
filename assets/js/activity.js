@@ -253,7 +253,8 @@ var ActivityMain = (function () {
     InitPlanetDrop: function () {
       $(".planet-drop").droppable({
         accept: ".wt-balancer, .weight-ball, .weight-disk",
-        tolerance: "pointer",
+        //tolerance: "pointer",
+        tolerance: "intersect",
         hoverClass: "ui-state-hover",
 
         //greedy: true,
@@ -314,6 +315,10 @@ var ActivityMain = (function () {
     AnimateOnPlanetDrop: function (_planet, _weightElm, _container) {
       var planetPos = $(".planet-wrap[planet='" + _planet + "']").position();
       var dropend = planetPos.top + _container.position().top + _container.height() - _weightElm.height();
+      //var dropend = _container.position().top + _container.height() - _weightElm.height();
+      /*var margin_element = _container.find(".planet-bg-wrap").get(0);
+      var style = margin_element.currentStyle || window.getComputedStyle(margin_element); 
+      dropend = dropend - Number((style.marginBottom.replace("px","")));*/
       var diff = dropend - _weightElm.position().top;
       if (_planet == "earth") {
         _weightElm.animate({ top: dropend + "px" }, 10 * 1 / 6 * diff, 'linear', function () {

@@ -260,6 +260,26 @@ var PaneMachine = (function () {
                     $(this).attr("shift_top", (l_angle + (l_angle / 2)))
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
+                
+                
+                //var wtX = (panPos.left - (pan1wdt/2)) + 
+                var panPos = $(".pane-balance").position();
+                var panwdt = $(".pane-balance").width();
+                var wts_bal1 = $(".weight[machine='balancer1']");
+                var wts_bal2 = $(".weight[machine='balancer2']");
+                var pan1wdt = $(".pane.p01").width();
+                var pan2wdt = $(".pane.p02").width();
+                for (var i=0;i<wts_bal1.length;i++){
+                    var wt_wdt = $(wts_bal1[i]).width();
+                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2) - ((l_angle / 2))
+                    $(wts_bal1[i]).css({"left": wt_x})
+                }
+                for (var i=0;i<wts_bal2.length;i++){
+                    var wt_wdt = $(wts_bal2[i]).width();
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle))
+                    $(wts_bal2[i]).css({"left": wt_x})
+                }
+
             }
             else if (pane1Weight < pane2Weight) {
                 $(".pane-bar").css({
@@ -302,6 +322,23 @@ var PaneMachine = (function () {
                     $(this).attr("shift_top", -(l_angle + (l_angle / 2)));
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
+
+                var panPos = $(".pane-balance").position();
+                var panwdt = $(".pane-balance").width();
+                var wts_bal1 = $(".weight[machine='balancer1']");
+                var wts_bal2 = $(".weight[machine='balancer2']");
+                var pan1wdt = $(".pane.p01").width();
+                var pan2wdt = $(".pane.p02").width();
+                for (var i=0;i<wts_bal1.length;i++){
+                    var wt_wdt = $(wts_bal1[i]).width();
+                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2) + ((l_angle / 2))
+                    $(wts_bal1[i]).css({"left": wt_x})
+                }
+                for (var i=0;i<wts_bal2.length;i++){
+                    var wt_wdt = $(wts_bal2[i]).width();
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle / 2))
+                    $(wts_bal2[i]).css({"left": wt_x})
+                }
             }
             else if (pane1Weight == pane2Weight) {
                 $(".pane-bar").css({
@@ -343,6 +380,22 @@ var PaneMachine = (function () {
                     $(this).attr("shift_top", 0);
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
+                var panPos = $(".pane-balance").position();
+                var panwdt = $(".pane-balance").width();
+                var wts_bal1 = $(".weight[machine='balancer1']");
+                var wts_bal2 = $(".weight[machine='balancer2']");
+                var pan1wdt = $(".pane.p01").width();
+                var pan2wdt = $(".pane.p02").width();
+                for (var i=0;i<wts_bal1.length;i++){
+                    var wt_wdt = $(wts_bal1[i]).width();
+                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2)
+                    $(wts_bal1[i]).css({"left": wt_x})
+                }
+                for (var i=0;i<wts_bal2.length;i++){
+                    var wt_wdt = $(wts_bal2[i]).width();
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle / 2))
+                    $(wts_bal2[i]).css({"left": wt_x})
+                }
             }
         },
         ResetPan: function () {
