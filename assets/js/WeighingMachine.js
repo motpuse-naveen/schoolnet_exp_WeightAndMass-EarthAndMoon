@@ -141,6 +141,10 @@ var SpringMachine = (function () {
                 });
                 */
             });
+            
+            setTimeout(function(){
+                SpringMachine.ShiftIfOutOfContainer();
+            },100);
         },
         ShiftPointerOnPlanetDrop: function (_planet) {
             var dropKg = Number($(".spring-balance-droppable").attr("dropkg"));
@@ -195,6 +199,28 @@ var SpringMachine = (function () {
                     //callback
                 });*/
             });
+            setTimeout(function(){
+                SpringMachine.ShiftIfOutOfContainer();
+            },300);
+        },
+        ShiftIfOutOfContainer: function () {
+            var springPos = $(".spring-balance").position();
+            var basePos = $(".spring-base-wrap").position();
+            var baseHt = $(".spring-base-wrap").height();
+            var contHt = $(".exp-container.zoom1").height();
+            var margin_element = $(".activity-panel").get(0);
+            var style = margin_element.currentStyle || window.getComputedStyle(margin_element);
+            var margintop = Number((style.marginTop.replace("px", "")))
+            if ((margintop + springPos.top + basePos.top + baseHt) > contHt) {
+                //debugger;
+                var diff = (margintop + springPos.top + basePos.top + baseHt) - contHt;
+                $(".spring-balance").css({ "top": springPos.top - diff });
+                $(".weight[machine='spring']").each(function () {
+                    $(this).css({
+                        "top": $(this).position().top - diff
+                    });
+                });
+            }
         },
         ResetSpring: function () {
             var shifttop = $(".spring-pointer").position().top;
@@ -260,8 +286,8 @@ var PaneMachine = (function () {
                     $(this).attr("shift_top", (l_angle + (l_angle / 2)))
                 });
                 $(".ui-state-hover").removeClass("ui-state-hover");
-                
-                
+
+
                 //var wtX = (panPos.left - (pan1wdt/2)) + 
                 var panPos = $(".pane-balance").position();
                 var panwdt = $(".pane-balance").width();
@@ -269,15 +295,15 @@ var PaneMachine = (function () {
                 var wts_bal2 = $(".weight[machine='balancer2']");
                 var pan1wdt = $(".pane.p01").width();
                 var pan2wdt = $(".pane.p02").width();
-                for (var i=0;i<wts_bal1.length;i++){
+                for (var i = 0; i < wts_bal1.length; i++) {
                     var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2) - ((l_angle / 2))
-                    $(wts_bal1[i]).css({"left": wt_x})
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2) - ((l_angle / 2))
+                    $(wts_bal1[i]).css({ "left": wt_x })
                 }
-                for (var i=0;i<wts_bal2.length;i++){
+                for (var i = 0; i < wts_bal2.length; i++) {
                     var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle))
-                    $(wts_bal2[i]).css({"left": wt_x})
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle))
+                    $(wts_bal2[i]).css({ "left": wt_x })
                 }
 
             }
@@ -329,15 +355,15 @@ var PaneMachine = (function () {
                 var wts_bal2 = $(".weight[machine='balancer2']");
                 var pan1wdt = $(".pane.p01").width();
                 var pan2wdt = $(".pane.p02").width();
-                for (var i=0;i<wts_bal1.length;i++){
+                for (var i = 0; i < wts_bal1.length; i++) {
                     var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2) + ((l_angle / 2))
-                    $(wts_bal1[i]).css({"left": wt_x})
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2) + ((l_angle / 2))
+                    $(wts_bal1[i]).css({ "left": wt_x })
                 }
-                for (var i=0;i<wts_bal2.length;i++){
+                for (var i = 0; i < wts_bal2.length; i++) {
                     var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle / 2))
-                    $(wts_bal2[i]).css({"left": wt_x})
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle / 2))
+                    $(wts_bal2[i]).css({ "left": wt_x })
                 }
             }
             else if (pane1Weight == pane2Weight) {
@@ -386,15 +412,15 @@ var PaneMachine = (function () {
                 var wts_bal2 = $(".weight[machine='balancer2']");
                 var pan1wdt = $(".pane.p01").width();
                 var pan2wdt = $(".pane.p02").width();
-                for (var i=0;i<wts_bal1.length;i++){
+                for (var i = 0; i < wts_bal1.length; i++) {
                     var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt/2)) + ((pan1wdt-wt_wdt)/2)
-                    $(wts_bal1[i]).css({"left": wt_x})
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2)
+                    $(wts_bal1[i]).css({ "left": wt_x })
                 }
-                for (var i=0;i<wts_bal2.length;i++){
+                for (var i = 0; i < wts_bal2.length; i++) {
                     var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt/2)) + ((pan2wdt-wt_wdt)/2) - ((l_angle / 2))
-                    $(wts_bal2[i]).css({"left": wt_x})
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle / 2))
+                    $(wts_bal2[i]).css({ "left": wt_x })
                 }
             }
         },

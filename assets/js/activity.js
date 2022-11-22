@@ -254,7 +254,7 @@ var ActivityMain = (function () {
       $(".planet-drop").droppable({
         accept: ".wt-balancer, .weight-ball, .weight-disk",
         //tolerance: "pointer",
-        tolerance: "intersect",
+        tolerance: "fit",
         hoverClass: "ui-state-hover",
 
         //greedy: true,
