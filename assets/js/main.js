@@ -34,6 +34,10 @@ var ActivityShell = (function () {
       this.InitToolTip();
       this.AdjustSmallTablet();
     },
+    SetScrollPosition: function(){
+      element = $(".exp-container.zoom1").get(0)
+      element.scrollTop = element.scrollHeight - element.clientHeight;
+    },
     LaunchActivity: function () {
       $(".wrapper").addClass("activity");
       $(".container-so.launch").hide();
@@ -59,6 +63,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
+            ActivityShell.SetScrollPosition();
           }, 0);
         }, 500)
       }
@@ -81,6 +86,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
+            ActivityShell.SetScrollPosition();
           }, 0);
         }, 500);
       }
