@@ -255,7 +255,7 @@ var ActivityMain = (function () {
         accept: ".wt-balancer, .weight-ball, .weight-disk",
         //tolerance: "pointer",
         tolerance: "fit",
-        hoverClass: "ui-state-hover",
+        hoverClass: "ui-state-hover-planet",
 
         //greedy: true,
         //activeClass: "ui-state-default",
@@ -350,11 +350,9 @@ var ActivityMain = (function () {
         accept: ".weight-ball, .weight-disk-draggable, .weight-disk-dropped",
         tolerance: "touch",
         hoverClass: "ui-state-hover",
-
         //greedy: true,
         //activeClass: "ui-state-default",
         drop: function (event, ui) {
-          //debugger;
           if (!$(".spring-balance.wt-balancer .overload-weight").is(":visible")) {
             ActivityMain.OnWeightDrop(ui.draggable, $(this));
           }
@@ -369,6 +367,7 @@ var ActivityMain = (function () {
             }
             else {
               //ui.draggable.remove();
+              console.log("ondrop2")
             }
           }
         },
@@ -385,9 +384,11 @@ var ActivityMain = (function () {
         //greedy: true,
         //activeClass: "ui-state-default",
         drop: function (event, ui) {
+          console.log("pane-01-droppable pane-02-droppable")
           ActivityMain.OnWeightDrop(ui.draggable, $(this));
         },
         out: function (event, ui) {
+          console.log("pane-01-droppable pane-02-droppable out")
           $(this).removeClass("ui-state-hover")
         }
       }).each(function () {
@@ -414,6 +415,7 @@ var ActivityMain = (function () {
       this.InitBalancerDrop();
     },
     OnWeightDrop: function (_draggable, _droppable) {
+      console.log("OnWeightDrop")
       if (_draggable.hasClass("weight-disk-draggable")) {
         var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
         $(".activity-panel").append(clone)
@@ -507,6 +509,7 @@ var ActivityMain = (function () {
       }
     },
     SetPositionOnDrop: function (_draggable, _droppable) {
+      console.log("funct SetPositionOnDrop")
       var dropmachine = _droppable.attr("dropmachine")
       var dragmachine = _draggable.attr("machine")
       var Bind = _draggable.attr("bind");

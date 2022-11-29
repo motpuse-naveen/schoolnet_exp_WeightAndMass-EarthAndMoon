@@ -240,6 +240,7 @@ var PaneMachine = (function () {
             return angle;
         },
         BalancePane: function (_weightObj, _draggable, _droppable) {
+            console.log("funct BalancePane")
             var prevWeight = Number(_droppable.attr("dropkg"));
             _droppable.attr("dropkg", _weightObj.to);
             var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
@@ -247,12 +248,14 @@ var PaneMachine = (function () {
             var l_angle = this.getAngle();
             if (pane1Weight > pane2Weight) {
                 $(".pane-bar").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (-1 * l_angle) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * l_angle) + "deg)",
+                    "transform-origin": "bottom"
                 });
                 $(".pane-bar .pane").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (l_angle) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (l_angle) + "deg)",
+                    "transform-origin": "bottom"
                 });
 
                 $(".weight[machine='balancer1']").each(function () {
@@ -305,16 +308,17 @@ var PaneMachine = (function () {
                     var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle))
                     $(wts_bal2[i]).css({ "left": wt_x })
                 }
-
             }
             else if (pane1Weight < pane2Weight) {
                 $(".pane-bar").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (l_angle) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (l_angle) + "deg)",
+                    "transform-origin": "bottom"
                 });
                 $(".pane-bar .pane").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (-1 * l_angle) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * l_angle) + "deg)",
+                    "transform-origin": "bottom"
                 });
 
                 $(".weight[machine='balancer1']").each(function () {
@@ -368,12 +372,14 @@ var PaneMachine = (function () {
             }
             else if (pane1Weight == pane2Weight) {
                 $(".pane-bar").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (0) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (0) + "deg)",
+                    "transform-origin": "bottom"
                 });
                 $(".pane-bar .pane").css({
-                    transition: "transform 0.5s",
-                    transform: "rotate(" + (-1 * 0) + "deg)"
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * 0) + "deg)",
+                    "transform-origin": "bottom"
                 });
                 $(".weight[machine='balancer1']").each(function () {
                     var shiftTop = $(this).attr("shift_top");
@@ -440,5 +446,12 @@ var PaneMachine = (function () {
         }
     };
 })();
+
+
+var g_PaneRotationInterval = null;
+
+function StartPaneRotation(){
+
+}
 
 

@@ -5,10 +5,15 @@
   overflow: auto;
 }
 
+/*
 .ui-state-hover {
-  /*background-color: red !important;*/
+  background-color: red !important;
 }
 
+.ui-state-hover-planet{
+  background-color: green !important;
+}
+*/
 .activityText .otherdevice {
   display: block;
 }
