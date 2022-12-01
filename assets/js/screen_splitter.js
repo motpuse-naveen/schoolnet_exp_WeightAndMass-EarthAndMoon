@@ -138,7 +138,7 @@ var ScreenSplitter = (function () {
             });*/
             var setOrigin = false;
             if((wrapperSize.width/elmSize.width) < (wrapperSize.height/elmSize.height)){
-                console.log(wrapperSize.width-elmSize.width*scale)
+                //console.log(wrapperSize.width-elmSize.width*scale)
             }
             if (scale < 1) {
                 var transOrigin = "top center"

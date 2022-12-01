@@ -141,10 +141,10 @@ var SpringMachine = (function () {
                 });
                 */
             });
-            
-            setTimeout(function(){
+
+            setTimeout(function () {
                 SpringMachine.ShiftIfOutOfContainer();
-            },100);
+            }, 100);
         },
         ShiftPointerOnPlanetDrop: function (_planet) {
             var dropKg = Number($(".spring-balance-droppable").attr("dropkg"));
@@ -188,7 +188,7 @@ var SpringMachine = (function () {
             /*pointer.animate({ top: pointer.position().top + shiftPixels }, 0, function () {
                 //callback
             });*/
-            console.log("springBase.position().top", springBase.position().top, shiftPixels)
+            //console.log("springBase.position().top", springBase.position().top, shiftPixels)
             springBase.css({ top: springBase.position().top + shiftPixels });
             /*springBase.animate({ top: springBase.position().top + shiftPixels }, 0, function () {
                 //callback
@@ -199,9 +199,9 @@ var SpringMachine = (function () {
                     //callback
                 });*/
             });
-            setTimeout(function(){
+            setTimeout(function () {
                 SpringMachine.ShiftIfOutOfContainer();
-            },300);
+            }, 300);
         },
         ShiftIfOutOfContainer: function () {
             var springPos = $(".spring-balance").position();
@@ -231,22 +231,167 @@ var SpringMachine = (function () {
 })();
 
 var PaneMachine = (function () {
-    angle = 8;
     return {
         getAngle: function () {
-            if (window.innerHeight < 600) {
-                angle = 6;
-            }
-            return angle;
+            return 8;
         },
-        BalancePane: function (_weightObj, _draggable, _droppable) {
-            console.log("funct BalancePane")
+        getShiftValue: function () {
+            if (ActivityShell.DeviceType() == "mobile") {
+                return 8;
+            }
+            else {
+                return 11;
+            }
+        },
+        getLeftShift: function(){
+            if (ActivityShell.DeviceType() == "mobile") {
+                return 4;
+            }
+            else {
+                return 4;
+            }
+        },
+        getFixShift: function(){
+            if (ActivityShell.DeviceType() == "mobile") {
+                return 1;
+            }
+            else {
+                return 6;
+            }
+        },
+        BalancePane: function (prevpane1Weight, prevpane2Weight, pane1Weight, pane2Weight) {
+            var ret_deviation = 0;
+            var l_angle = this.getAngle();
+            var leftDeviation = 0;
+            var deviation = 0;
+            var wts_bal1 = $(".weight[machine='balancer1'][dragseq]");
+            var wts_bal2 = $(".weight[machine='balancer2'][dragseq]");
+            var applyChanges = false;
+            var paneBalance = $(".pane-balance");
+            if (pane1Weight > pane2Weight) {
+                $(".pane-bar").css({ "transform": "rotate(" + (-1 * l_angle) + "deg)", "transform-origin": "bottom" });
+                $(".pane-bar .pane").css({ "transform": "rotate(" + (l_angle) + "deg)", "transform-origin": "bottom" });
+                
+                if (prevpane1Weight == prevpane2Weight) {
+                    deviation = this.getShiftValue();
+                    ret_deviation = this.getShiftValue();
+                    applyChanges = true;
+                }
+                else if (prevpane2Weight > prevpane1Weight) {
+                    deviation = this.getShiftValue() * 2;
+                    ret_deviation = this.getShiftValue();
+                    applyChanges = true;
+                }
+                else if (prevpane2Weight < prevpane1Weight) {
+                    applyChanges = false;
+                    ret_deviation = -this.getShiftValue();
+                }
+                if( applyChanges){
+                    for (var i = 0; i < wts_bal1.length; i++) {
+                        var $wt = $(wts_bal1[i])
+                        var wt_top = $wt.position().top + deviation;
+                        var wtleft = paneBalance.position().left - $wt.width()/2 - this.getLeftShift();
+                        //$wt1.css({ "top": wttop, "left": wtleft })
+                        $wt.css({ "top": wt_top , "left": wtleft})
+                    }
+                    for (var i = 0; i < wts_bal2.length; i++) {
+                        var $wt = $(wts_bal2[i]);
+                        var wt_top = $wt.position().top - deviation;
+                        var wtleft = paneBalance.position().left + paneBalance.width() - $wt.width()/2 - (this.getLeftShift() + this.getFixShift());
+                        $wt.css({ "top": wt_top , "left": wtleft});
+                    }
+                }
+            }
+            else if (pane1Weight < pane2Weight) {
+                $(".pane-bar").css({ "transform": "rotate(" + (l_angle) + "deg)", "transform-origin": "bottom" });
+                $(".pane-bar .pane").css({ "transform": "rotate(" + (-1 * l_angle) + "deg)", "transform-origin": "bottom" });
+                if (prevpane1Weight == prevpane2Weight) {
+                    deviation = this.getShiftValue();
+                    ret_deviation = this.getShiftValue();
+                    applyChanges = true;
+                }
+                else if (prevpane1Weight > prevpane2Weight) {
+                    deviation = this.getShiftValue() * 2;
+                    ret_deviation = this.getShiftValue();
+                    applyChanges = true;
+                }
+                else if (prevpane1Weight < prevpane2Weight) {
+                    applyChanges = false;
+                    ret_deviation = -this.getShiftValue();
+                }
+                if(applyChanges){
+                    for (var i = 0; i < wts_bal1.length; i++) {
+                        var $wt = $(wts_bal1[i])
+                        var wt_top = $wt.position().top - deviation;
+                        var wtleft = paneBalance.position().left - $wt.width()/2 + this.getLeftShift() + 4;
+                        $wt.css({ "top": wt_top, "left": wtleft })
+                    }
+                    for (var i = 0; i < wts_bal2.length; i++) {
+                        var $wt = $(wts_bal2[i]);
+                        var wt_top = $wt.position().top + deviation;
+                        var wtleft = paneBalance.position().left + paneBalance.width() - $wt.width()/2 + this.getLeftShift() - this.getFixShift();
+                        $wt.css({ "top": wt_top, "left": wtleft });
+                    }
+                }
+            }
+            else if (pane1Weight = pane2Weight) {
+                $(".pane-bar").css({ "transform": "rotate(0deg)", "transform-origin": "bottom" });
+                $(".pane-bar .pane").css({ "transform": "rotate(0deg)", "transform-origin": "bottom" });
+                if (prevpane1Weight > prevpane2Weight) {
+                    deviation = this.getShiftValue();
+                    ret_deviation = 0
+                    for (var i = 0; i < wts_bal1.length; i++) {
+                        var $wt = $(wts_bal1[i])
+                        var wt_top = $wt.position().top - deviation;
+                        var wtleft = paneBalance.position().left - $wt.width()/2 - this.getLeftShift() + 4;
+                        $wt.css({ "top": wt_top , "left": wtleft })
+                    }
+                    for (var i = 0; i < wts_bal2.length; i++) {
+                        var $wt = $(wts_bal2[i]);
+                        var wt_top = $wt.position().top + deviation;
+                        var wtleft = paneBalance.position().left + paneBalance.width() - $wt.width()/2 - this.getLeftShift();
+                        $wt.css({ "top": wt_top , "left": wtleft });
+                    }
+                }
+                else if (prevpane1Weight < prevpane2Weight) {
+                    deviation = this.getShiftValue();
+                    ret_deviation = 0
+                    for (var i = 0; i < wts_bal1.length; i++) {
+                        var $wt = $(wts_bal1[i])
+                        var wt_top = $wt.position().top + deviation;
+                        var wtleft = paneBalance.position().left - $wt.width()/2 - this.getLeftShift() + 4;
+                        $wt.css({ "top": wt_top , "left": wtleft })
+                    }
+                    for (var i = 0; i < wts_bal2.length; i++) {
+                        var $wt = $(wts_bal2[i]);
+                        var wt_top = $wt.position().top - deviation;
+                        var wtleft = paneBalance.position().left + paneBalance.width() - $wt.width()/2 - this.getLeftShift();
+                        $wt.css({ "top": wt_top , "left": wtleft });
+                    }
+                }
+            }
+            //return {deviation: deviation};
+            return {TopShift: ret_deviation, LeftShift: leftDeviation}
+        },
+        BalancePane_New2: function (_weightObj, _draggable, _droppable) {
+            //console.log("funct BalancePane")
             var prevWeight = Number(_droppable.attr("dropkg"));
+            var prevpane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
+            var prevpane2Weight = Number($(".pane-02-droppable").attr("dropkg"));
             _droppable.attr("dropkg", _weightObj.to);
             var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
             var pane2Weight = Number($(".pane-02-droppable").attr("dropkg"));
             var l_angle = this.getAngle();
+            var deviceType = ActivityShell.DeviceType();
+            var panPos = $(".pane-balance").position();
+            var panwdt = $(".pane-balance").width();
+
+            var pan1wdt = $(".pane.p01").width();
+            var pan2wdt = $(".pane.p02").width();
+            var wts_bal1 = $(".weight[machine='balancer1']");
+            var wts_bal2 = $(".weight[machine='balancer2']");
             if (pane1Weight > pane2Weight) {
+                //var shiftTop = 
                 $(".pane-bar").css({
                     //transition: "transform 0.1s",
                     transform: "rotate(" + (-1 * l_angle) + "deg)",
@@ -258,56 +403,39 @@ var PaneMachine = (function () {
                     "transform-origin": "bottom"
                 });
 
-                $(".weight[machine='balancer1']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top + (l_angle + (l_angle / 2)) + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top + (angle + (angle / 2)) + shiftTop
-                    });*/
-                    $(this).attr("shift_top", -(l_angle + (l_angle / 2)))
-                });
-                $(".weight[machine='balancer2']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top - (l_angle + (l_angle / 2)) + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top - (angle + (angle / 2)) + shiftTop
-                    });*/
-                    $(this).attr("shift_top", (l_angle + (l_angle / 2)))
-                });
-                $(".ui-state-hover").removeClass("ui-state-hover");
-
-
-                //var wtX = (panPos.left - (pan1wdt/2)) + 
-                var panPos = $(".pane-balance").position();
-                var panwdt = $(".pane-balance").width();
-                var wts_bal1 = $(".weight[machine='balancer1']");
-                var wts_bal2 = $(".weight[machine='balancer2']");
-                var pan1wdt = $(".pane.p01").width();
-                var pan2wdt = $(".pane.p02").width();
                 for (var i = 0; i < wts_bal1.length; i++) {
-                    var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2) - ((l_angle / 2))
-                    $(wts_bal1[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal1[i])
+                    var shiftTop = $wt.attr("shift_top");
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top + (l_angle + (l_angle / 2)) + shiftTop;
+                    $wt.attr("shift_top", -(l_angle + (l_angle / 2)))
+                    //var wt_top = $wt.position().top + (l_angle * 2) + shiftTop;
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt.width()) / 2) - ((l_angle / 2))
+                    $wt.css({ "top": wt_top, "left": wt_x })
                 }
                 for (var i = 0; i < wts_bal2.length; i++) {
-                    var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle))
-                    $(wts_bal2[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal2[i]);
+                    var shiftTop = $wt.attr("shift_top");
+                    //var shiftTop = (l_angle + (l_angle / 2));
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                        shiftTop = (l_angle + (l_angle / 2))
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top - (l_angle + (l_angle / 2)) + shiftTop;
+                    $wt.attr("shift_top", (l_angle + (l_angle / 2)));
+                    //var wt_top = $wt.position().top - ((l_angle / 2)) + shiftTop;
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt.width()) / 2) - ((l_angle));
+                    $wt.css({ "top": wt_top, "left": wt_x });
                 }
+                $(".ui-state-hover").removeClass("ui-state-hover");
             }
             else if (pane1Weight < pane2Weight) {
                 $(".pane-bar").css({
@@ -320,55 +448,35 @@ var PaneMachine = (function () {
                     transform: "rotate(" + (-1 * l_angle) + "deg)",
                     "transform-origin": "bottom"
                 });
-
-                $(".weight[machine='balancer1']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top - (l_angle + (l_angle / 2)) + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top - (angle + (angle / 2)) + shiftTop
-                    });*/
-                    $(this).attr("shift_top", (l_angle + (l_angle / 2)));
-                });
-                $(".weight[machine='balancer2']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top + (l_angle + (l_angle / 2)) + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top + (angle + (angle / 2)) + shiftTop 
-                    });*/
-                    $(this).attr("shift_top", -(l_angle + (l_angle / 2)));
-                });
-                $(".ui-state-hover").removeClass("ui-state-hover");
-
-                var panPos = $(".pane-balance").position();
-                var panwdt = $(".pane-balance").width();
-                var wts_bal1 = $(".weight[machine='balancer1']");
-                var wts_bal2 = $(".weight[machine='balancer2']");
-                var pan1wdt = $(".pane.p01").width();
-                var pan2wdt = $(".pane.p02").width();
                 for (var i = 0; i < wts_bal1.length; i++) {
-                    var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2) + ((l_angle / 2))
-                    $(wts_bal1[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal1[i])
+                    var shiftTop = $wt.attr("shift_top");
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top - (l_angle + (l_angle / 2)) + shiftTop;
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt.width()) / 2) + ((l_angle / 2))
+                    $wt.css({ "top": wt_top, "left": wt_x })
+                    $wt.attr("shift_top", (l_angle + (l_angle / 2)));
                 }
                 for (var i = 0; i < wts_bal2.length; i++) {
-                    var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle / 2))
-                    $(wts_bal2[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal2[i]);
+                    var shiftTop = $wt.attr("shift_top");
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top + (l_angle + (l_angle / 2)) + shiftTop;
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt.width()) / 2) + ((l_angle / 2) / 2)
+                    $wt.css({ "top": wt_top, "left": wt_x })
+                    $wt.attr("shift_top", -(l_angle + (l_angle / 2)));
                 }
+                $(".ui-state-hover").removeClass("ui-state-hover");
             }
             else if (pane1Weight == pane2Weight) {
                 $(".pane-bar").css({
@@ -381,53 +489,144 @@ var PaneMachine = (function () {
                     transform: "rotate(" + (-1 * 0) + "deg)",
                     "transform-origin": "bottom"
                 });
-                $(".weight[machine='balancer1']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top + shiftTop 
-                    });*/
-                    $(this).attr("shift_top", 0);
-                });
-                $(".weight[machine='balancer2']").each(function () {
-                    var shiftTop = $(this).attr("shift_top");
-                    if (shiftTop == undefined || shiftTop == "") {
-                        shiftTop = 0
-                    }
-                    else {
-                        shiftTop = Number(shiftTop);
-                    }
-                    $(this).css({ "top": $(this).position().top + shiftTop })
-                    /*$(this).css({
-                        transition: "top 0.5s",
-                        top: $(this).position().top + shiftTop 
-                    });*/
-                    $(this).attr("shift_top", 0);
-                });
-                $(".ui-state-hover").removeClass("ui-state-hover");
-                var panPos = $(".pane-balance").position();
-                var panwdt = $(".pane-balance").width();
-                var wts_bal1 = $(".weight[machine='balancer1']");
-                var wts_bal2 = $(".weight[machine='balancer2']");
-                var pan1wdt = $(".pane.p01").width();
-                var pan2wdt = $(".pane.p02").width();
                 for (var i = 0; i < wts_bal1.length; i++) {
-                    var wt_wdt = $(wts_bal1[i]).width();
-                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - wt_wdt) / 2)
-                    $(wts_bal1[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal1[i])
+                    var shiftTop = $wt.attr("shift_top");
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top + shiftTop;
+                    var wt_x = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt.width()) / 2)
+                    $wt.css({ "top": wt_top, "left": wt_x })
+                    $wt.attr("shift_top", 0);
                 }
                 for (var i = 0; i < wts_bal2.length; i++) {
-                    var wt_wdt = $(wts_bal2[i]).width();
-                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - wt_wdt) / 2) - ((l_angle / 2))
-                    $(wts_bal2[i]).css({ "left": wt_x })
+                    var $wt = $(wts_bal2[i]);
+                    var shiftTop = $wt.attr("shift_top");
+                    if (shiftTop == undefined || shiftTop == "") {
+                        shiftTop = 0
+                    }
+                    else {
+                        shiftTop = Number(shiftTop);
+                    }
+                    var wt_top = $wt.position().top + shiftTop;
+                    var wt_x = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt.width()) / 2) - ((l_angle / 2))
+                    $wt.css({ "top": wt_top, "left": wt_x })
+                    $wt.attr("shift_top", 0);
                 }
+                $(".ui-state-hover").removeClass("ui-state-hover");
+            }
+        },
+        BalancePane_New: function (_weightObj, _draggable, _droppable) {
+            _droppable.attr("dropkg", _weightObj.to);
+            var pane1Weight = Number($(".pane-01-droppable").attr("dropkg"));
+            var pane2Weight = Number($(".pane-02-droppable").attr("dropkg"));
+            var l_angle = this.getAngle();
+            var deviceType = ActivityShell.DeviceType();
+            var wts_bal1 = $(".weight[machine='balancer1']");
+            var wts_bal2 = $(".weight[machine='balancer2']");
+            var panPos = $(".pane-balance").position();
+            var panwdt = $(".pane-balance").width();
+
+            var pan1wdt = $(".pane.p01").width();
+            var pan2wdt = $(".pane.p02").width();
+            var wt1Ht = 0;
+            var wt2Ht = 0;
+            if (pane1Weight > pane2Weight) {
+                $(".pane-bar").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * l_angle) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                $(".pane-bar .pane").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (l_angle) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                wt1Ht = 0;
+                for (var i = 0; i < wts_bal1.length; i++) {
+                    var $wt1 = $(wts_bal1[i]);
+                    wt1Ht = wt1Ht + $wt1.height();
+                    var wttop = (panPos.top - wt1Ht) + (l_angle * 2);
+                    var lfactor = ($(".pane-01-droppable").width() - $wt1.width()) / 2;
+                    var wtleft = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt1.width()) / 2) - lfactor;
+                    $wt1.css({ "top": wttop, "left": wtleft })
+                }
+                wt2Ht = 0
+                for (var i = 0; i < wts_bal2.length; i++) {
+                    var $wt2 = $(wts_bal2[i]);
+                    wt2Ht = wt2Ht + $wt2.height();
+                    var wttop = (panPos.top - wt2Ht) - (l_angle);
+                    var lfactor = ($(".pane-02-droppable").width() - $wt2.width()) / 2;
+                    var wtleft = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt2.width()) / 2) - (lfactor * 2);
+                    $wt2.css({ "top": wttop, "left": wtleft })
+                }
+                $(".ui-state-hover").removeClass("ui-state-hover");
+            }
+            else if (pane1Weight < pane2Weight) {
+                $(".pane-bar").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (l_angle) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                $(".pane-bar .pane").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * l_angle) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                wt1Ht = 0;
+                for (var i = 0; i < wts_bal1.length; i++) {
+                    var $wt1 = $(wts_bal1[i]);
+                    wt1Ht = wt1Ht + $wt1.height();
+                    var wttop = (panPos.top - wt1Ht) - (l_angle);
+                    var lfactor = ($(".pane-01-droppable").width() - $wt1.width()) / 2;
+                    var wtleft = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt1.width()) / 2) + lfactor;
+                    $wt1.css({ "top": wttop, "left": wtleft })
+                }
+                wt2Ht = 0;
+                for (var i = 0; i < wts_bal2.length; i++) {
+                    var $wt2 = $(wts_bal2[i]);
+                    wt2Ht = wt2Ht + $wt2.height();
+                    var wttop = (panPos.top - wt2Ht) + (l_angle * 2);
+                    var lfactor = ($(".pane-02-droppable").width() - $wt2.width()) / 2;
+                    var wtleft = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt2.width()) / 2);
+                    $wt2.css({ "top": wttop, "left": wtleft })
+                }
+                $(".ui-state-hover").removeClass("ui-state-hover");
+            }
+            else if (pane1Weight == pane2Weight) {
+                $(".pane-bar").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (0) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                $(".pane-bar .pane").css({
+                    //transition: "transform 0.1s",
+                    transform: "rotate(" + (-1 * 0) + "deg)",
+                    "transform-origin": "bottom"
+                });
+                wt1Ht = 0;
+                for (var i = 0; i < wts_bal1.length; i++) {
+                    var $wt1 = $(wts_bal1[i]);
+                    wt1Ht = wt1Ht + $wt1.height();
+                    var wttop = (panPos.top - wt1Ht) + (l_angle / 2);
+                    var lfactor = ($(".pane-01-droppable").width() - $wt1.width()) / 2;
+                    var wtleft = (panPos.left - (pan1wdt / 2)) + ((pan1wdt - $wt1.width()) / 2);
+                    $wt1.css({ "top": wttop, "left": wtleft })
+                }
+                wt2Ht = 0;
+                for (var i = 0; i < wts_bal2.length; i++) {
+                    var $wt2 = $(wts_bal2[i]);
+                    wt2Ht = wt2Ht + $wt2.height();
+                    var wttop = (panPos.top - wt2Ht) + (l_angle / 2);
+                    var lfactor = ($(".pane-02-droppable").width() - $wt2.width()) / 2;
+                    var wtleft = ((panPos.left + panwdt) - (pan2wdt / 2)) + ((pan2wdt - $wt2.width()) / 2) - lfactor;
+                    $wt2.css({ "top": wttop, "left": wtleft })
+                }
+                $(".ui-state-hover").removeClass("ui-state-hover");
             }
         },
         ResetPan: function () {
@@ -450,7 +649,7 @@ var PaneMachine = (function () {
 
 var g_PaneRotationInterval = null;
 
-function StartPaneRotation(){
+function StartPaneRotation() {
 
 }
 

@@ -18,10 +18,10 @@ var GuidedTour = (function () {
   `;
     return {
         Init: function () {
-            $('.wrapper').append($("<div>").addClass("overlay-gt"));
+            /*$('.wrapper').append($("<div>").addClass("overlay-gt"));
             $(".wrapper").before(gt_instr_box_html);
             this.LoadTip();
-            this.setSkipPosition();
+            this.setSkipPosition();*/
         },
         OnResize: function () {
             this.LoadTip();

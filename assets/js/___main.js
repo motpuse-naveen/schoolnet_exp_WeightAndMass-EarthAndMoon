@@ -179,19 +179,19 @@ var ActivityShell = (function () {
             $(".calculationsCol").hide();
             $(".settingsCol").hide();
             ActivityShell.AdjustSplitPanelsOnCloseCustomPopup()
-            console.log("11");
+            //console.log("11");
           }
         }
         $popup.fadeIn();
         $button.addClass("active")
         ActivityShell.AdjustSplitPanelsOnOpenPopup($popup)
-        console.log("11111");
+        //console.log("11111");
       }
       else {
         $popup.hide();
         $button.removeClass("active")
         ActivityShell.AdjustSplitPanelsOnClosePopup()
-        console.log("112222");
+        //console.log("112222");
       }
       /* Scale Spring to fit */
       //ScreenSplitter.ScaleToFit($("#split-0"));

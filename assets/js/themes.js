@@ -17,7 +17,7 @@ $(document).on("change", ".radioTheme", function (event) {
             localStorage.setItem('theme', themeId);
         }
         catch (err) {
-            console.log("Issue in storing theme to local storage.")
+            //console.log("Issue in storing theme to local storage.")
         }
     }
 });
