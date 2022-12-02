@@ -334,7 +334,7 @@ var PaneMachine = (function () {
                     }
                 }
             }
-            else if (pane1Weight = pane2Weight) {
+            else if (pane1Weight == pane2Weight) {
                 $(".pane-bar").css({ "transform": "rotate(0deg)", "transform-origin": "bottom" });
                 $(".pane-bar .pane").css({ "transform": "rotate(0deg)", "transform-origin": "bottom" });
                 if (prevpane1Weight > prevpane2Weight) {
