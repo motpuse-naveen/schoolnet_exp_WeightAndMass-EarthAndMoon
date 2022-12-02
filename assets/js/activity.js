@@ -601,7 +601,12 @@ var ActivityMain = (function () {
           //debugger;
           pos2 = _droppable.closest(".spring-balance-drop-container").position();
           var springBase = $(".spring-base-wrap")
-          _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
+          if(navigator.platform.toLowerCase() == "iphone"){
+            _draggable.css({ "top": (((pos1.top + pos2.top + 9) + springBase.position().top) - _droppable.height()) + dropOrgHt });
+          }
+          else{
+            _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
+          }
           _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
           var WeightObj = {
             from: Number(_droppable.attr("dropkg")),
