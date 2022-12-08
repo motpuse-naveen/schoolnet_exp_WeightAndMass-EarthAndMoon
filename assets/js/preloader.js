@@ -46,7 +46,8 @@ var imgPreloadArray = new Array(
   "assets/images/P_04.svg",
   "assets/images/P_05.svg",
   "assets/images/bg_earth.png",
-  "assets/images/bg_moon.png"
+  "assets/images/bg_moon.png",
+  "assets/images/overloaded-img.svg"
 );
 
 /*--Audio--*/

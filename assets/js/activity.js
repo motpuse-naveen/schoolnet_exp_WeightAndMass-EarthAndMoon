@@ -47,6 +47,47 @@ var ActivityMain = (function () {
         $(".weight-disk.disk-" + (index + 1)).css({ "top": (slateTop - diskHt) + 5, "left": weightLeft });
       })
     },
+    SetWeightPositions_OnOrientationChange: function () {
+      var slateWdt = $(".wood-slate").width();
+      var moonWrapPos = $(".planet-wrap[planet='moon']").position();
+      var moonWrapHt = $(".planet-wrap[planet='moon']").height();
+      var actPanalWdt = $(".activity-panel").width();
+      var ballHt = $(".weight-ball.ball-1").height();
+      var slateLeft = (actPanalWdt - slateWdt) / 2;
+      var slateTop = moonWrapPos.top + moonWrapHt + ballHt;
+      $(".wood-slate").css({ "top": slateTop, "left": slateLeft })
+
+      var ballWdt = $(".weight-ball.ball-1").width();
+      var diskWdt = $(".weight-disk.disk-1").width();
+      var diskHt = $(".weight-disk.disk-1").height();
+      var totalballwdt = ballWdt * 3;
+      var totaldiskwdt = diskWdt * 6;
+      var weightSpace = 10 * 8; //8 -> total weights - 1 = 9 -1 = 8, 10 -> hardcode value.
+      var ballleft = (slateWdt - (totalballwdt + totaldiskwdt + weightSpace)) / 2;
+      var weightLeft = slateLeft + ballleft;
+      $(".weight-ball").each(function (index) {
+        if (index > 0) {
+          weightLeft += (ballWdt + 10);
+        }
+        var balltop = (slateTop - ballHt) + 5;
+        var ballleft = weightLeft;
+        if ($(".weight-ball.ball-" + (index + 1)).attr("machine") && $(".weight-ball.ball-" + (index + 1)).attr("machine") != "") {
+          $(".weight-ball.ball-" + (index + 1)).attr("orgTop", balltop).attr("orgLeft", ballleft);
+        }
+        else {
+          $(".weight-ball.ball-" + (index + 1)).css({ "top": balltop, "left": ballleft });
+        }
+      })
+      $(".weight-disk:not([machine])").each(function (index) {
+        if (index <= 0) {
+          weightLeft += (ballWdt + 10);
+        }
+        else {
+          weightLeft += (diskWdt + 10);
+        }
+        $(".weight-disk.disk-" + (index + 1) + ":not([machine])").css({ "top": (slateTop - diskHt) + 5, "left": weightLeft });
+      })
+    },
     SetBalancerPositions: function () {
       //debugger;
       var earthContPos = $(".earth-container").get(0).getBoundingClientRect();
@@ -65,18 +106,222 @@ var ActivityMain = (function () {
         width: moonContPos.width
       }
 
+      var springleft = moonPos.left + (moonPos.width - (moonPos.width / 3));
+      var springtop = moonPos.top + ((moonPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
+      ActivityMain.PositionWeightOnBalancerDrag({ top: springtop, left: springleft }, $(".spring-balance"));
       $(".spring-balance").css({
-        "left": moonPos.left + (moonPos.width - (moonPos.width / 3)),
-        "top": moonPos.top + ((moonPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
+        "left": springleft,
+        "top": springtop
       }).attr("planet", "moon");
+
+
+      var paneleft = earthPos.left + (earthPos.width - ((earthPos.width / 8) * 4));
+      var panetop = earthPos.top + ((earthPos.height - $(".pane-balance").height()) / 4);
+      ActivityMain.PositionWeightOnBalancerDrag({ top: panetop, left: paneleft }, $(".pane-balance"));
       $(".pane-balance").css({
-        "left": earthPos.left + (earthPos.width - ((earthPos.width / 8) * 4)),
-        "top": earthPos.top + ((earthPos.height - $(".pane-balance").height()) / 4)
+        "left": paneleft,
+        "top": panetop
       }).attr("planet", "earth");
+
+
+      var electricleft = earthPos.left + 20;
+      var electrictop = earthPos.top + (earthPos.height - $(".electric-balance").height()) - 20;
+      ActivityMain.PositionWeightOnBalancerDrag({ top: electrictop, left: electricleft }, $(".electric-balance"));
       $(".electric-balance").css({
-        "left": earthPos.left + 20,
-        "top": earthPos.top + (earthPos.height - $(".electric-balance").height()) - 20
+        "left": electricleft,
+        "top": electrictop
       }).attr("planet", "earth");
+    },
+    SetBalancerPIP: function (_balancer) {
+      var earthContPos = $(".earth-container").get(0).getBoundingClientRect();
+      var actPos = $(".activity-panel").get(0).getBoundingClientRect()
+      var earthPos = {
+        left: earthContPos.left - actPos.left,
+        top: earthContPos.top - actPos.top,
+        height: earthContPos.height,
+        width: earthContPos.width
+      }
+      var moonContPos = $(".moon-container").get(0).getBoundingClientRect();
+      var moonPos = {
+        left: moonContPos.left - actPos.left,
+        top: moonContPos.top - actPos.top,
+        height: moonContPos.height,
+        width: moonContPos.width
+      }
+      var balPos = _balancer.position();
+      if (_balancer.attr("planet") == "moon") {
+        _balancer.attr("pip-left", balPos.left - moonPos.left);
+        _balancer.attr("pip-top", balPos.top - moonPos.top);
+      }
+      else if (_balancer.attr("planet") == "earth") {
+        _balancer.attr("pip-left", balPos.left - earthPos.left);
+        _balancer.attr("pip-top", balPos.top - earthPos.top);
+      }
+    },
+    SetBalancerPositions_OnOrientationChange: function () {
+      //debugger;
+      var earthContPos = $(".earth-container").get(0).getBoundingClientRect();
+      var actPos = $(".activity-panel").get(0).getBoundingClientRect()
+      var earthPos = {
+        left: earthContPos.left - actPos.left,
+        top: earthContPos.top - actPos.top,
+        height: earthContPos.height,
+        width: earthContPos.width
+      }
+      var moonContPos = $(".moon-container").get(0).getBoundingClientRect();
+      var moonPos = {
+        left: moonContPos.left - actPos.left,
+        top: moonContPos.top - actPos.top,
+        height: moonContPos.height,
+        width: moonContPos.width
+      }
+
+      var springleft = moonPos.left + (moonPos.width - (moonPos.width / 3));
+      var springtop = moonPos.top + ((moonPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
+      if ($(".spring-balance").attr("pip-left") != undefined && $(".spring-balance").attr("pip-left") != "") {
+        if ($(".spring-balance").attr("planet") == "earth") {
+          springleft = earthPos.left + Number($(".spring-balance").attr("pip-left"));
+          springtop = earthPos.top + Number($(".spring-balance").attr("pip-top"));
+          if((springleft + $(".spring-balance").width()) > (earthPos.left + earthPos.width)){
+            springleft = (earthPos.left + earthPos.width) - $(".spring-balance").width() - 10;
+          }
+          if((springtop + $(".spring-balance").height()) > (earthPos.top + earthPos.height)){
+            springtop = (earthPos.top + earthPos.height) - $(".spring-balance").height() - 10;
+          }
+        }
+        else if ($(".spring-balance").attr("planet") == "moon") {
+          springleft = moonPos.left + Number($(".spring-balance").attr("pip-left"));
+          springtop = moonPos.top + Number($(".spring-balance").attr("pip-top"));
+          if((springleft + $(".spring-balance").width()) > (moonPos.left + moonPos.width)){
+            springleft = (moonPos.left + moonPos.width) - $(".spring-balance").width() - 10;
+          }
+          if((springtop + $(".spring-balance").height()) > (moonPos.top + moonPos.height)){
+            springtop = (moonPos.top + moonPos.height) - $(".spring-balance").height() - 10;
+          }
+        }
+      }
+
+      ActivityMain.PositionWeightOnBalancerDrag({ top: springtop, left: springleft }, $(".spring-balance"));
+      $(".spring-balance").css({
+        "left": springleft,
+        "top": springtop
+      }).attr('orgTop', springtop).attr('orgLeft', springleft);
+
+      var paneleft = earthPos.left + (earthPos.width - ((earthPos.width / 8) * 4));
+      var panetop = earthPos.top + ((earthPos.height - $(".pane-balance").height()) / 4);
+      if ($(".pane-balance").attr("pip-left") != undefined && $(".pane-balance").attr("pip-left") != "") {
+        if ($(".pane-balance").attr("planet") == "moon") {
+          paneleft = moonPos.left + Number($(".pane-balance").attr("pip-left"));
+          panetop = moonPos.top + Number($(".pane-balance").attr("pip-top"));
+          if((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width()) > (moonPos.left + moonPos.width)){
+            paneleft = (moonPos.left + moonPos.width) - ($(".pane-balance").width() +$(".pane-balance .pane-bar .pane.p01").width() + 10);
+          }
+          if((panetop + $(".pane-balance").height()) > (moonPos.top + moonPos.height)){
+            panetop = (moonPos.top + moonPos.height) - $(".pane-balance").height() - 10;
+          }
+        }
+        else if ($(".pane-balance").attr("planet") == "earth") {
+          paneleft = earthPos.left + Number($(".pane-balance").attr("pip-left"));
+          panetop = earthPos.top + Number($(".pane-balance").attr("pip-top"));
+          if((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width() ) > (earthPos.left + earthPos.width)){
+            paneleft = (earthPos.left + earthPos.width) - ($(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width() + 10);
+          }
+          if((panetop + $(".pane-balance").height()) > (earthPos.top + earthPos.height)){
+            panetop = (earthPos.top + earthPos.height) - ($(".pane-balance").height() + 10);
+          }
+        }
+      }
+      ActivityMain.PositionWeightOnBalancerDrag({ top: panetop, left: paneleft }, $(".pane-balance"));
+      $(".pane-balance").css({
+        "left": paneleft,
+        "top": panetop
+      }).attr('orgTop', panetop).attr('orgLeft', paneleft);
+
+
+      var electricleft = earthPos.left + 20;
+      var electrictop = earthPos.top + (earthPos.height - $(".electric-balance").height()) - 20;
+      if ($(".electric-balance").attr("pip-left") != undefined && $(".electric-balance").attr("pip-left") != "") {
+        if ($(".electric-balance").attr("planet") == "moon") {
+          electricleft = moonPos.left + Number($(".electric-balance").attr("pip-left"));
+          electrictop = moonPos.top + Number($(".electric-balance").attr("pip-top"));
+          if((electricleft + $(".electric-balance").width()) > (moonPos.left + moonPos.width)){
+            electricleft = (moonPos.left + moonPos.width) - $(".electric-balance").width() - 10;
+          }
+          if((electrictop + $(".electric-balance").height()) > (moonPos.top + moonPos.height)){
+            electrictop = (moonPos.top + moonPos.height) - $(".electric-balance").height() - 10;
+          }
+        }
+        else {
+          electricleft = earthPos.left + Number($(".electric-balance").attr("pip-left"));
+          electrictop = earthPos.top + Number($(".electric-balance").attr("pip-top"));
+          if((electricleft + $(".electric-balance").width()) > (earthPos.left + earthPos.width)){
+            electricleft = (earthPos.left + earthPos.width) - $(".electric-balance").width() - 10;
+          }
+          if((electrictop + $(".electric-balance").height()) > (earthPos.top + earthPos.height)){
+            electrictop = (earthPos.top + earthPos.height) - $(".electric-balance").height() - 10;
+          }
+        }
+      }
+      ActivityMain.PositionWeightOnBalancerDrag({ top: electrictop, left: electricleft }, $(".electric-balance"));
+      $(".electric-balance").css({
+        "left": electricleft,
+        "top": electrictop
+      }).attr('orgTop', electrictop).attr('orgLeft', electricleft);
+    },
+    SetBalancerPositions_OnOrientationChange_Mobile: function () {
+      //debugger;
+      var earthContPos = $(".earth-container").get(0).getBoundingClientRect();
+      var actPos = $(".activity-panel").get(0).getBoundingClientRect()
+      var earthPos = {
+        left: earthContPos.left - actPos.left,
+        top: earthContPos.top - actPos.top,
+        height: earthContPos.height,
+        width: earthContPos.width
+      }
+      var moonContPos = $(".moon-container").get(0).getBoundingClientRect();
+      var moonPos = {
+        left: moonContPos.left - actPos.left,
+        top: moonContPos.top - actPos.top,
+        height: moonContPos.height,
+        width: moonContPos.width
+      }
+
+      var springleft = moonPos.left + (moonPos.width - (moonPos.width / 3));
+      var springtop = moonPos.top + ((moonPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
+      if ($(".spring-balance").attr("planet") == "earth") {
+        springleft = earthPos.left + (earthPos.width - (earthPos.width / 3));
+        springtop = earthPos.top + ((earthPos.height - $(".spring-balance .spring-base-wrap").height()) / 2)
+      }
+      ActivityMain.PositionWeightOnBalancerDrag({ top: springtop, left: springleft }, $(".spring-balance"));
+      $(".spring-balance").css({
+        "left": springleft,
+        "top": springtop
+      }).attr('orgTop', springtop).attr('orgLeft', springleft);
+
+      var paneleft = earthPos.left + ((earthPos.width / 8) * 1);
+      var panetop = earthPos.top + ((earthPos.height - $(".pane-balance").height()) / 4);
+      if ($(".pane-balance").attr("planet") == "moon") {
+        paneleft = moonPos.left + ((moonPos.width / 8) * 1);
+        panetop = moonPos.top + ((moonPos.height - $(".pane-balance").height()) / 4);
+      }
+      ActivityMain.PositionWeightOnBalancerDrag({ top: panetop, left: paneleft }, $(".pane-balance"));
+      $(".pane-balance").css({
+        "left": paneleft,
+        "top": panetop
+      }).attr('orgTop', panetop).attr('orgLeft', paneleft);
+
+
+      var electricleft = earthPos.left + 20;
+      var electrictop = earthPos.top + (earthPos.height - $(".electric-balance").height()) - 20;
+      if ($(".electric-balance").attr("planet") == "moon") {
+        electricleft = moonPos.left + 20;
+        electrictop = moonPos.top + (moonPos.height - $(".electric-balance").height()) - 20;
+      }
+      ActivityMain.PositionWeightOnBalancerDrag({ top: electrictop, left: electricleft }, $(".electric-balance"));
+      $(".electric-balance").css({
+        "left": electricleft,
+        "top": electrictop
+      }).attr('orgTop', electrictop).attr('orgLeft', electricleft);
     },
     InitBalancerDrag: function () {
       $(".wt-balancer").draggable({
@@ -293,6 +538,7 @@ var ActivityMain = (function () {
                     SpringMachine.ShiftPointerOnPlanetDrop(planetNme);
                   }
                 }
+                ActivityMain.SetBalancerPIP(ui.draggable);
               }
             }
           }
@@ -415,16 +661,19 @@ var ActivityMain = (function () {
       this.InitBalancerDrop();
     },
     OnWeightDrop: function (_draggable, _droppable) {
-      //console.log("OnWeightDrop")
-      if (_draggable.hasClass("weight-disk-draggable")) {
-        var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
-        $(".activity-panel").append(clone)
-        this.SetPositionOnDrop(clone, _droppable);
-        this.InitWeightDrag(clone, "disk");
+      console.log("start OnWeightDrop")
+      if (_draggable.attr("machine") == undefined || _draggable.attr("machine") == "") {
+        if (_draggable.hasClass("weight-disk-draggable")) {
+          var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
+          $(".activity-panel").append(clone)
+          this.SetPositionOnDrop(clone, _droppable);
+          this.InitWeightDrag(clone, "disk");
+        }
+        else {
+          ActivityMain.SetPositionOnDrop(_draggable, _droppable);
+        }
       }
-      else {
-        ActivityMain.SetPositionOnDrop(_draggable, _droppable);
-      }
+      console.log("end OnWeightDrop")
     },
     ResetPositionsOnDragStart: function (_draggable) {
       var dragmachine = _draggable.attr("machine")
@@ -587,10 +836,10 @@ var ActivityMain = (function () {
           }
           else if (pane1Weight = pane2Weight) {
             if (dropmachine == "balancer1") {
-               wt_left = paneBalance.position().left - _draggable.width()/2 - PaneMachine.getLeftShift() + 4;
+              wt_left = paneBalance.position().left - _draggable.width() / 2 - PaneMachine.getLeftShift() + 4;
             }
             else if (dropmachine == "balancer2") {
-               wt_left = paneBalance.position().left + paneBalance.width() - _draggable.width()/2 - PaneMachine.getLeftShift();
+              wt_left = paneBalance.position().left + paneBalance.width() - _draggable.width() / 2 - PaneMachine.getLeftShift();
             }
           }
 
@@ -601,10 +850,10 @@ var ActivityMain = (function () {
           //debugger;
           pos2 = _droppable.closest(".spring-balance-drop-container").position();
           var springBase = $(".spring-base-wrap")
-          if(navigator.platform !=undefined && navigator.platform.toLowerCase() == "iphone"){
+          if (navigator.platform != undefined && navigator.platform.toLowerCase() == "iphone") {
             _draggable.css({ "top": (((pos1.top + pos2.top + 9) + springBase.position().top) - _droppable.height()) + dropOrgHt });
           }
-          else{
+          else {
             _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
           }
           _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
@@ -711,16 +960,18 @@ var ActivityMain = (function () {
       }
     },
     OnOrientationChange: function () {
-      this.ResetActivity();
+      //this.ResetActivity();
       $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
-      this.SetBalancerPositions();
-      this.SetWeightPositions();
-      $(".ui-droppable[dropkg]").attr("dropkg", 0);
-      ElectricMachine.ResetBalancer();
-      PaneMachine.ResetPan();
-      SpringMachine.ResetSpring();
-      this.BindDraggables();
-      this.BindDroppables();
+      
+      this.SetBalancerPositions_OnOrientationChange();
+      this.SetWeightPositions_OnOrientationChange()
+      //this.SetWeightPositions_OnOrientationChange();
+      //$(".ui-droppable[dropkg]").attr("dropkg", 0);
+      //ElectricMachine.ResetBalancer();
+      //PaneMachine.ResetPan();
+      //SpringMachine.ResetSpring();
+      //this.BindDraggables();
+      //this.BindDroppables();
     },
     ResetActivity: function () {
       $(".weight[machine='electric']").each(function () {
