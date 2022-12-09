@@ -783,8 +783,14 @@ var ActivityMain = (function () {
               });
             }
             else {
-              ui.draggable.remove();
+              //ui.draggable.remove();
               //console.log("ondrop2")
+              let orglft = ui.draggable.attr('orgLeft');
+              let orgtp = ui.draggable.attr('orgTop');
+              ui.draggable.css({
+                "left": Number(orglft),
+                "top": Number(orgtp)
+              });
             }
           }
         },
@@ -841,6 +847,7 @@ var ActivityMain = (function () {
             this.SetPositionOnDrop(clone, _droppable);
             this.InitWeightDrag(clone, "disk");
             _draggable.attr("alreadydrop","true")
+            $(".weight-disk-draggable.ui-draggable-dragging").remove();
           //}
         }
         else {
