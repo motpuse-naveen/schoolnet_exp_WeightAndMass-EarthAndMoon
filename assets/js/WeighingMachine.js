@@ -240,7 +240,12 @@ var PaneMachine = (function () {
                 return 8;
             }
             else {
-                return 11;
+                if(ActivityShell.IsSmallTablet()){
+                    return 8;
+                }
+                else{
+                    return 11;
+                }
             }
         },
         getLeftShift: function(){
@@ -248,7 +253,12 @@ var PaneMachine = (function () {
                 return 4;
             }
             else {
-                return 4;
+                if(ActivityShell.IsSmallTablet()){
+                    return 4;
+                }
+                else{
+                    return 4;
+                }
             }
         },
         getFixShift: function(){
@@ -256,7 +266,12 @@ var PaneMachine = (function () {
                 return 1;
             }
             else {
-                return 6;
+                if(ActivityShell.IsSmallTablet()){
+                    return 1;
+                }
+                else{
+                    return 6;
+                }
             }
         },
         BalancePane: function (prevpane1Weight, prevpane2Weight, pane1Weight, pane2Weight) {

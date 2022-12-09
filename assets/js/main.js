@@ -7,7 +7,7 @@ var zoomhtml = null;
 var zoombody = null;
 
 var ActivityShell = (function () {
-  
+
   return {
     Init: function () {
       $(".wrapper").css({
@@ -138,16 +138,20 @@ var ActivityShell = (function () {
         }
       }
     },
-    HideHeaderSmallTablet: function(){
+    IsSmallTablet: function () {
+      var result = false;
       if (window.screen.availHeight < 602) {
-        //return "mobile";
-        $(".exp_header").hide();
-        $(".exp_body_header").hide();
+        result = true;
       }
-      else{
-        $(".exp_header").show();
-        $(".exp_body_header").show();
+      else {
+        if (window.matchMedia("(orientation: portrait)").matches) {
+          if (window.screen.availWidth < 650) {
+            result = true;
+            alert("width:" + window.screen.availWidth)
+          }
+        }
       }
+      return result;
     },
     DeviceType: function () {
       /* This function needs changes in device detection logic 
@@ -160,15 +164,12 @@ var ActivityShell = (function () {
         }
         else {
           if (window.screen.availHeight < 602) {
-            //return "mobile";
-            $(".exp_header").hide();
-            $(".exp_body_header").hide();
-
+            return "mobile";
           }
-          /*else {
+          else {
             return "tablet";
-          }*/
-          return "tablet";
+          }
+          //return "tablet";
         }
       }
       else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
@@ -273,7 +274,7 @@ var ActivityShell = (function () {
       //ScreenSplitter.ScaleToFit($("#split-1"));
       var deviceType = ActivityShell.DeviceType();
       $(".wrapper").attr("device", deviceType);
-      this.HideHeaderSmallTablet();
+      //this.HideHeaderSmallTablet();
       //update Activity view OnOrientationChange
       ActivityMain.OnOrientationChange();
 
