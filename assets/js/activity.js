@@ -1,5 +1,34 @@
 var ActivityMain = (function () {
+  var _eb = { width: 0, height: 0, width_new: 0, height_new: 0 };
+  var _pb = { width: 0, height: 0, width_new: 0, height_new: 0 };
+  var _sb = { width: 0, height: 0, width_new: 0, height_new: 0 };
+  var _disk = { width: 0, height: 0, width_new: 0, height_new: 0 };
+  var _ball = { width: 0, height: 0, width_new: 0, height_new: 0 };
   return {
+    SetObjectData: function () {
+      _eb.width = $(".electric-balance").width();
+      _eb.height = $(".electric-balance").height();
+      _pb.width = $(".pane-balance").width();
+      _pb.height = $(".pane-balance").height();
+      _sb.width = $(".spring-balance").width();
+      _sb.height = $(".spring-balance").height();
+      _ball.width = $(".weight.weight-ball:first").width();
+      _ball.height = $(".weight.weight-ball:first").height();
+      _disk.width = $(".weight.weight-disk:first").width();
+      _disk.height = $(".weight.weight-disk:first").height();
+    },
+    SetObjectNewData: function () {
+      _eb.width_new = $(".electric-balance").width();
+      _eb.height_new = $(".electric-balance").height();
+      _pb.width_new = $(".pane-balance").width();
+      _pb.height_new = $(".pane-balance").height();
+      _sb.width_new = $(".spring-balance").width();
+      _sb.height_new = $(".spring-balance").height();
+      _ball.width_new = $(".weight.weight-ball:first").width();
+      _ball.height_new = $(".weight.weight-ball:first").height();
+      _disk.width_new = $(".weight.weight-disk:first").width();
+      _disk.height_new = $(".weight.weight-disk:first").height();
+    },
     LaunchActivity: function () {
       $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
       this.SetBalancerPositions();
@@ -182,20 +211,20 @@ var ActivityMain = (function () {
         if ($(".spring-balance").attr("planet") == "earth") {
           springleft = earthPos.left + Number($(".spring-balance").attr("pip-left"));
           springtop = earthPos.top + Number($(".spring-balance").attr("pip-top"));
-          if((springleft + $(".spring-balance").width()) > (earthPos.left + earthPos.width)){
+          if ((springleft + $(".spring-balance").width()) > (earthPos.left + earthPos.width)) {
             springleft = (earthPos.left + earthPos.width) - $(".spring-balance").width() - 10;
           }
-          if((springtop + $(".spring-balance").height()) > (earthPos.top + earthPos.height)){
+          if ((springtop + $(".spring-balance").height()) > (earthPos.top + earthPos.height)) {
             springtop = (earthPos.top + earthPos.height) - $(".spring-balance").height() - 10;
           }
         }
         else if ($(".spring-balance").attr("planet") == "moon") {
           springleft = moonPos.left + Number($(".spring-balance").attr("pip-left"));
           springtop = moonPos.top + Number($(".spring-balance").attr("pip-top"));
-          if((springleft + $(".spring-balance").width()) > (moonPos.left + moonPos.width)){
+          if ((springleft + $(".spring-balance").width()) > (moonPos.left + moonPos.width)) {
             springleft = (moonPos.left + moonPos.width) - $(".spring-balance").width() - 10;
           }
-          if((springtop + $(".spring-balance").height()) > (moonPos.top + moonPos.height)){
+          if ((springtop + $(".spring-balance").height()) > (moonPos.top + moonPos.height)) {
             springtop = (moonPos.top + moonPos.height) - $(".spring-balance").height() - 10;
           }
         }
@@ -213,20 +242,20 @@ var ActivityMain = (function () {
         if ($(".pane-balance").attr("planet") == "moon") {
           paneleft = moonPos.left + Number($(".pane-balance").attr("pip-left"));
           panetop = moonPos.top + Number($(".pane-balance").attr("pip-top"));
-          if((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width()) > (moonPos.left + moonPos.width)){
-            paneleft = (moonPos.left + moonPos.width) - ($(".pane-balance").width() +$(".pane-balance .pane-bar .pane.p01").width() + 10);
+          if ((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width()) > (moonPos.left + moonPos.width)) {
+            paneleft = (moonPos.left + moonPos.width) - ($(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width() + 10);
           }
-          if((panetop + $(".pane-balance").height()) > (moonPos.top + moonPos.height)){
+          if ((panetop + $(".pane-balance").height()) > (moonPos.top + moonPos.height)) {
             panetop = (moonPos.top + moonPos.height) - $(".pane-balance").height() - 10;
           }
         }
         else if ($(".pane-balance").attr("planet") == "earth") {
           paneleft = earthPos.left + Number($(".pane-balance").attr("pip-left"));
           panetop = earthPos.top + Number($(".pane-balance").attr("pip-top"));
-          if((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width() ) > (earthPos.left + earthPos.width)){
+          if ((paneleft + $(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width()) > (earthPos.left + earthPos.width)) {
             paneleft = (earthPos.left + earthPos.width) - ($(".pane-balance").width() + $(".pane-balance .pane-bar .pane.p01").width() + 10);
           }
-          if((panetop + $(".pane-balance").height()) > (earthPos.top + earthPos.height)){
+          if ((panetop + $(".pane-balance").height()) > (earthPos.top + earthPos.height)) {
             panetop = (earthPos.top + earthPos.height) - ($(".pane-balance").height() + 10);
           }
         }
@@ -244,20 +273,20 @@ var ActivityMain = (function () {
         if ($(".electric-balance").attr("planet") == "moon") {
           electricleft = moonPos.left + Number($(".electric-balance").attr("pip-left"));
           electrictop = moonPos.top + Number($(".electric-balance").attr("pip-top"));
-          if((electricleft + $(".electric-balance").width()) > (moonPos.left + moonPos.width)){
+          if ((electricleft + $(".electric-balance").width()) > (moonPos.left + moonPos.width)) {
             electricleft = (moonPos.left + moonPos.width) - $(".electric-balance").width() - 10;
           }
-          if((electrictop + $(".electric-balance").height()) > (moonPos.top + moonPos.height)){
+          if ((electrictop + $(".electric-balance").height()) > (moonPos.top + moonPos.height)) {
             electrictop = (moonPos.top + moonPos.height) - $(".electric-balance").height() - 10;
           }
         }
         else {
           electricleft = earthPos.left + Number($(".electric-balance").attr("pip-left"));
           electrictop = earthPos.top + Number($(".electric-balance").attr("pip-top"));
-          if((electricleft + $(".electric-balance").width()) > (earthPos.left + earthPos.width)){
+          if ((electricleft + $(".electric-balance").width()) > (earthPos.left + earthPos.width)) {
             electricleft = (earthPos.left + earthPos.width) - $(".electric-balance").width() - 10;
           }
-          if((electrictop + $(".electric-balance").height()) > (earthPos.top + earthPos.height)){
+          if ((electrictop + $(".electric-balance").height()) > (earthPos.top + earthPos.height)) {
             electrictop = (earthPos.top + earthPos.height) - $(".electric-balance").height() - 10;
           }
         }
@@ -267,6 +296,148 @@ var ActivityMain = (function () {
         "left": electricleft,
         "top": electrictop
       }).attr('orgTop', electrictop).attr('orgLeft', electricleft);
+
+      ActivityMain.SetObjectNewData();
+      console.log(_eb)
+      //console.log(_pb)
+      //console.log(_sb)
+      console.log(_disk)
+      console.log(_ball)
+      if (_eb.width != _eb.width_new && _eb.height != _eb.height_new) {
+        var loc_leftdiff = (_eb.width - _eb.width_new)/2;
+        var loc_topdiff = (_eb.height - _eb.height_new)/2;
+        var result = $(".weight[machine='electric']").sort(function (a, b) {
+          var contentA = parseInt($(a).attr('dragseq'));
+          var contentB = parseInt($(b).attr('dragseq'));
+          return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        });
+        //debugger;
+        var totHt = 0
+        for (var i = 0; i < result.length; i++) {
+          //debugger;
+          if ($(result[i]).hasClass("weight-ball")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - (loc_leftdiff - (_ball.width - _ball.width_new)),
+              "top": $(result[i]).position().top + totHt + (_ball.height - _ball.height_new)
+            })
+            totHt = totHt + (_ball.height - _ball.height_new)
+          }
+          else if ($(result[i]).hasClass("weight-disk")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - (loc_leftdiff - (_disk.width - _disk.width_new)),
+              "top": $(result[i]).position().top + totHt + (_disk.height - _disk.height_new)
+            })
+            totHt = totHt + (_disk.height - _disk.height_new)
+            $(".electric-balance-droppable").css({
+              "height": $(".electric-balance-droppable").height() - totHt,
+              "top": -$(".electric-balance-droppable").height() - totHt,
+            }) 
+          }
+        }
+      }
+      if (_pb.width != _pb.width_new && _pb.height != _pb.height_new) {
+        var loc_leftdiff = (_pb.width - _pb.width_new)/2;
+        var loc_topdiff = (_pb.height - _pb.height_new)/2;
+        var result = $(".weight[machine='balancer1']").sort(function (a, b) {
+          var contentA = parseInt($(a).attr('dragseq'));
+          var contentB = parseInt($(b).attr('dragseq'));
+          return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        });
+        var totHt = 0
+        for (var i = 0; i < result.length; i++) {
+          //debugger;
+          if ($(result[i]).hasClass("weight-ball")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left + (_ball.width - _ball.width_new)/2,
+              "top": $(result[i]).position().top + totHt + (_ball.height - _ball.height_new)
+            })
+            totHt = totHt + (_ball.height - _ball.height_new)
+          }
+          else if ($(result[i]).hasClass("weight-disk")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left + (_disk.width - _disk.width_new)/2,
+              "top": $(result[i]).position().top + totHt + (_disk.height - _disk.height_new)
+            })
+            totHt = totHt + (_disk.height - _disk.height_new)
+            $(".pane-01-droppable").css({
+              "height": $(".pane-01-droppable").height() - totHt,
+              "top": -$(".pane-01-droppable").height() - totHt,
+            }) 
+          }
+        }
+        result = $(".weight[machine='balancer2']").sort(function (a, b) {
+          var contentA = parseInt($(a).attr('dragseq'));
+          var contentB = parseInt($(b).attr('dragseq'));
+          return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        });
+        totHt = 0
+        for (var i = 0; i < result.length; i++) {
+          //debugger;
+          if ($(result[i]).hasClass("weight-ball")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - loc_leftdiff - ((_ball.width - _ball.width_new)/2) - (_ball.width - _ball.width_new)*2,
+              "top": $(result[i]).position().top + totHt + (_ball.height - _ball.height_new)
+            })
+            totHt = totHt + (_ball.height - _ball.height_new)
+          }
+          else if ($(result[i]).hasClass("weight-disk")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - loc_leftdiff - ((_ball.width - _ball.width_new)/2) - (_ball.width - _ball.width_new)*2,
+              "top": $(result[i]).position().top + totHt + (_disk.height - _disk.height_new)
+            })
+            totHt = totHt + (_disk.height - _disk.height_new)
+            $(".pane-02-droppable").css({
+              "height": $(".pane-02-droppable").height() - totHt,
+              "top": -$(".pane-02-droppable").height() - totHt,
+            }) 
+          }
+        }
+      }
+      
+      
+      if (_sb.width != _sb.width_new && _sb.height != _sb.height_new) {
+        var loc_leftdiff = (_sb.width - _sb.width_new)/2;
+        var loc_topdiff = (_sb.height - _sb.height_new)/2;
+        var result = $(".weight[machine='spring']").sort(function (a, b) {
+          var contentA = parseInt($(a).attr('dragseq'));
+          var contentB = parseInt($(b).attr('dragseq'));
+          return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        });
+        //debugger;
+        var totHt = 0
+        for (var i = 0; i < result.length; i++) {
+          //debugger;
+          if ($(result[i]).hasClass("weight-ball")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - (loc_leftdiff - (_ball.width - _ball.width_new)),
+              "top": $(result[i]).position().top - loc_topdiff + totHt + (_ball.height - _ball.height_new)
+            })
+            totHt = totHt + (_ball.height - _ball.height_new)
+          }
+          else if ($(result[i]).hasClass("weight-disk")) {
+            $(result[i]).css({
+              "left": $(result[i]).position().left - (loc_leftdiff - (_disk.width - _disk.width_new)),
+              "top": $(result[i]).position().top - loc_topdiff + totHt + (_disk.height - _disk.height_new)
+            })
+            totHt = totHt + (_disk.height - _disk.height_new)
+            $(".spring-balance-droppable").css({
+              "height": $(".spring-balance-droppable").height() - totHt,
+              "top": -$(".spring-balance-droppable").height() - totHt,
+            }) 
+          }
+        }
+      }
+      
+      _eb.width =  _eb.width_new;
+      _eb.height = _eb.height_new;
+      _pb.width = _pb.width_new;
+      _pb.height = _pb.height_new;
+      _sb.width = _sb.width_new;
+      _sb.height = _sb.height_new;
+      _ball.width = _ball.width_new;
+      _ball.height = _ball.height_new;
+      _disk.width = _disk.width_new;
+      _disk.height =_disk.height_new;
     },
     SetBalancerPositions_OnOrientationChange_Mobile: function () {
       //debugger;
@@ -612,7 +783,7 @@ var ActivityMain = (function () {
               });
             }
             else {
-              //ui.draggable.remove();
+              ui.draggable.remove();
               //console.log("ondrop2")
             }
           }
@@ -664,10 +835,13 @@ var ActivityMain = (function () {
       console.log("start OnWeightDrop")
       if (_draggable.attr("machine") == undefined || _draggable.attr("machine") == "") {
         if (_draggable.hasClass("weight-disk-draggable")) {
-          var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
-          $(".activity-panel").append(clone)
-          this.SetPositionOnDrop(clone, _droppable);
-          this.InitWeightDrag(clone, "disk");
+          //if(!_draggable.attr("alreadydrop")){
+            var clone = $(_draggable).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
+            $(".activity-panel").append(clone)
+            this.SetPositionOnDrop(clone, _droppable);
+            this.InitWeightDrag(clone, "disk");
+            _draggable.attr("alreadydrop","true")
+          //}
         }
         else {
           ActivityMain.SetPositionOnDrop(_draggable, _droppable);
@@ -775,8 +949,22 @@ var ActivityMain = (function () {
         _droppable.css({ "height": dropNewHt, "top": -dropNewHt });
 
         if (dropmachine == "electric") {
-          _draggable.css({ "top": (pos1.top - _droppable.height()) + dropOrgHt });
-          _draggable.css({ "left": ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2)) });
+          var dragSeq = 0;
+          dragSeq = $(".weight[machine='" + dropmachine + "']").length;
+          var lastWeight = $(".weight[machine='" + dropmachine + "'][dragseq='" + (Number(dragSeq) - 1) + "']")
+          var wt_top = 0;
+          var wt_left = 0;
+          if (lastWeight.length == 0) {
+            //First Weight 
+            wt_top = (pos1.top - _droppable.height()) + dropOrgHt;
+          }
+          else {
+            //Second Weights onwards
+            wt_top = lastWeight.position().top - (_draggable.height());
+          }
+          wt_left = ((pos1.left + pos2.left) + (_droppable.width() / 2 - _draggable.width() / 2));
+          _draggable.css({ "top": wt_top });
+          _draggable.css({ "left":  wt_left});
           var WeightObj = {
             from: Number(_droppable.attr("dropkg")),
             to: (Number(_droppable.attr("dropkg")) + Number(_draggable.attr("kg"))),
@@ -851,7 +1039,7 @@ var ActivityMain = (function () {
           pos2 = _droppable.closest(".spring-balance-drop-container").position();
           var springBase = $(".spring-base-wrap")
           if (navigator.platform != undefined && navigator.platform.toLowerCase() == "iphone") {
-            _draggable.css({ "top": (((pos1.top + pos2.top + 9) + springBase.position().top) - _droppable.height()) + dropOrgHt });
+            _draggable.css({ "top": (((pos1.top + pos2.top + 10) + springBase.position().top) - _droppable.height()) + dropOrgHt });
           }
           else {
             _draggable.css({ "top": (((pos1.top + pos2.top + 5) + springBase.position().top) - _droppable.height()) + dropOrgHt });
@@ -962,7 +1150,7 @@ var ActivityMain = (function () {
     OnOrientationChange: function () {
       //this.ResetActivity();
       $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
-      
+
       this.SetBalancerPositions_OnOrientationChange();
       this.SetWeightPositions_OnOrientationChange()
       //this.SetWeightPositions_OnOrientationChange();

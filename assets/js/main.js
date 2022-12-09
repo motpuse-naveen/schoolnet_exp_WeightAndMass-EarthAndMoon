@@ -7,6 +7,7 @@ var zoomhtml = null;
 var zoombody = null;
 
 var ActivityShell = (function () {
+  
   return {
     Init: function () {
       $(".wrapper").css({
@@ -34,7 +35,7 @@ var ActivityShell = (function () {
       this.InitToolTip();
       this.AdjustSmallTablet();
     },
-    SetScrollPosition: function(){
+    SetScrollPosition: function () {
       element = $(".exp-container.zoom1").get(0)
       element.scrollTop = element.scrollHeight - element.clientHeight;
     },
@@ -63,6 +64,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
+            ActivityMain.SetObjectData();
             ActivityShell.SetScrollPosition();
           }, 0);
         }, 500)
@@ -86,6 +88,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
+            ActivityMain.SetObjectData();
             ActivityShell.SetScrollPosition();
           }, 0);
         }, 500);
@@ -135,6 +138,17 @@ var ActivityShell = (function () {
         }
       }
     },
+    HideHeaderSmallTablet: function(){
+      if (window.screen.availHeight < 602) {
+        //return "mobile";
+        $(".exp_header").hide();
+        $(".exp_body_header").hide();
+      }
+      else{
+        $(".exp_header").show();
+        $(".exp_body_header").show();
+      }
+    },
     DeviceType: function () {
       /* This function needs changes in device detection logic 
       below code is not working for ipad it returns desktop */
@@ -145,12 +159,16 @@ var ActivityShell = (function () {
           return "mobile";
         }
         else {
-          if(window.screen.availHeight < 602){
-            return "mobile";
+          if (window.screen.availHeight < 602) {
+            //return "mobile";
+            $(".exp_header").hide();
+            $(".exp_body_header").hide();
+
           }
-          else{
+          /*else {
             return "tablet";
-          }
+          }*/
+          return "tablet";
         }
       }
       else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
@@ -175,7 +193,7 @@ var ActivityShell = (function () {
           return "mobile";
         }
         else {
-            return "tablet";
+          return "tablet";
         }
       }
       else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
@@ -255,6 +273,7 @@ var ActivityShell = (function () {
       //ScreenSplitter.ScaleToFit($("#split-1"));
       var deviceType = ActivityShell.DeviceType();
       $(".wrapper").attr("device", deviceType);
+      this.HideHeaderSmallTablet();
       //update Activity view OnOrientationChange
       ActivityMain.OnOrientationChange();
 
@@ -324,11 +343,11 @@ $(document).ready(function () {
   }
   */
   var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
-  navigator.userAgent &&
-  navigator.userAgent.indexOf('CriOS') == -1 &&
-  navigator.userAgent.indexOf('FxiOS') == -1;
-  if(isSafari){
-    $(".wrapper").attr("browser","safari");
+    navigator.userAgent &&
+    navigator.userAgent.indexOf('CriOS') == -1 &&
+    navigator.userAgent.indexOf('FxiOS') == -1;
+  if (isSafari) {
+    $(".wrapper").attr("browser", "safari");
   }
 });
 /*
