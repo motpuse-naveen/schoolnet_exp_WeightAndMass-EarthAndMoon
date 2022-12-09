@@ -299,8 +299,8 @@ var ActivityMain = (function () {
 
       ActivityMain.SetObjectNewData();
       console.log(_eb)
-      //console.log(_pb)
-      //console.log(_sb)
+      console.log(_pb)
+      console.log(_sb)
       console.log(_disk)
       console.log(_ball)
       if (_eb.width != _eb.width_new && _eb.height != _eb.height_new) {

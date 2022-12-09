@@ -145,9 +145,9 @@ var ActivityShell = (function () {
       }
       else {
         if (window.matchMedia("(orientation: portrait)").matches) {
-          if (window.screen.availWidth < 650) {
+          if (window.screen.availWidth < 602) {
             result = true;
-            alert("width:" + window.screen.availWidth)
+            //alert("width:" + window.screen.availWidth)
           }
         }
       }
@@ -220,6 +220,11 @@ var ActivityShell = (function () {
           $popup.css({ "padding-bottom": settingPanelHt + 10 })
         }
         $popup.addClass("right_align_popup")
+      }
+      else{
+        if(this.IsSmallTablet()){
+          $popup.addClass("right_align_popup")
+        }
       }
     },
     AdjustSplitPanelsOnClosePopup: function ($popup) {
