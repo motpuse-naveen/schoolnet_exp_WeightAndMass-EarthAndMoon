@@ -6,6 +6,7 @@ var ActivityMain = (function () {
   var _ball = { width: 0, height: 0, width_new: 0, height_new: 0 };
   return {
     SetObjectData: function () {
+      /*
       _eb.width = $(".electric-balance").width();
       _eb.height = $(".electric-balance").height();
       _pb.width = $(".pane-balance").width();
@@ -16,8 +17,10 @@ var ActivityMain = (function () {
       _ball.height = $(".weight.weight-ball:first").height();
       _disk.width = $(".weight.weight-disk:first").width();
       _disk.height = $(".weight.weight-disk:first").height();
+      */
     },
     SetObjectNewData: function () {
+      /*
       _eb.width_new = $(".electric-balance").width();
       _eb.height_new = $(".electric-balance").height();
       _pb.width_new = $(".pane-balance").width();
@@ -28,6 +31,7 @@ var ActivityMain = (function () {
       _ball.height_new = $(".weight.weight-ball:first").height();
       _disk.width_new = $(".weight.weight-disk:first").width();
       _disk.height_new = $(".weight.weight-disk:first").height();
+      */
     },
     LaunchActivity: function () {
       $(".exp-container.zoom1").css({ "width": $(".wrapper").width() })
@@ -105,6 +109,7 @@ var ActivityMain = (function () {
         }
         else {
           $(".weight-ball.ball-" + (index + 1)).css({ "top": balltop, "left": ballleft });
+          $(".weight-ball.ball-" + (index + 1)).attr("orgTop", balltop).attr("orgLeft", ballleft);
         }
       })
       $(".weight-disk:not([machine])").each(function (index) {
@@ -114,7 +119,9 @@ var ActivityMain = (function () {
         else {
           weightLeft += (diskWdt + 10);
         }
-        $(".weight-disk.disk-" + (index + 1) + ":not([machine])").css({ "top": (slateTop - diskHt) + 5, "left": weightLeft });
+        var distTop = (slateTop - diskHt) + 5;
+        $(".weight-disk.disk-" + (index + 1) + ":not([machine])").css({ "top": distTop, "left": weightLeft });
+        $(".weight-disk.disk-" + (index + 1) + ":not([machine])").attr("orgTop", distTop).attr("orgLeft", weightLeft);
       })
     },
     SetBalancerPositions: function () {
@@ -296,7 +303,7 @@ var ActivityMain = (function () {
         "left": electricleft,
         "top": electrictop
       }).attr('orgTop', electrictop).attr('orgLeft', electricleft);
-
+      /*
       ActivityMain.SetObjectNewData();
       console.log(_eb)
       console.log(_pb)
@@ -438,6 +445,7 @@ var ActivityMain = (function () {
       _ball.height = _ball.height_new;
       _disk.width = _disk.width_new;
       _disk.height =_disk.height_new;
+      */
     },
     SetBalancerPositions_OnOrientationChange_Mobile: function () {
       //debugger;

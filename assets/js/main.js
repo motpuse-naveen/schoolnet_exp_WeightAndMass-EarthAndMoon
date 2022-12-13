@@ -7,7 +7,8 @@ var zoomhtml = null;
 var zoombody = null;
 
 var ActivityShell = (function () {
-
+  var windowLandscapeInnerHeight = 0;
+  var windowPortraitInnerHeight = 0;
   return {
     Init: function () {
       $(".wrapper").css({
@@ -40,6 +41,7 @@ var ActivityShell = (function () {
       element.scrollTop = element.scrollHeight - element.clientHeight;
     },
     LaunchActivity: function () {
+      //windowInnerHeight = window.innerHeight;
       $(".wrapper").addClass("activity");
       $(".container-so.launch").hide();
       $(".container-so.main").show();
@@ -64,7 +66,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
-            ActivityMain.SetObjectData();
+            //ActivityMain.SetObjectData();
             ActivityShell.SetScrollPosition();
           }, 0);
         }, 500)
@@ -88,7 +90,7 @@ var ActivityShell = (function () {
           */
           setTimeout(function () {
             GuidedTour.Init();
-            ActivityMain.SetObjectData();
+            //ActivityMain.SetObjectData();
             ActivityShell.SetScrollPosition();
           }, 0);
         }, 500);
@@ -97,17 +99,36 @@ var ActivityShell = (function () {
     AdjustContainerHeight: function () {
       //debugger;
       var deviceType = ActivityShell.DeviceType();
-      if (deviceType == "mobile") {
-        $(".wrapper").css({
-          //"height": window.screen.height + "px"
-          "height": window.innerHeight + "px"
-        });
+      //NM: applicable for default zoom only
+      var defaultZoom = (window.outerWidth) / window.innerWidth
+      //alert(window.innerHeight);
+      if(defaultZoom>1){
+        if (deviceType == "mobile") {
+          $(".wrapper").css({
+            //"height": window.screen.height + "px"
+            "height": (window.innerHeight * defaultZoom) + "px"
+          });
+        }
+        else {
+          $(".wrapper").css({
+            "height": (window.innerHeight * defaultZoom) + "px"
+          });
+        }
       }
-      else {
-        $(".wrapper").css({
-          "height": window.innerHeight + "px"
-        });
+      else{
+        if (deviceType == "mobile") {
+          $(".wrapper").css({
+            //"height": window.screen.height + "px"
+            "height": window.innerHeight + "px"
+          });
+        }
+        else {
+          $(".wrapper").css({
+            "height": window.innerHeight + "px"
+          });
+        }
       }
+      
       if ($(".container-so.main").is(":visible")) {
         var headerHt = $(".container-so.main .exp_header").outerHeight();
         var footerHt = $(".container-so.main .exp_footer").outerHeight();
@@ -268,6 +289,7 @@ var ActivityShell = (function () {
       ScreenSplitter.ScaleToFit($("#split-1"));
     },
     OnOrientationChange: function () {
+      
       this.AdjustContainerHeight();
       //ScreenSplitter.InitSplitter();
       if ($(".popup").is(":visible")) {
