@@ -121,7 +121,7 @@ var ActivityMain = (function () {
         }
         var distTop = (slateTop - diskHt) + 5;
         $(".weight-disk.disk-" + (index + 1) + ":not([machine])").css({ "top": distTop, "left": weightLeft });
-        $(".weight-disk.disk-" + (index + 1) + ":not([machine])").attr("orgTop", distTop).attr("orgLeft", weightLeft);
+        $(".weight-disk.disk-" + (index + 1)).attr("orgTop", distTop).attr("orgLeft", weightLeft);
       })
     },
     SetBalancerPositions: function () {
@@ -854,7 +854,7 @@ var ActivityMain = (function () {
             $(".activity-panel").append(clone)
             this.SetPositionOnDrop(clone, _droppable);
             this.InitWeightDrag(clone, "disk");
-            _draggable.attr("alreadydrop","true")
+            //_draggable.attr("alreadydrop","true")
             $(".weight-disk-draggable.ui-draggable-dragging").remove();
           //}
         }
