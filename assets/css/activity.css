@@ -9,6 +9,9 @@
 .ui-state-hover {
   background-color: red !important;
 }
+.ui-state-active{
+  background-color: blue !important;
+}
 
 .ui-state-hover-planet{
   background-color: green !important;

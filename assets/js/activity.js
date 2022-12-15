@@ -680,9 +680,8 @@ var ActivityMain = (function () {
         //tolerance: "pointer",
         tolerance: "fit",
         hoverClass: "ui-state-hover-planet",
-
         //greedy: true,
-        //activeClass: "ui-state-default",
+        activeClass: "ui-state-active-planet",
         drop: function (event, ui) {
           //debugger;
           if ($(".ui-state-hover").length <= 0) {
@@ -691,12 +690,15 @@ var ActivityMain = (function () {
               var prevPlanetNme = ui.draggable.attr("planet")
               ui.draggable.attr("planet", planetNme);
               if (!ui.draggable.hasClass("wt-balancer")) {
+                ui.draggable.addClass("planet-dropped");
                 if (ui.helper.hasClass("weight-disk-draggable")) {
                   var clone = $(ui.helper).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
                   $(".activity-panel").append(clone)
+                  console.log("planetDrop1")
                   ActivityMain.AnimateOnPlanetDrop(planetNme, clone, $(this))
                 }
                 else {
+                  console.log("planetDrop2")
                   ActivityMain.AnimateOnPlanetDrop(planetNme, ui.draggable, $(this))
                 }
               }
@@ -776,7 +778,7 @@ var ActivityMain = (function () {
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         //greedy: true,
-        //activeClass: "ui-state-default",
+        activeClass: "ui-state-active",
         drop: function (event, ui) {
           if (!$(".spring-balance.wt-balancer .overload-weight").is(":visible")) {
             ActivityMain.OnWeightDrop(ui.draggable, $(this));
@@ -813,10 +815,17 @@ var ActivityMain = (function () {
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         //greedy: true,
-        //activeClass: "ui-state-default",
+        activeClass: "ui-state-active",
         drop: function (event, ui) {
           //console.log("pane-01-droppable pane-02-droppable")
-          ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          //ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          if(!ui.draggable.hasClass("planet-dropped")){
+            //console.log("balancerDrop1")
+            ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          }
+          else{
+            ui.draggable.removeClass("planet-dropped")
+          }
         },
         out: function (event, ui) {
           //console.log("pane-01-droppable pane-02-droppable out")
@@ -830,9 +839,15 @@ var ActivityMain = (function () {
         tolerance: "touch",
         hoverClass: "ui-state-hover",
         //greedy: true,
-        //activeClass: "ui-state-default",
+        activeClass: "ui-state-active",
         drop: function (event, ui) {
-          ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          if(!ui.draggable.hasClass("planet-dropped")){
+            //console.log("balancerDrop1")
+            ActivityMain.OnWeightDrop(ui.draggable, $(this));
+          }
+          else{
+            ui.draggable.removeClass("planet-dropped")
+          }
         },
         out: function (event, ui) {
           $(this).removeClass("ui-state-hover")
@@ -846,7 +861,7 @@ var ActivityMain = (function () {
       this.InitBalancerDrop();
     },
     OnWeightDrop: function (_draggable, _droppable) {
-      console.log("start OnWeightDrop")
+      //console.log("start OnWeightDrop")
       if (_draggable.attr("machine") == undefined || _draggable.attr("machine") == "") {
         if (_draggable.hasClass("weight-disk-draggable")) {
           //if(!_draggable.attr("alreadydrop")){
@@ -859,10 +874,11 @@ var ActivityMain = (function () {
           //}
         }
         else {
+          //debugger;
           ActivityMain.SetPositionOnDrop(_draggable, _droppable);
         }
       }
-      console.log("end OnWeightDrop")
+      //console.log("end OnWeightDrop")
     },
     ResetPositionsOnDragStart: function (_draggable) {
       var dragmachine = _draggable.attr("machine")
@@ -1239,6 +1255,9 @@ var ActivityMain = (function () {
         "height": $(".spring-balance-droppable").attr("orig-ht") + "px"
       });
       $(".spring-balance-droppable").attr("dropkg", 0);
+      $(".electric-balance-droppable").attr("dropkg",0);
+      $(".electric-balance .newton .value").text("0 N");
+      $(".electric-balance .kilogram .value").text("0 Kg");
       $(".overload-weight").hide();
       $(".dropped-object").removeClass("dropped-object")
       $(".pane-bar").removeAttr("style");
