@@ -694,11 +694,11 @@ var ActivityMain = (function () {
                 if (ui.helper.hasClass("weight-disk-draggable")) {
                   var clone = $(ui.helper).clone().removeClass("weight-disk-draggable").addClass("weight-disk-dropped");
                   $(".activity-panel").append(clone)
-                  //console.log("planetDrop1")
+                  console.log("planetDrop1")
                   ActivityMain.AnimateOnPlanetDrop(planetNme, clone, $(this))
                 }
                 else {
-                  //console.log("planetDrop2")
+                  console.log("planetDrop2")
                   ActivityMain.AnimateOnPlanetDrop(planetNme, ui.draggable, $(this))
                 }
               }
